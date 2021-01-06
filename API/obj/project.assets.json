@@ -2139,6 +2139,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
         "dependencies": {
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "3.1.1",
           "Microsoft.EntityFrameworkCore": "3.1.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.1",
           "Microsoft.Extensions.Identity.Stores": "3.1.1",
@@ -7053,11 +7054,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\ohhCarUpdated\\ooohCar-BackEnd\\API\\API.csproj",
+      "projectUniqueName": "F:\\Final Ohh Car Project\\Backend\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "F:\\ohhCarUpdated\\ooohCar-BackEnd\\API\\API.csproj",
+      "projectPath": "F:\\Final Ohh Car Project\\Backend\\API\\API.csproj",
       "packagesPath": "C:\\Users\\new user\\.nuget\\packages\\",
-      "outputPath": "F:\\ohhCarUpdated\\ooohCar-BackEnd\\API\\obj\\",
+      "outputPath": "F:\\Final Ohh Car Project\\Backend\\API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\new user\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7073,8 +7074,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "F:\\ohhCarUpdated\\ooohCar-BackEnd\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "F:\\ohhCarUpdated\\ooohCar-BackEnd\\Infrastructure\\Infrastructure.csproj"
+            "F:\\Final Ohh Car Project\\Backend\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "F:\\Final Ohh Car Project\\Backend\\Infrastructure\\Infrastructure.csproj"
             }
           }
         }

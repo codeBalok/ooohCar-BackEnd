@@ -7,3 +7,12 @@ F:\CarsBuy Details by sheikh\core\obj\Debug\netstandard2.1\Core.csproj.CoreCompi
 F:\CarsBuy Details by sheikh\core\obj\Debug\netstandard2.1\Core.dll
 F:\CarsBuy Details by sheikh\core\obj\Debug\netstandard2.1\Core.pdb
 F:\CarsBuy Details by sheikh\core\obj\Debug\netstandard2.1\Core.csprojAssemblyReference.cache
+F:\Final Ohh Car Project\Backend\core\bin\Debug\netstandard2.1\Core.deps.json
+F:\Final Ohh Car Project\Backend\core\bin\Debug\netstandard2.1\Core.dll
+F:\Final Ohh Car Project\Backend\core\bin\Debug\netstandard2.1\Core.pdb
+F:\Final Ohh Car Project\Backend\core\obj\Debug\netstandard2.1\Core.csprojAssemblyReference.cache
+F:\Final Ohh Car Project\Backend\core\obj\Debug\netstandard2.1\Core.AssemblyInfoInputs.cache
+F:\Final Ohh Car Project\Backend\core\obj\Debug\netstandard2.1\Core.AssemblyInfo.cs
+F:\Final Ohh Car Project\Backend\core\obj\Debug\netstandard2.1\Core.dll
+F:\Final Ohh Car Project\Backend\core\obj\Debug\netstandard2.1\Core.pdb
+F:\Final Ohh Car Project\Backend\core\obj\Debug\netstandard2.1\Core.csproj.CoreCompileInputs.cache

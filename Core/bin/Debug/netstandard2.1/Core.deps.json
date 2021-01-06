@@ -9,6 +9,7 @@
     ".NETStandard,Version=v2.1/": {
       "Core/1.0.0": {
         "dependencies": {
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "3.1.1",
           "Microsoft.EntityFrameworkCore": "3.1.1",
           "Microsoft.EntityFrameworkCore.Design": "3.1.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.1",
@@ -35,6 +36,18 @@
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": {
+            "assemblyVersion": "3.1.1.0",
+            "fileVersion": "3.100.119.61510"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Identity.EntityFrameworkCore/3.1.1": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "3.1.1",
+          "Microsoft.Extensions.Identity.Stores": "3.1.1"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {
             "assemblyVersion": "3.1.1.0",
             "fileVersion": "3.100.119.61510"
           }
@@ -1508,6 +1521,13 @@
       "sha512": "sha512-hsgMSiKDe/UDdKarzld9aUMyRjiMBi847QGnLBDvbvuAlvlaqZ6CKMPjLch43Yf3ZKoHVr716LsNNOAsfIs1oQ==",
       "path": "microsoft.aspnetcore.cryptography.keyderivation/3.1.1",
       "hashPath": "microsoft.aspnetcore.cryptography.keyderivation.3.1.1.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore/3.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gMDEHBJNUHDT/zZta6LqJO2snVmZrORQkWC6aqQGQveD02Fccmmhvi8Z+IBZH03NVyfi7vcrGOTkccdDfhOe3A==",
+      "path": "microsoft.aspnetcore.identity.entityframeworkcore/3.1.1",
+      "hashPath": "microsoft.aspnetcore.identity.entityframeworkcore.3.1.1.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.0": {
       "type": "package",

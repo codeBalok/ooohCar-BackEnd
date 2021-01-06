@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\ohhCarUpdated\\ooohCar-BackEnd\\API\\API.csproj": {}
+    "F:\\Final Ohh Car Project\\Backend\\API\\API.csproj": {}
   },
   "projects": {
-    "F:\\ohhCarUpdated\\ooohCar-BackEnd\\API\\API.csproj": {
+    "F:\\Final Ohh Car Project\\Backend\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\ohhCarUpdated\\ooohCar-BackEnd\\API\\API.csproj",
+        "projectUniqueName": "F:\\Final Ohh Car Project\\Backend\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "F:\\ohhCarUpdated\\ooohCar-BackEnd\\API\\API.csproj",
+        "projectPath": "F:\\Final Ohh Car Project\\Backend\\API\\API.csproj",
         "packagesPath": "C:\\Users\\new user\\.nuget\\packages\\",
-        "outputPath": "F:\\ohhCarUpdated\\ooohCar-BackEnd\\API\\obj\\",
+        "outputPath": "F:\\Final Ohh Car Project\\Backend\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\new user\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -27,8 +27,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "F:\\ohhCarUpdated\\ooohCar-BackEnd\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "F:\\ohhCarUpdated\\ooohCar-BackEnd\\Infrastructure\\Infrastructure.csproj"
+              "F:\\Final Ohh Car Project\\Backend\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "F:\\Final Ohh Car Project\\Backend\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -105,14 +105,14 @@
         }
       }
     },
-    "F:\\ohhCarUpdated\\ooohCar-BackEnd\\core\\Core.csproj": {
+    "F:\\Final Ohh Car Project\\Backend\\core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\ohhCarUpdated\\ooohCar-BackEnd\\core\\Core.csproj",
+        "projectUniqueName": "F:\\Final Ohh Car Project\\Backend\\core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "F:\\ohhCarUpdated\\ooohCar-BackEnd\\core\\Core.csproj",
+        "projectPath": "F:\\Final Ohh Car Project\\Backend\\core\\Core.csproj",
         "packagesPath": "C:\\Users\\new user\\.nuget\\packages\\",
-        "outputPath": "F:\\ohhCarUpdated\\ooohCar-BackEnd\\core\\obj\\",
+        "outputPath": "F:\\Final Ohh Car Project\\Backend\\core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\new user\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -139,6 +139,10 @@
       "frameworks": {
         "netstandard2.1": {
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.1, )"
@@ -189,14 +193,14 @@
         }
       }
     },
-    "F:\\ohhCarUpdated\\ooohCar-BackEnd\\Infrastructure\\Infrastructure.csproj": {
+    "F:\\Final Ohh Car Project\\Backend\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\ohhCarUpdated\\ooohCar-BackEnd\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "F:\\Final Ohh Car Project\\Backend\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "F:\\ohhCarUpdated\\ooohCar-BackEnd\\Infrastructure\\Infrastructure.csproj",
+        "projectPath": "F:\\Final Ohh Car Project\\Backend\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\new user\\.nuget\\packages\\",
-        "outputPath": "F:\\ohhCarUpdated\\ooohCar-BackEnd\\Infrastructure\\obj\\",
+        "outputPath": "F:\\Final Ohh Car Project\\Backend\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\new user\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -212,8 +216,8 @@
         "frameworks": {
           "netstandard2.1": {
             "projectReferences": {
-              "F:\\ohhCarUpdated\\ooohCar-BackEnd\\Core\\Core.csproj": {
-                "projectPath": "F:\\ohhCarUpdated\\ooohCar-BackEnd\\Core\\Core.csproj"
+              "F:\\Final Ohh Car Project\\Backend\\Core\\Core.csproj": {
+                "projectPath": "F:\\Final Ohh Car Project\\Backend\\Core\\Core.csproj"
               }
             }
           }

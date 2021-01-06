@@ -16,6 +16,7 @@ using Core.Models;
 using Core.Interfaces;
 using Infrastructure.Services;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace API
 {
@@ -31,6 +32,8 @@ namespace API
         {
             services.AddDbContextPool<StoreContext>(x =>
                 x.UseSqlite(_config.GetConnectionString("DefaultConnection")));
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<DBContext>();
 
             services.AddDbContext<AppIdentityDbContext>(x =>
             {
@@ -114,6 +117,7 @@ namespace API
                 ),
                 RequestPath = "/content"
             });
+            app.UseAuthentication();
 
             app.UseCors("CorsPolicy");
 
