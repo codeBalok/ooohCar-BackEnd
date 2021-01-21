@@ -20,4 +20,8 @@ namespace Infrastructure.ViewModels
         public string LocationId { get; set; }
         public string YearId { get; set; }
     }
+    public partial class SelectedMakesListsViewModel
+    {
+        public List<SideSearchCommonViewModel> Make { get; set; }
+    }
 }
