@@ -102,5 +102,17 @@ namespace Infrastructure.Services
         public string GetType(int typeId){
             return _dBContext.VehicleType.Where(x=> x.Id == typeId).Select(x=> x.Name).FirstOrDefault();
         }
+        public List<Vehicle> GetVehicleListAccordingToSelectedMakes(List<int> makeId)
+        {
+            List<Vehicle> vehicleList = new List<Vehicle>();
+            if (makeId.Count() > 0)
+            {
+                vehicleList = _dBContext.Vehicle.ToList();
+                List<int> modelIds = _dBContext.Model.Where(x => makeId.Contains(x.MakeId)).Select(x => x.Id).ToList();
+                vehicleList = vehicleList.Where(x => modelIds.Contains(x.ModelId ?? 0)).ToList();
+            }
+            return vehicleList;
+        }
+        
     }
 }

@@ -14,4 +14,8 @@ namespace Infrastructure.ViewModels
         public string Name { get; set; }
         public int ChildCount { get; set; }
     }
+    public partial class SearchMakeViewModel : CommonViewModel
+    {
+        public int Count { get; set; }
+    }
 }
