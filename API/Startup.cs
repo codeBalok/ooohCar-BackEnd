@@ -17,6 +17,9 @@ using Core.Interfaces;
 using Infrastructure.Services;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Identity;
+using Core.Infrastructure.ErrorHandler;
+using API.Identity;
+
 
 namespace API
 {
@@ -32,12 +35,14 @@ namespace API
         {
             services.AddDbContextPool<StoreContext>(x =>
                 x.UseSqlite(_config.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<DBContext>();
+            //services.AddIdentity<IdentityUser, IdentityRole>()
+            //    .AddEntityFrameworkStores<DBContext>();
+            services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(_config.GetConnectionString("DefaultConnection1")));
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDBContext>().AddDefaultTokenProviders();
 
             services.AddDbContext<AppIdentityDbContext>(x =>
             {
-                x.UseSqlite(_config.GetConnectionString("IdentityConnection"));
+                x.UseSqlite(_config.GetConnectionString("DefaultConnection"));
             });
 
             ConfigureServices(services);
@@ -50,7 +55,7 @@ namespace API
 
             services.AddDbContext<AppIdentityDbContext>(x =>
             {
-                x.UseMySql(_config.GetConnectionString("IdentityConnection"));
+                x.UseMySql(_config.GetConnectionString("DefaultConnection"));
             });
 
             ConfigureServices(services);
@@ -62,6 +67,8 @@ namespace API
             services.AddScoped<IAddNewVehicleRepository, AddNewVehicleService>();
             services.AddScoped<IFeatureProductsRepository, FeatureProductsService>();
             services.AddScoped<IImageServiceRepository, ImageServiceService>();
+            services.AddScoped<IErrorHandler, ErrorHandler>();
+            services.AddScoped<ITokenService, TokenService>();
             services.AddAutoMapper(typeof(MappingProfiles));
             services.AddControllers();
             services.AddDbContext<DBContext>

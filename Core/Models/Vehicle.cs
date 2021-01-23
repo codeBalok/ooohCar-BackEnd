@@ -10,7 +10,7 @@ namespace Core.Models
         public string Odometers { get; set; }
         public int BodyTypeId { get; set; }
         public string Vin { get; set; }
-        public int? ModelId { get; set; } 
+        public int? ModelId { get; set; }
         public int? PriceId { get; set; }
         public int? CategoryId { get; set; }
         public string RegistrationPlate { get; set; }
@@ -21,25 +21,25 @@ namespace Core.Models
         public int? CylindersId { get; set; }
         public int? FuelEconomyId { get; set; }
         public int? EngineDescriptionId { get; set; }
-        public int? MakeId { get; set; }  
+        public int? MakeId { get; set; }
         public int? Variant { get; set; }
-        public int? ConditionId { get; set; } 
+        public int? ConditionId { get; set; }
         public int? Kilometer { get; set; }
         public int? EngineSizeId { get; set; }
         public string AirConditioning { get; set; }
-        public string AuctionGrade { get; set; }
         public string DriveTrain { get; set; }
-        public string IsRegistered { get; set; }
-        public int? ColourId { get; set; }
-        public int? SellerTypeId { get; set; }
-        public int? VehicleCategoryId { get; set; }
-        public int? VehicleImageId { get; set; }
-        public int? YearId { get; set; } 
         public bool? IsActive { get; set; }
         public int CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
         public int? UpdatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
+        public string AuctionGrade { get; set; }
+        public int? ColourId { get; set; }
+        public string IsRegistered { get; set; }
+        public int? SellerTypeId { get; set; }
+        public int? VehicleCategoryId { get; set; }
+        public int? VehicleImageId { get; set; }
+        public int? YearId { get; set; }
 
         public virtual BodyType BodyType { get; set; }
         public virtual Category Category { get; set; }

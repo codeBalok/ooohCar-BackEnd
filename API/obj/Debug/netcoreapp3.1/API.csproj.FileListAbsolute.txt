@@ -105,12 +105,12 @@ F:\CarsBuy Details by sheikh\API\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dl
 F:\CarsBuy Details by sheikh\API\obj\Debug\netcoreapp3.1\API.csproj.CoreCompileInputs.cache
 F:\CarsBuy Details by sheikh\API\obj\Debug\netcoreapp3.1\API.MvcApplicationPartsAssemblyInfo.cs
 F:\CarsBuy Details by sheikh\API\obj\Debug\netcoreapp3.1\API.MvcApplicationPartsAssemblyInfo.cache
-F:\Final Ohh Car Project\Backend\API\bin\Debug\netcoreapp3.1\appsettings.Development.json
-F:\Final Ohh Car Project\Backend\API\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 F:\Final Ohh Car Project\Backend\API\bin\Debug\netcoreapp3.1\Data\SeedData\brands.json
 F:\Final Ohh Car Project\Backend\API\bin\Debug\netcoreapp3.1\Data\SeedData\delivery.json
 F:\Final Ohh Car Project\Backend\API\bin\Debug\netcoreapp3.1\Data\SeedData\products.json
 F:\Final Ohh Car Project\Backend\API\bin\Debug\netcoreapp3.1\Data\SeedData\types.json
+F:\Final Ohh Car Project\Backend\API\bin\Debug\netcoreapp3.1\appsettings.Development.json
+F:\Final Ohh Car Project\Backend\API\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 F:\Final Ohh Car Project\Backend\API\bin\Debug\netcoreapp3.1\API.exe
 F:\Final Ohh Car Project\Backend\API\bin\Debug\netcoreapp3.1\API.deps.json
 F:\Final Ohh Car Project\Backend\API\bin\Debug\netcoreapp3.1\API.runtimeconfig.json

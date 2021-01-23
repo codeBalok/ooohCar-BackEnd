@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "c/YLuE1qZuT/Khpvxc5Ga4mxGGtRLzz48qICki7uIz500F7CZQvY+bPth+ZfjbHmdgcZqr9nnRJvyYRuu0j9pg==",
+  "dgSpecHash": "9zd978Bbx3jxYOWM92lu2+kqqTgXu5NUN5jxtxFCSaYm511nKmCiNIhVyyoN9YkP2XYHbvtdpXlXjwHidi1iXA==",
   "success": true,
   "projectFilePath": "F:\\Final Ohh Car Project\\Backend\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -65,7 +65,7 @@
     "C:\\Users\\new user\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
     "C:\\Users\\new user\\.nuget\\packages\\mysqlconnector\\0.61.0\\mysqlconnector.0.61.0.nupkg.sha512",
     "C:\\Users\\new user\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
-    "C:\\Users\\new user\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\new user\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\new user\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\3.1.1\\pomelo.entityframeworkcore.mysql.3.1.1.nupkg.sha512",
     "C:\\Users\\new user\\.nuget\\packages\\pomelo.jsonobject\\2.2.1\\pomelo.jsonobject.2.2.1.nupkg.sha512",
     "C:\\Users\\new user\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",

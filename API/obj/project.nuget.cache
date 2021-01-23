@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "1WQD5bwtr5fEcq34g3bmeHp/5TlwzJkd5EyiWs44WkMOpfcmhfdFp4VDROtVy+zjROB1ru4qC+0sPhWQy7H+hg==",
+  "dgSpecHash": "z2GwCzC1S5TZQ+X6koDb+xlVoNEV8cqvn478wujh86zbknc35NBUf6w7Q2y6agmBvxVrzvafD+GdgOiDBgPDvQ==",
   "success": true,
   "projectFilePath": "F:\\Final Ohh Car Project\\Backend\\API\\API.csproj",
   "expectedPackageFiles": [
@@ -71,7 +71,7 @@
     "C:\\Users\\new user\\.nuget\\packages\\microsoft.openapi\\1.1.4\\microsoft.openapi.1.1.4.nupkg.sha512",
     "C:\\Users\\new user\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
     "C:\\Users\\new user\\.nuget\\packages\\mysqlconnector\\0.61.0\\mysqlconnector.0.61.0.nupkg.sha512",
-    "C:\\Users\\new user\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\new user\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\new user\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Users\\new user\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\3.1.1\\pomelo.entityframeworkcore.mysql.3.1.1.nupkg.sha512",
     "C:\\Users\\new user\\.nuget\\packages\\pomelo.jsonobject\\2.2.1\\pomelo.jsonobject.2.2.1.nupkg.sha512",
