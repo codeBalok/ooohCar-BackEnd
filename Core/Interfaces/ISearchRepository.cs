@@ -22,5 +22,10 @@ namespace Core.Interfaces
         List<Model> GetModalListCountByID(int id);
         List<Variant> GetVarientListCountByID(int id);
         List<Vehicle> GetVehicleListAccordingToSelectedMakes(List<int> makeIds);
+         int GetVehcileCountByMakeID(int makeId);
+        List<Vehicle> GetVehicleListAccordingToSelectedModels(List<int> lstmodelId);
+        List<Vehicle> GetVehicleListAccordingToSelectedVariants(List<int> lstvariantId);        
+        int GetVehcileCountByModelID(int modelId);
+        int GetVehcileCountByVariantID(int variantId);
     }
 }

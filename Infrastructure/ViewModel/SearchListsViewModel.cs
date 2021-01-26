@@ -24,4 +24,12 @@ namespace Infrastructure.ViewModels
     {
         public List<SideSearchCommonViewModel> Make { get; set; }
     }
+    public partial class SelectedModelsListsViewModel
+    {
+        public List<SideSearchCommonViewModel> Model { get; set; }
+    }
+    public partial class SelectedVariantsListsViewModel
+    {
+        public List<SideSearchCommonViewModel> Variant { get; set; }
+    }
 }

@@ -73,9 +73,15 @@ namespace API.Controllers
             {
                 Id = x.Id,
                 Name = x.Name,
-                ChildCount = GetModelCountById(x.Id)
+                ChildCount = GetVehcileCountByMakeID(x.Id)
 
             }).Where(x => x.ChildCount > 0).ToList();
+        }
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public int GetVehcileCountByMakeID(int id)
+        {
+            return _searchRepository.GetVehcileCountByMakeID(id);
         }
 
         [ApiExplorerSettings(IgnoreApi = true)]
@@ -104,9 +110,16 @@ namespace API.Controllers
             {
                 Id = x.Id,
                 Name = x.Name,
-                ChildCount = GetVarientCountById(x.Id)
+                ChildCount = GetVehcileCountByModelID(x.Id)
             }).ToList();
         }
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public int GetVehcileCountByModelID(int id)
+        {
+            return _searchRepository.GetVehcileCountByModelID(id);
+        }
+
 
         [HttpGet]
         [Route("GetVariantListForSideSearch/{modelId}")]
@@ -115,9 +128,15 @@ namespace API.Controllers
             return _searchRepository.GetVariantList().Where(x => x.ModelId == modelId).Select(x => new SideSearchCommonViewModel
             {
                 Id = x.Id,
-                Name = x.Varient
-
+                Name = x.Varient,
+                ChildCount = GetVehcileCountByVariantID(x.Id)
             }).ToList();
+        }
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public int GetVehcileCountByVariantID(int id)
+        {
+            return _searchRepository.GetVehcileCountByVariantID(id);
         }
         [ApiExplorerSettings(IgnoreApi = true)]
         public int GetVarientCountById(int id)
@@ -180,23 +199,54 @@ namespace API.Controllers
             }).ToList();
         }
 
-        //[HttpGet]
-        //[Route("SideSearchGetLocationListWithRegionCount")]
-        //public List<SideSearchCommonViewModel> SideSearchGetLocationListWithRegionCount()
-        //{
-        //    return _searchRepository.GetLocationList().Select(x => new SideSearchCommonViewModel
-        //    {
-        //        Id = x.Id,
-        //        Name = x.Name,
-        //        ChildCount = GetRegionCountById(x.Id)
-        //    }).Where(x => x.ChildCount > 0).ToList();
-        //}
+        [HttpPost]
+        [Route("GetVehicleListAccordingToSelectedModels")]
+        public List<VehicleViewModel> GetVehicleListAccordingToSelectedModels([FromBody] SelectedModelsListsViewModel selectedModelsListsViewModel)
+        {
 
-        //[ApiExplorerSettings(IgnoreApi = true)]
-        //public int GetRegionCountById(int id)
-        //{
-        //    return _searchRepository.GetRegionListByLocationId(id).Count;
-        //}
+            List<int> modelIds = selectedModelsListsViewModel.Model.Select(models => models.Id).ToList();
+            return _searchRepository.GetVehicleListAccordingToSelectedModels(modelIds).
+            Select(x => new VehicleViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Vin = x.Vin,
+                Odometers = x.Odometers,
+                Image = _imageServiceRepository.GetImagesByModel(x.ModelId ?? 0),
+                Year = _searchRepository.GetYear(x.ModelId ?? 0),
+                Body = _searchRepository.GetBody(x.BodyTypeId),
+                FuelType = _searchRepository.GetFuelType(x.FuelTypeId ?? 0),
+                Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
+                Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
+                Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
+            }).ToList();
+        }
+
+        [HttpPost]
+        [Route("GetVehicleListAccordingToSelectedVariants")]
+        public List<VehicleViewModel> GetVehicleListAccordingToSelectedVariants([FromBody] SelectedVariantsListsViewModel selectedVariantsListsViewModel)
+        {
+
+            List<int> variantIds = selectedVariantsListsViewModel.Variant.Select(variant => variant.Id).ToList();
+            return _searchRepository.GetVehicleListAccordingToSelectedVariants(variantIds).
+            Select(x => new VehicleViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Vin = x.Vin,
+                Odometers = x.Odometers,
+                Image = _imageServiceRepository.GetImagesByModel(x.ModelId ?? 0),
+                Year = _searchRepository.GetYear(x.ModelId ?? 0),
+                Body = _searchRepository.GetBody(x.BodyTypeId),
+                FuelType = _searchRepository.GetFuelType(x.FuelTypeId ?? 0),
+                Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
+                Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
+                Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
+            }).ToList();
+        }
+
+
+
 
     }
 }

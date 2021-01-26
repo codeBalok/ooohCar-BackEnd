@@ -113,6 +113,62 @@ namespace Infrastructure.Services
             }
             return vehicleList;
         }
-        
+        public int GetVehcileCountByMakeID(int makeId)
+        {
+            List<int> lstmakeId = new List<int>();
+            lstmakeId.Add(makeId);
+            List<Vehicle> lstVehicle= GetVehicleListAccordingToSelectedMakes(lstmakeId);
+            int countVehicle = lstVehicle.Count();
+            return countVehicle;
+        }
+        public int GetVehcileCountByModelID(int modelId)
+        {
+            List<int> lstmodelId = new List<int>();
+            lstmodelId.Add(modelId);
+            List<Vehicle> lstVehicle = GetVehicleListAccordingToSelectedModels(lstmodelId);
+            int countVehicle = lstVehicle.Count();
+            return countVehicle;
+        }
+        public int GetVehcileCountByVariantID(int variantId)
+        {
+            List<int> lstvariantId = new List<int>();
+            lstvariantId.Add(variantId);
+            List<Vehicle> lstVehicle = GetVehicleListAccordingToSelectedVariants(lstvariantId);
+            int countVehicle = lstVehicle.Count();
+            return countVehicle;
+        }
+        public List<Vehicle> GetVehicleListAccordingToSelectedModels(List<int> lstmodelId)
+        {
+            List<Vehicle> vehicleList = new List<Vehicle>();
+            if (lstmodelId.Count() > 0)
+            {
+                vehicleList = _dBContext.Vehicle.ToList();               
+                List<int> modelIds = _dBContext.Model.Where(x => lstmodelId.Contains(x.Id)).Select(x => x.Id).ToList();
+                vehicleList = vehicleList.Where(x => modelIds.Contains(x.ModelId ?? 0)).ToList();
+            }
+            return vehicleList;
+        }
+        //public List<Vehicle> GetVehicleListAccordingToSelectedVariant(List<int> lstvariantId)
+        //{
+        //    List<Vehicle> vehicleList = new List<Vehicle>();
+        //    if (lstvariantId.Count() > 0)
+        //    {
+        //        vehicleList = _dBContext.Vehicle.ToList();
+        //        List<int> variantIds = _dBContext.Variant.Where(x => lstvariantId.Contains(x.Id)).Select(x => x.Id).ToList();
+        //        vehicleList = vehicleList.Where(x => variantIds.Contains(x.Variant ?? 0)).ToList();
+        //    }
+        //    return vehicleList;
+        //}
+        public List<Vehicle> GetVehicleListAccordingToSelectedVariants(List<int> lstvariantId)
+        {
+            List<Vehicle> vehicleList = new List<Vehicle>();
+            if (lstvariantId.Count() > 0)
+            {
+                vehicleList = _dBContext.Vehicle.ToList();
+                List<int> variantIds = _dBContext.Variant.Where(x => lstvariantId.Contains(x.Id)).Select(x => x.Id).ToList();
+                vehicleList = vehicleList.Where(x => variantIds.Contains(x.Variant ?? 0)).ToList();
+            }
+            return vehicleList;
+        }
     }
 }
