@@ -32,4 +32,8 @@ namespace Infrastructure.ViewModels
     {
         public List<SideSearchCommonViewModel> Variant { get; set; }
     }
+    public partial class SelectedPriceListsViewModel
+    {
+        public SearchVehicelListPriceModel Prices { get; set; }
+    }
 }

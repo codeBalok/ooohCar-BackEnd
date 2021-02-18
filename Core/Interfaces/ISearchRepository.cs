@@ -27,5 +27,9 @@ namespace Core.Interfaces
         List<Vehicle> GetVehicleListAccordingToSelectedVariants(List<int> lstvariantId);        
         int GetVehcileCountByModelID(int modelId);
         int GetVehcileCountByVariantID(int variantId);
+        List<Transmission> GetTransmissionList();
+        List<Vehicle> GetVehicleListAccordingToSelectedPriceRange(List<decimal> prices);
+        List<Vehicle> GetVehicleListAccordingToSelectedOdometerRange(List<int> lstOdometer);
+        List<Vehicle> GetVehicleListAccordingToSelectedTransmission(List<int> lstTransmissionId);
     }
 }

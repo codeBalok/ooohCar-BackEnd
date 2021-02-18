@@ -57,6 +57,11 @@ namespace Infrastructure.Services
         {
             return _dBContext.Year.ToList();
         }
+        public List<Transmission> GetTransmissionList()
+        {
+            return _dBContext.Transmission.ToList();
+        }
+        
 
         public List<Vehicle> GetSearchVehicleList(string carTypeId, string makeId, string carModelId, string locationId, string yearId){
             List<Vehicle> vehicleList = new List<Vehicle>();
@@ -102,6 +107,7 @@ namespace Infrastructure.Services
         public string GetType(int typeId){
             return _dBContext.VehicleType.Where(x=> x.Id == typeId).Select(x=> x.Name).FirstOrDefault();
         }
+        
         public List<Vehicle> GetVehicleListAccordingToSelectedMakes(List<int> makeId)
         {
             List<Vehicle> vehicleList = new List<Vehicle>();
@@ -170,5 +176,40 @@ namespace Infrastructure.Services
             }
             return vehicleList;
         }
+
+        public List<Vehicle> GetVehicleListAccordingToSelectedPriceRange(List<Decimal> lstPrice)
+        {
+            List<Vehicle> vehicleList = new List<Vehicle>();
+            if (lstPrice.Count() > 0)
+            {
+                vehicleList = _dBContext.Vehicle.ToList();
+                vehicleList = vehicleList.Where(l => l.Price>=lstPrice[0] && l.Price<=lstPrice[1]).ToList();
+            }
+            return vehicleList;
+
+        }
+        public List<Vehicle> GetVehicleListAccordingToSelectedOdometerRange(List<int> lstOdometer)
+        {
+            List<Vehicle> vehicleList = new List<Vehicle>();
+            if (lstOdometer.Count() > 0)
+            {
+                vehicleList = _dBContext.Vehicle.ToList();
+                vehicleList = vehicleList.Where(o => Convert.ToInt32(o.Odometers) >= lstOdometer[0] && Convert.ToInt32(o.Odometers) <= lstOdometer[1]).ToList();
+            }
+            return vehicleList;
+        }
+
+
+        public List<Vehicle> GetVehicleListAccordingToSelectedTransmission(List<int> lstTransmissionId)
+        {
+            List<Vehicle> vehicleList = new List<Vehicle>();
+            if (lstTransmissionId.Count() > 0)
+            {
+                vehicleList = _dBContext.Vehicle.ToList();
+                vehicleList = vehicleList.Where(t => lstTransmissionId.Contains(t.TransmissionId??00)).ToList();
+            }
+            return vehicleList;
+        }
+
     }
 }

@@ -18,5 +18,7 @@ namespace Infrastructure.ViewModels
         public string EngineSize { get; set; }
         public string Cylinders { get; set; }
         public string Type { get; set; }
+        
+        public decimal price { get; set; }
     }
 }
