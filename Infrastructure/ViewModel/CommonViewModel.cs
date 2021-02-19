@@ -31,4 +31,9 @@ namespace Infrastructure.ViewModels
     {
         public List<CommonViewModel> Transmission { get; set; }
     }
+    public partial class SearchVehicelListYearModel
+    {
+        public List<CommonViewModel> Year { get; set; }
+    }
+    
 }

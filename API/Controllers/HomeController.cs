@@ -32,10 +32,10 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("GetVehicleList")]
-        public List<CommonViewModel> GetVehicleList()
+        [Route("GetVehicleTypeList")]
+        public List<CommonViewModel> GetVehicleTypeList()
         {
-            return _searchRepository.GetVehicleList().Select(x => new CommonViewModel
+            return _searchRepository.GetVehicleTypeList().Select(x => new CommonViewModel
             {
                 Id = x.Id,
                 Name = x.Name
@@ -166,8 +166,37 @@ namespace API.Controllers
             }).ToList();
         }
 
+        [HttpGet]
+        [Route("GetCertifiedInspectedList")]
+        public List<CommonViewModel> GetCertifiedInspectedList()
+        {
+            List<CommonViewModel> cmlst = new List<CommonViewModel>();
+            CommonViewModel CertfiedcommonViewModel = new CommonViewModel
+            {
+                Id = 1,
+                Name = "Certified"
+            };
+            CommonViewModel InspectedcommonViewModel = new CommonViewModel
+            {
+                Id = 2,
+                Name = "Inspected"
+            };
 
-        [HttpPost]
+            cmlst.Add(CertfiedcommonViewModel);
+            cmlst.Add(InspectedcommonViewModel);
+
+            return cmlst;
+
+            /*return _searchRepository.GetCertifiedInspectedList().Select(x => new CommonViewModel
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();*/
+        }
+
+        
+
+            [HttpPost]
         [Route("GetSearchVehicleList")]
         public List<VehicleViewModel> GetSearchVehicleList([FromBody] SearchViewModel searchViewModel)
         {
@@ -331,5 +360,27 @@ namespace API.Controllers
             }).ToList();
         }
 
+        [HttpPost]
+        [Route("GetVehicleListAccordingToSelectedYear")]
+        public List<VehicleViewModel> GetVehicleListAccordingToSelectedYear([FromBody] SearchVehicelListYearModel searchVehicelListYearModel)
+        {
+            List<int> lstYears = searchVehicelListYearModel.Year.Select(y=>y.Id).ToList();
+            return _searchRepository.GetVehicleListAccordingToSelectedYear(lstYears).
+            Select(x => new VehicleViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Vin = x.Vin,
+                Odometers = x.Odometers,
+                Image = _imageServiceRepository.GetImagesByModel(x.ModelId ?? 0),
+                Year = _searchRepository.GetYear(x.ModelId ?? 0),
+                Body = _searchRepository.GetBody(x.BodyTypeId),
+                FuelType = _searchRepository.GetFuelType(x.FuelTypeId ?? 0),
+                Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
+                Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
+                Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
+                price = x.Price
+            }).ToList();
+        }
     }
 }
