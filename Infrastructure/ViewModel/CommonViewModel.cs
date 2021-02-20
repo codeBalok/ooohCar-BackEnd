@@ -35,4 +35,22 @@ namespace Infrastructure.ViewModels
     {
         public int Count { get; set; }
     }
+
+    public partial class SearchVehicelListPriceModel 
+    {
+        public List<decimal> Price { get; set; }
+    }
+    public partial class SearchVehicelListOdometerModel
+    {
+        public List<int> Odometer { get; set; }
+    }
+    public partial class SearchVehicelListTransmissionModel
+    {
+        public List<CommonViewModel> Transmission { get; set; }
+    }
+    public partial class SearchVehicelListYearModel
+    {
+        public List<CommonViewModel> Year { get; set; }
+    }
+    
 }

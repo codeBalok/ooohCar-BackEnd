@@ -19,5 +19,7 @@ namespace Infrastructure.ViewModels
         public string Cylinders { get; set; }
         public string Type { get; set; }
         public bool IsFavourite { get; set; }
+        
+        public decimal price { get; set; }
     }
 }

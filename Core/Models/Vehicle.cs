@@ -16,7 +16,7 @@ namespace Core.Models
         public int BodyTypeId { get; set; }
         public string Vin { get; set; }
         public int? ModelId { get; set; }
-        public int? PriceId { get; set; }
+        public decimal Price { get; set; }
         public int? CategoryId { get; set; }
         public string RegistrationPlate { get; set; }
         public int? VehicalTypeId { get; set; }
