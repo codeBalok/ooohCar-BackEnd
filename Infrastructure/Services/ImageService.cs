@@ -11,11 +11,11 @@ namespace Infrastructure.Services
 {
     public class ImageServiceService :IImageServiceRepository
     {
-        private readonly DBContext _dBContext;
+        private readonly CarBuyContext _dBContext;
         private readonly IImageServiceRepository _searchRepo;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IPaymentService _paymentService;
-        public ImageServiceService(DBContext dBContext)
+        public ImageServiceService(CarBuyContext dBContext)
         {
             _dBContext = dBContext;
         }

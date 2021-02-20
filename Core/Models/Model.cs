@@ -22,6 +22,7 @@ namespace Core.Models
         public DateTime CreatedDate { get; set; }
         public int? UpdatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
+        public bool? Popular { get; set; }
 
         public virtual Make Make { get; set; }
         public virtual Year Year { get; set; }

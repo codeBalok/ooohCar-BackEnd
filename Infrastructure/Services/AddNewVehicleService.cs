@@ -9,10 +9,10 @@ namespace Infrastructure.Services
 {
     public class AddNewVehicleService : IAddNewVehicleRepository
     {
-        private readonly DBContext _dBContext;
+        private readonly CarBuyContext _dBContext;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IAddNewVehicleRepository _addNewVehicle;
-        public AddNewVehicleService(DBContext dBContext)
+        public AddNewVehicleService(CarBuyContext dBContext)
         {
             _dBContext = dBContext;
         }

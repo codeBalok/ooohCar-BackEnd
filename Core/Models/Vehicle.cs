@@ -5,6 +5,11 @@ namespace Core.Models
 {
     public partial class Vehicle
     {
+        public Vehicle()
+        {
+            WhistList = new HashSet<WhistList>();
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Odometers { get; set; }
@@ -60,5 +65,6 @@ namespace Core.Models
         public virtual VehicleCategory VehicleCategory { get; set; }
         public virtual VehicleImage VehicleImage { get; set; }
         public virtual Year Year { get; set; }
+        public virtual ICollection<WhistList> WhistList { get; set; }
     }
 }

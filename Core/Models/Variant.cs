@@ -18,6 +18,7 @@ namespace Core.Models
         public DateTime? CreatedDate { get; set; }
         public int? UpdatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
+        public bool? Popular { get; set; }
 
         public virtual Model Model { get; set; }
         public virtual ICollection<Vehicle> Vehicle { get; set; }

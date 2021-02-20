@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Core.Models
 {
-    public partial class DBContext : DbContext
+    public partial class CarBuyContext : DbContext
     {
-        public DBContext()
+        public CarBuyContext()
         {
         }
 
-        public DBContext(DbContextOptions<DBContext> options)
+        public CarBuyContext(DbContextOptions<CarBuyContext> options)
             : base(options)
         {
         }
@@ -47,6 +47,7 @@ namespace Core.Models
         public virtual DbSet<VehicleCategory> VehicleCategory { get; set; }
         public virtual DbSet<VehicleImage> VehicleImage { get; set; }
         public virtual DbSet<VehicleType> VehicleType { get; set; }
+        public virtual DbSet<WhistList> WhistList { get; set; }
         public virtual DbSet<Year> Year { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -620,6 +621,25 @@ namespace Core.Models
                     .HasMaxLength(250);
 
                 entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
+            });
+
+            modelBuilder.Entity<WhistList>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.UserId)
+                    .HasColumnName("UserID")
+                    .HasMaxLength(450);
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.WhistList)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_WhistList_AspNetUsers");
+
+                entity.HasOne(d => d.Vehicle)
+                    .WithMany(p => p.WhistList)
+                    .HasForeignKey(d => d.VehicleId)
+                    .HasConstraintName("FK_WhistList_Vehicle");
             });
 
             modelBuilder.Entity<Year>(entity =>

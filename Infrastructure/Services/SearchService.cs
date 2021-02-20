@@ -12,11 +12,11 @@ namespace Infrastructure.Services
 {
     public class SearchService :ISearchRepository
     {
-        private readonly DBContext _dBContext;
+        private readonly CarBuyContext _dBContext;
         private readonly ISearchRepository _searchRepo;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IPaymentService _paymentService;
-        public SearchService(DBContext dBContext)
+        public SearchService(CarBuyContext dBContext)
         {
             _dBContext = dBContext;
         }

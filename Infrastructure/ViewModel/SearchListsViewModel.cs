@@ -19,6 +19,7 @@ namespace Infrastructure.ViewModels
         public string CarModelId { get; set; }
         public string LocationId { get; set; }
         public string YearId { get; set; }
+        public string UserId { get; set; }
     }
     public partial class SelectedMakesListsViewModel
     {

@@ -11,11 +11,11 @@ namespace Infrastructure.Services
 {
     public class FeatureProductsService :IFeatureProductsRepository
     {
-        private readonly DBContext _dBContext;
+        private readonly CarBuyContext _dBContext;
         private readonly IFeatureProductsRepository _searchRepo;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IPaymentService _paymentService;
-        public FeatureProductsService(DBContext dBContext)
+        public FeatureProductsService(CarBuyContext dBContext)
         {
             _dBContext = dBContext;
         }

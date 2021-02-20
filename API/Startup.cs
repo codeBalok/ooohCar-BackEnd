@@ -67,11 +67,12 @@ namespace API
             services.AddScoped<IAddNewVehicleRepository, AddNewVehicleService>();
             services.AddScoped<IFeatureProductsRepository, FeatureProductsService>();
             services.AddScoped<IImageServiceRepository, ImageServiceService>();
+            services.AddScoped<IWhistListRepository, WhistListService>();
             services.AddScoped<IErrorHandler, ErrorHandler>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddAutoMapper(typeof(MappingProfiles));
             services.AddControllers();
-            services.AddDbContext<DBContext>
+            services.AddDbContext<CarBuyContext>
             (o => o.UseSqlServer(_config.
             GetConnectionString("DefaultConnection1")));
             services.AddApplicationServices();
@@ -93,7 +94,7 @@ namespace API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DBContext db)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, CarBuyContext db)
         {
             if (env.IsDevelopment())
             {

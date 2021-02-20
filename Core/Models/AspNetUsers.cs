@@ -11,6 +11,7 @@ namespace Core.Models
             AspNetUserLogins = new HashSet<AspNetUserLogins>();
             AspNetUserRoles = new HashSet<AspNetUserRoles>();
             AspNetUserTokens = new HashSet<AspNetUserTokens>();
+            WhistList = new HashSet<WhistList>();
         }
 
         public string Id { get; set; }
@@ -33,5 +34,6 @@ namespace Core.Models
         public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual ICollection<AspNetUserTokens> AspNetUserTokens { get; set; }
+        public virtual ICollection<WhistList> WhistList { get; set; }
     }
 }

@@ -7,6 +7,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="5.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc4" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.0.0" />
@@ -17,6 +18,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\**" CopyToPublishDirectory="PreserveNewest" />
+    <None Remove="Content\images\make\audi.jpg" />
+    <None Remove="Content\images\make\bmw.png" />
+    <None Remove="Content\images\make\chevrolet.png" />
+    <None Remove="Content\images\make\fiat.png" />
+    <None Remove="Content\images\make\ford.png" />
+    <None Remove="Content\images\make\honda.png" />
+    <None Remove="Content\images\make\hyundai.png" />
+    <None Remove="Content\images\make\mahindra.png" />
+    <None Remove="Content\images\make\maruti-suzuki.png" />
+    <None Remove="Content\images\make\mercedes-benz.png" />
+    <None Remove="Content\images\make\nissan.png" />
+    <None Remove="Content\images\make\renault.png" />
+    <None Remove="Content\images\make\skoda.png" />
+    <None Remove="Content\images\make\tata.png" />
+    <None Remove="Content\images\make\toyota.png" />
+    <None Remove="Content\images\make\volkswagen.png" />
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
 </Project>

@@ -6,6 +6,7 @@ using API.Dtos;
 using API.Errors;
 using API.Extensions;
 using AutoMapper;
+using Core.Common;
 using Core.Entities.Identity;
 using Core.Interfaces;
 using Infrastructure.ViewModels;
@@ -25,10 +26,12 @@ namespace API.Controllers
         private readonly IMapper _mapper;
         private readonly ISearchRepository _searchRepository;
         private readonly IImageServiceRepository _imageServiceRepository;
-        public HomeController(IImageServiceRepository imageServiceRepository, ISearchRepository searchRepository)
+        private readonly IWhistListRepository _whistlistrepo;
+        public HomeController(IImageServiceRepository imageServiceRepository, ISearchRepository searchRepository, IWhistListRepository whistlistrepo)
         {
             _searchRepository = searchRepository;
             _imageServiceRepository = imageServiceRepository;
+            _whistlistrepo = whistlistrepo;
         }
 
         [HttpGet]
@@ -57,13 +60,15 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("GetMakeList")]
-        public List<CommonViewModel> GetMakeList()
+        public List<getmakeList> GetMakeList()
         {
-            return _searchRepository.GetMakeList().Select(x => new CommonViewModel
+            string currentpath = System.IO.Directory.GetCurrentDirectory();
+            return _searchRepository.GetMakeList().Select(x => new getmakeList
             {
                 Id = x.Id,
-                Name = x.Name
-            }).ToList();
+                Name = x.Name,
+                LogoImages= Utility.ByteToBase64(currentpath+x.LogoImage)
+        }).ToList();
         }
         [HttpGet]
         [Route("SideSearchGetMakeList")]
@@ -87,13 +92,15 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("GetModelList/{makeId}")]
-        public List<CommonViewModel> GetModelList(int makeId)
+        public List<getmodelList> GetModelList(int makeId)
         {
-            return _searchRepository.GetModelList().Where(x => x.MakeId == makeId).Select(x => new CommonViewModel
+            var model= _searchRepository.GetModelList().Where(x => x.MakeId == makeId).Select(x => new getmodelList
             {
                 Id = x.Id,
-                Name = x.Name
+                Name = x.Name,
+                Popular=x.Popular
             }).ToList();
+            return model;
         }
 
         [HttpGet]
@@ -140,6 +147,7 @@ namespace API.Controllers
         [Route("GetSearchVehicleList")]
         public List<VehicleViewModel> GetSearchVehicleList([FromBody] SearchViewModel searchViewModel)
         {
+
             return _searchRepository.GetSearchVehicleList(searchViewModel.CarTypeId, searchViewModel.MakeId, searchViewModel.CarModelId, searchViewModel.LocationId, searchViewModel.YearId).
             Select(x => new VehicleViewModel
             {
@@ -154,8 +162,10 @@ namespace API.Controllers
                 Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
                 Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
                 Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
+                IsFavourite=_whistlistrepo.IsWhistlistAdded(searchViewModel.UserId, x.Id),
             }).ToList();
         }
+
 
         [HttpPost]
         [Route("GetVehicleListAccordingToSelectedMakes")]

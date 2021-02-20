@@ -18,5 +18,6 @@ namespace Infrastructure.ViewModels
         public string EngineSize { get; set; }
         public string Cylinders { get; set; }
         public string Type { get; set; }
+        public bool IsFavourite { get; set; }
     }
 }

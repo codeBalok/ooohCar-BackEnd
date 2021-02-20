@@ -138,9 +138,6 @@ F:\Final Ohh Car Project\Backend\API\bin\Debug\netcoreapp3.1\Microsoft.EntityFra
 F:\Final Ohh Car Project\Backend\API\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.SqlServer.dll
 F:\Final Ohh Car Project\Backend\API\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll
 F:\Final Ohh Car Project\Backend\API\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Memory.dll
-F:\Final Ohh Car Project\Backend\API\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
-F:\Final Ohh Car Project\Backend\API\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
-F:\Final Ohh Car Project\Backend\API\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
 F:\Final Ohh Car Project\Backend\API\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
 F:\Final Ohh Car Project\Backend\API\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 F:\Final Ohh Car Project\Backend\API\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
@@ -202,9 +199,6 @@ F:\Final Ohh Car Project\Backend\API\bin\Debug\netcoreapp3.1\Core.pdb
 F:\Final Ohh Car Project\Backend\API\obj\Debug\netcoreapp3.1\API.csprojAssemblyReference.cache
 F:\Final Ohh Car Project\Backend\API\obj\Debug\netcoreapp3.1\API.AssemblyInfoInputs.cache
 F:\Final Ohh Car Project\Backend\API\obj\Debug\netcoreapp3.1\API.AssemblyInfo.cs
-F:\Final Ohh Car Project\Backend\API\obj\Debug\netcoreapp3.1\API.csproj.CoreCompileInputs.cache
-F:\Final Ohh Car Project\Backend\API\obj\Debug\netcoreapp3.1\API.MvcApplicationPartsAssemblyInfo.cs
-F:\Final Ohh Car Project\Backend\API\obj\Debug\netcoreapp3.1\API.MvcApplicationPartsAssemblyInfo.cache
 F:\Final Ohh Car Project\Backend\API\obj\Debug\netcoreapp3.1\API.RazorTargetAssemblyInfo.cache
 F:\Final Ohh Car Project\Backend\API\obj\Debug\netcoreapp3.1\API.csproj.CopyComplete
 F:\Final Ohh Car Project\Backend\API\obj\Debug\netcoreapp3.1\staticwebassets\API.StaticWebAssets.Manifest.cache
@@ -212,3 +206,8 @@ F:\Final Ohh Car Project\Backend\API\obj\Debug\netcoreapp3.1\staticwebassets\API
 F:\Final Ohh Car Project\Backend\API\obj\Debug\netcoreapp3.1\API.dll
 F:\Final Ohh Car Project\Backend\API\obj\Debug\netcoreapp3.1\API.pdb
 F:\Final Ohh Car Project\Backend\API\obj\Debug\netcoreapp3.1\API.genruntimeconfig.cache
+F:\Final Ohh Car Project\Backend\API\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
+F:\Final Ohh Car Project\Backend\API\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
+F:\Final Ohh Car Project\Backend\API\obj\Debug\netcoreapp3.1\API.csproj.CoreCompileInputs.cache
+F:\Final Ohh Car Project\Backend\API\obj\Debug\netcoreapp3.1\API.MvcApplicationPartsAssemblyInfo.cs
+F:\Final Ohh Car Project\Backend\API\obj\Debug\netcoreapp3.1\API.MvcApplicationPartsAssemblyInfo.cache
