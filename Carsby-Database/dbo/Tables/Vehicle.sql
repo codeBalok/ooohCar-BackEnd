@@ -5,7 +5,7 @@
     [BodyTypeId]          INT            NOT NULL,
     [VIN]                 NVARCHAR (250) NULL,
     [ModelId]             INT            NULL,
-    [PriceId]             INT            NULL,
+    [Price]             DECIMAL(18, 2)            NULL,
     [CategoryId]          INT            NULL,
     [RegistrationPlate]   NVARCHAR (250) NULL,
     [VehicalTypeId]       INT            NULL,
