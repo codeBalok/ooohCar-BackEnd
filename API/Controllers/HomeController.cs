@@ -222,7 +222,7 @@ namespace API.Controllers
                 Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
                 Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
                 Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
-                price = x.Price
+                price = x.Price,
                 IsFavourite=_whistlistrepo.IsWhistlistAdded(searchViewModel.UserId, x.Id),
             }).ToList();
         }
