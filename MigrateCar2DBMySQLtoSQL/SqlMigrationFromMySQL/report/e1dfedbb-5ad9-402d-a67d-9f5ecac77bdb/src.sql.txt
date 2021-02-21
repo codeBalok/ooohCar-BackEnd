@@ -1,0 +1,14 @@
+CREATE TABLE `car_model` (
+  `id_car_model` int NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `id_car_make` int NOT NULL COMMENT 'Make',
+  `name` varchar(255) NOT NULL,
+  `date_create` int unsigned NOT NULL,
+  `date_update` int unsigned NOT NULL,
+  `id_car_type` int NOT NULL,
+  PRIMARY KEY (`id_car_model`),
+  UNIQUE KEY `name_model_type_u` (`name`,`id_car_make`),
+  KEY `id_car_type` (`id_car_type`),
+  KEY `fk_car_model_car_make` (`id_car_make`),
+  CONSTRAINT `fk_car_model_car_make` FOREIGN KEY (`id_car_make`) REFERENCES `car_make` (`id_car_make`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_car_model_car_type` FOREIGN KEY (`id_car_type`) REFERENCES `car_type` (`id_car_type`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=23563 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='Model'

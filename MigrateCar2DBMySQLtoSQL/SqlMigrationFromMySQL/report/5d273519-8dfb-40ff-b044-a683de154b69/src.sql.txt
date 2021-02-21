@@ -1,0 +1,20 @@
+CREATE TABLE `car_specification_value` (
+  `id_car_specification_value` int NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `id_car_trim` int NOT NULL COMMENT 'Trim',
+  `id_car_specification` int NOT NULL COMMENT 'Specification',
+  `value` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `unit` varchar(255) DEFAULT NULL COMMENT 'Unit',
+  `date_create` int unsigned NOT NULL,
+  `date_update` int unsigned NOT NULL,
+  `id_car_type` int NOT NULL,
+  PRIMARY KEY (`id_car_specification_value`),
+  KEY `id_car_type` (`id_car_type`),
+  KEY `id_car_type_2` (`id_car_type`),
+  KEY `value` (`value`,`id_car_type`),
+  KEY `value_2` (`value`),
+  KEY `fk_car_characteristic_value_car_modification` (`id_car_trim`),
+  KEY `fk_car_specification_value_car_specification` (`id_car_specification`),
+  CONSTRAINT `fk_car_specification_value_car_specification` FOREIGN KEY (`id_car_specification`) REFERENCES `car_specification` (`id_car_specification`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_car_specification_value_car_trim` FOREIGN KEY (`id_car_trim`) REFERENCES `car_trim` (`id_car_trim`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_car_specification_value_car_type` FOREIGN KEY (`id_car_type`) REFERENCES `car_type` (`id_car_type`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=36427649 DEFAULT CHARSET=utf8 COMMENT='Specification value'

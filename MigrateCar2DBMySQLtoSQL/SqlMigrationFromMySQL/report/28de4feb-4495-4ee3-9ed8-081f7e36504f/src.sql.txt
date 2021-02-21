@@ -1,0 +1,14 @@
+CREATE TABLE `car_specification` (
+  `id_car_specification` int NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `name` varchar(255) NOT NULL COMMENT 'Название',
+  `id_parent` int DEFAULT NULL COMMENT 'id',
+  `date_create` int unsigned NOT NULL,
+  `date_update` int unsigned NOT NULL,
+  `id_car_type` int NOT NULL,
+  PRIMARY KEY (`id_car_specification`),
+  UNIQUE KEY `name_2` (`name`,`id_parent`,`id_car_type`),
+  KEY `id_car_type` (`id_car_type`),
+  KEY `fk_car_characteristic_car_characteristic` (`id_parent`),
+  CONSTRAINT `fk_car_specification_car_specification` FOREIGN KEY (`id_parent`) REFERENCES `car_specification` (`id_car_specification`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_car_specification_car_type` FOREIGN KEY (`id_car_type`) REFERENCES `car_type` (`id_car_type`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=1636 DEFAULT CHARSET=utf8 COMMENT='Specification'

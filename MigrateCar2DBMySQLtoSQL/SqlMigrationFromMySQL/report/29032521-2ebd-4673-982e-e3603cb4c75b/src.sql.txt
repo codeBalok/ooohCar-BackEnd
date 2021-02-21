@@ -1,0 +1,16 @@
+CREATE TABLE `car_generation` (
+  `id_car_generation` int NOT NULL AUTO_INCREMENT,
+  `id_car_model` int NOT NULL COMMENT 'ID',
+  `name` varchar(255) NOT NULL,
+  `year_begin` varchar(255) DEFAULT NULL,
+  `year_end` varchar(255) DEFAULT NULL,
+  `date_create` int unsigned NOT NULL,
+  `date_update` int unsigned NOT NULL,
+  `id_car_type` int NOT NULL,
+  PRIMARY KEY (`id_car_generation`),
+  UNIQUE KEY `name_generation_type_u` (`name`,`id_car_model`),
+  KEY `id_car_type` (`id_car_type`),
+  KEY `fk_car_generation_car_model` (`id_car_model`),
+  CONSTRAINT `fk_car_generation_car_model` FOREIGN KEY (`id_car_model`) REFERENCES `car_model` (`id_car_model`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_car_generation_car_type` FOREIGN KEY (`id_car_type`) REFERENCES `car_type` (`id_car_type`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=127850 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='Generation'

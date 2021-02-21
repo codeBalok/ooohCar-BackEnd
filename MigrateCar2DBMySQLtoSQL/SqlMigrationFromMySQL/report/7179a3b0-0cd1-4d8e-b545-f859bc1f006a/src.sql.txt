@@ -1,0 +1,11 @@
+CREATE TABLE `car_make` (
+  `id_car_make` int NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `name` varchar(255) NOT NULL,
+  `date_create` int unsigned NOT NULL,
+  `date_update` int unsigned NOT NULL,
+  `id_car_type` int NOT NULL,
+  PRIMARY KEY (`id_car_make`),
+  UNIQUE KEY `name_id_car_type_u` (`name`,`id_car_type`),
+  KEY `id_car_type` (`id_car_type`),
+  CONSTRAINT `fk_car_make_car_type` FOREIGN KEY (`id_car_type`) REFERENCES `car_type` (`id_car_type`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=4201 DEFAULT CHARSET=utf8 COMMENT='Make'

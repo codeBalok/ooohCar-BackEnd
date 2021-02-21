@@ -1,0 +1,17 @@
+CREATE TABLE `car_option_value` (
+  `id_car_option_value` int NOT NULL AUTO_INCREMENT,
+  `id_car_option` int NOT NULL,
+  `id_car_equipment` int NOT NULL COMMENT 'id',
+  `is_base` tinyint(1) NOT NULL DEFAULT '1',
+  `date_create` int unsigned NOT NULL,
+  `date_update` int unsigned NOT NULL,
+  `id_car_type` int NOT NULL,
+  PRIMARY KEY (`id_car_option_value`),
+  UNIQUE KEY `id_car_option` (`id_car_option`,`id_car_equipment`,`id_car_type`),
+  KEY `id_car_type` (`id_car_type`),
+  KEY `date_delete` (`id_car_type`),
+  KEY `fk_car_option_value_car_equipment` (`id_car_equipment`),
+  CONSTRAINT `fk_car_option_value_car_equipment` FOREIGN KEY (`id_car_equipment`) REFERENCES `car_equipment` (`id_car_equipment`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_car_option_value_car_option` FOREIGN KEY (`id_car_option`) REFERENCES `car_option` (`id_car_option`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_car_option_value_car_type` FOREIGN KEY (`id_car_type`) REFERENCES `car_type` (`id_car_type`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=3009704 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='Option value'

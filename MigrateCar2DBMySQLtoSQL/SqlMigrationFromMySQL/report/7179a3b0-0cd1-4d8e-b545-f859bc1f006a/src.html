@@ -1,0 +1,39 @@
+<html>
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+    <link rel=stylesheet href='../css/textstyles.css' type='text/css'>
+    <title>{0}({1})</title>
+    <link rel='stylesheet' type='text/css' href='../css/style.css'></link>
+    <script type='text/javascript' src='../js/functions.js'></script>
+    <script type='text/javascript' src='../js/code.js'></script>
+    <script src='../js/jquery-3.5.1.min.js' type='text/javascript'></script>
+</head>
+<body id='scrollable-body'>
+<div class='panel'>
+<ul class='add-nav'>
+<li style='border-right:1px solid gray; min-width: 41px;'><span style='font-family:Arial;font-size:9pt; position:relative;'>&nbsp;Source</span></li>
+<li><input class='ispan' id='previous_problem' type='image' src='../img/previous_problem.gif' onclick='prevProblem()' title='Previous problem' onmouseover='onOver(this);'  onmouseout='onOut(this);' /> </li>
+<li><input class='ispan' id='next_problem' type='image' src='../img/next_problem.gif' onclick='nextProblem()' title='Next problem' onmouseover='onOver(this);'  onmouseout='onOut(this);' /></li>
+<li><input class='ispan' id='previous_bookmark' type='image' src='../img/previous_bookmark.gif' onclick='prevBookmark()' title='Previous bookmark' onmouseover='onOver(this);'  onmouseout='onOut(this);' /></li>
+<li><input class='ispan' id='next_bookmark' type='image' src='../img/next_bookmark.gif' onclick='nextBookmark()' title='Next bookmark' onmouseover='onOver(this);'  onmouseout='onOut(this);' /></li>
+<li><input class='ispan' id='clear_bookmarks' type='image' src='../img/clear_bookmarks.gif' onclick='clearBookmarks()' title='Clear bookmarks' onmouseover='onOver(this);'  onmouseout='onOut(this);' /></li>
+<li id='show-raw-source' style='float:right;text-align:right;visibility:hidden;'> <span class='sourcespan' style='top:4px;'><a class='sourcelink' target='_blank' href='./src.sql.txt');'>Raw Source</a></span></li>
+</ul>
+</div>
+<div class='scrollable-code' id='scrollable-code'>
+<div class='unselectedDiv1' ID='a8c84fafb-c43d-4c9e-b18a-7b372ce5b2e2' onclick='refl("ace68d28f-55a1-4698-9302-7ae868880268");oc(event,"a8c84fafb-c43d-4c9e-b18a-7b372ce5b2e2");'><span ID="mes-6f0d0fc0-dcf0-4d75-8543-92211b6cdd1b"></span><err category='2'/><code><img class='bookmark' src='../img/empty.gif'  />&nbsp;&nbsp;1</code>
+CREATE<br><code><img class='bookmark' src='../img/empty.gif'  />&nbsp;&nbsp;2</code>
+<em class='pl'></em>TABLE <span class='local' ID="ac51d417d-2f86-49f3-b7a7-4ba0873e051f">`car_make`</span><br><code><img class='bookmark' src='../img/empty.gif'  />&nbsp;&nbsp;3</code>
+<em class='pl2'></em>(<span ID="mes-1e9b0b4c-6f44-4105-815d-1677aa534901"></span><err category='2'/><br><code><img class='bookmark' src='../img/empty.gif'  />&nbsp;&nbsp;4</code>
+<em class='pl3'></em><span class='local' ID="af3a968c2-a5db-4b17-a360-f97126bdbb4f">`id_car_make`</span><span class='local'> </span><span class='local' ID="a1415b1c1-db14-466e-a52f-645904f42801">int</span><span class='local'> NOT NULL</span><span class='local'> </span> AUTO_INCREMENT<span class='local'> </span> COMMENT 'id'<span class='local'>, </span><br><code><img class='bookmark' src='../img/empty.gif'  />&nbsp;&nbsp;5</code>
+<em class='pl3'></em><span class='local' ID="a61ceb029-7390-466d-9185-39593aa8c5ba">`name`</span><span class='local'> </span><span class='local' ID="a66fe0152-e2a2-4f70-a591-7f7e987687df">varchar(<span class='literal' ID="aab1ef6e1-62b2-4d42-b503-c3cf08646c1a">255</span>)</span><span class='local'> NOT NULL</span><span class='local'>, </span><br><code><img class='bookmark' src='../img/empty.gif'  />&nbsp;&nbsp;6</code>
+<em class='pl3'></em><span class='local' ID="adb392d4a-d999-4b8f-baf1-8db2270701f1">`date_create`</span><span class='local'> </span><span class='local' ID="abc9b02a7-3318-47db-91e6-76fb633e875f">int</span> UNSIGNED<span class='local'> NOT NULL</span><span class='local'>, </span><br><code><img class='bookmark' src='../img/empty.gif'  />&nbsp;&nbsp;7</code>
+<em class='pl3'></em><span class='local' ID="aa3d7dc25-38ef-4fa3-966e-e50d082a5eb1">`date_update`</span><span class='local'> </span><span class='local' ID="acf66345a-8cd5-4ec4-bdf6-66a422111f45">int</span> UNSIGNED<span class='local'> NOT NULL</span><span class='local'>, </span><br><code><img class='bookmark' src='../img/empty.gif'  />&nbsp;&nbsp;8</code>
+<em class='pl3'></em><span class='local' ID="a53cb24cd-c116-4cfa-8d7c-f503f885d3b8">`id_car_type`</span><span class='local'> </span><span class='local' ID="ae9437bc1-436a-4951-8d1d-dee78b5808ab">int</span><span class='local'> NOT NULL</span><span class='local'>, </span><br><code><img class='bookmark' src='../img/empty.gif'  />&nbsp;&nbsp;9</code>
+<em class='pl3'></em><span class='local'> PRIMARY </span>KEY  (<span class='local' ID="afe0a9486-73ae-4376-8c40-88bbb67c0098">`id_car_make`</span>) <span class='local'>, </span><br><code><img class='bookmark' src='../img/empty.gif'  />&nbsp;10</code>
+<em class='pl3'></em> UNIQUE <span class='local'>KEY </span><span class='local' ID="a98892c98-960d-41cf-b035-b682aa681810">[car_make$name_id_car_type_u]</span><span class='local'> </span> (<span class='local' ID="a2337224a-62e1-473f-b816-d88434fdd3d3">`name`</span><span class='local'>, </span><span class='local' ID="a4c885f87-176b-4ba9-9b34-c46b65335fa9">`id_car_type`</span>) <span class='local'>, </span><br><code><img class='bookmark' src='../img/empty.gif'  />&nbsp;11</code>
+<em class='pl3'></em><span class='local'> KEY</span> <span class='local' ID="a79ba0781-be8c-4844-ace2-500e688b8771">`id_car_type`</span><span class='local'> </span> (<span class='local' ID="ab6351e22-ad13-457d-ba52-c4d9cbd2827a">`id_car_type`</span>) <span class='local'>, </span><br><code><img class='bookmark' src='../img/empty.gif'  />&nbsp;12</code>
+<em class='pl3'></em> CONSTRAINT <span class='local' ID="ad0c4c1a2-971c-416f-b440-83c2b502064e">`fk_car_make_car_type`</span><span class='local'> FOREIGN KEY </span> (<span class='local' ID="ad4a3af2e-85b4-40ad-8f58-ec3fecdc6a47">`id_car_type`</span>) <span class='local'> </span>REFERENCES <span class='local' ID="af2e484c4-c8eb-4782-9cec-b30f51fa9c76">`car_type`</span><span class='local'> </span> (<span class='local' ID="ab61a582f-3b00-4d88-be86-8a45fdd2cb1a">`id_car_type`</span>) <span class='local'> </span><span class='local'> ON DELETE RESTRICT</span> <span class='local'> </span><span class='local'> ON UPDATE RESTRICT</span> <br><code><img class='bookmark' src='../img/empty.gif'  />&nbsp;13</code>
+<em class='pl2'></em>) <span class='local'> ENGINE</span> <span class='local'>= </span><span class='local' ID="a91ff8bda-5b11-4f9f-bda2-db4351d73adf">InnoDB</span><span class='local'> </span>AUTO_INCREMENT <span class='local'>= 4201</span><span class='local'> </span><span class='local'>DEFAULT </span><span class='local'> CHARSET = </span><span class='local' ID="ae8f5a139-2284-4f7c-9b97-d1e4a2103384">utf8</span><span class='local'> </span> COMMENT <span class='local'>= </span>'Make';</div><code><img class='bookmark' src='../img/empty.gif'  />&nbsp;14</code>
+</div></body></html>

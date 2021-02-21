@@ -1,0 +1,15 @@
+CREATE TABLE `car_equipment` (
+  `id_car_equipment` int NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `id_car_trim` int NOT NULL COMMENT 'Trim',
+  `name` varchar(255) NOT NULL,
+  `year` int DEFAULT NULL,
+  `date_create` int unsigned NOT NULL,
+  `date_update` int unsigned NOT NULL,
+  `id_car_type` int NOT NULL,
+  PRIMARY KEY (`id_car_equipment`),
+  UNIQUE KEY `name_equipment_type_u` (`name`,`year`,`id_car_trim`),
+  KEY `id_car_type` (`id_car_type`),
+  KEY `fk_car_equipment_car_modification` (`id_car_trim`),
+  CONSTRAINT `fk_car_equipment_car_trim` FOREIGN KEY (`id_car_trim`) REFERENCES `car_trim` (`id_car_trim`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_car_equipment_car_type` FOREIGN KEY (`id_car_type`) REFERENCES `car_type` (`id_car_type`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=24593 DEFAULT CHARSET=utf8 COMMENT='Equipment'

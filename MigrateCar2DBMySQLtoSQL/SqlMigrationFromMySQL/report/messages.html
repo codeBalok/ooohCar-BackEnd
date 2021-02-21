@@ -1,0 +1,311 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta content="IE=EmulateIE9" http-equiv="X-UA-Compatible"/>
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+    <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="js/functions.js"></script>
+    <script type="text/javascript" src="js/messages.js"></script>
+    <link media="all" rel="stylesheet" type="text/css" href="css/messages.css"/></head>
+  <body id="messages-body" style="width:100%;" onload="javascript:init();" scroll="no" onresize="buttonStatusReset();init();">
+    <table width="100%" height="10px" cellpadding="0" cellspacing="0">
+      <tr valign="middle">
+        <td align="center">
+          <table width="52px" height="9px" cellpadding="0" cellspacing="0" style="cursor:pointer; background-repeat: no-repeat" onmouseover="this.style.backgroundImage=&#39;url(img/expander_button.gif)&#39;;" onmouseout="this.style.backgroundImage=&#39;none&#39;;" onclick="this.style.backgroundImage=&#39;none&#39;;Expand()">
+            <tr valign="middle">
+              <td id="expander_td" name="expander_td" style="cursor:pointer; background-repeat: no-repeat; background-position:center; background-image: url(&#39;img/expander_arrow_down.gif&#39;)"></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <div id="mainDiv" style="height:100%;width:100%;">
+      <div class="panel">
+        <ul class="add-nav">
+          <li>
+            <a onclick="changeButton(1);" role="button" href="#" aria-label="Display error conversion messages">
+              <span class="selectedTab" id="errors">
+                <img src="img/error.gif" width="14" height="14"></img>
+                <span id="espan">Error (2)</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a onclick="changeButton(2);" role="button" href="#" aria-label="Display warning conversion messages">
+              <span class="unSelectedTab" id="warnings">
+                <img src="img/warning.gif" width="14" height="14"></img>
+                <span id="wspan">Warning (2)</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a onclick="changeButton(3);" role="button" href="#" aria-label="Display informational conversion messages">
+              <span class="unSelectedTab" id="infos">
+                <img src="img/info.gif" width="14" height="14"></img>
+                <span id="ispan">Info (35)</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+        <span style="top:8px; position:absolute;width:400px;font-family:Arial;font-size:10.5pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total estimated manual conversion time:
+          <span style="color:firebrick;top:0px; position:absolute;" id="etime">4 hr(s)</span>
+        </span>
+      </div>
+      <div id="innerDiv" style="HEIGHT: 194px; OVERFLOW-Y: auto">
+        <div id="errorDiv" style="DISPLAY: block">
+          <table dataSrc="#errorData" id="errorTable" class="selectedTable">
+            <tbody>
+              <tr>
+                <td>&nbsp;
+                  <a onclick="toggle(this)" href="#" class="expander-link" role="button" aria-label="M2SS0020 : Index Key size exceeded (2), estimated manual conversion time: 3 hr(s), collapsed, press Enter to expand">
+                    <img class="tableMinusIcons" src="img/nolines_plus.gif"></img>
+                  </a>
+                  <img class="tableIcons" src="img/error.gif"></img>
+                  &nbsp;
+                  <span dataFld="description">
+                    <span>M2SS0020</span>
+                    : Index Key size exceeded (2), estimated manual conversion time: 3 hr(s)</span>
+                  <span dataFld="name" style="DISPLAY: none">1</span>
+                  <table style="DISPLAY: none">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div>
+                            <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                              <a href="#" role="button" onclick="selectMessage(&#39;5d273519-8dfb-40ff-b044-a683de154b69&#39;, &#39;M2SS0020&#39;, this)">
+                                <img src="img/table_error.gif"></img>
+                                dbo.car_specification_value (2), estimated manual conversion time: 3 hr(s)</a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="warningDiv" style="DISPLAY: block">
+          <table dataSrc="#warningData" id="warningTable" class="unSelectedTable">
+            <tbody>
+              <tr>
+                <td>&nbsp;
+                  <a onclick="toggle(this)" href="#" class="expander-link" role="button" aria-label="M2SS0183 : SQL clause was ignored during conversion (2), estimated manual conversion time: 1 hr(s), collapsed, press Enter to expand">
+                    <img class="tableMinusIcons" src="img/nolines_plus.gif"></img>
+                  </a>
+                  <img class="tableIcons" src="img/warning.gif"></img>
+                  &nbsp;
+                  <span dataFld="description">
+                    <span>M2SS0183</span>
+                    : SQL clause was ignored during conversion (2), estimated manual conversion time: 1 hr(s)</span>
+                  <span dataFld="name" style="DISPLAY: none">1</span>
+                  <table style="DISPLAY: none">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div>
+                            <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                              <a href="#" role="button" onclick="selectMessage(&#39;2de40981-3a7a-4f2c-882a-295e4ae83c65&#39;, &#39;M2SS0183&#39;, this)">
+                                <img src="img/table_warning.gif"></img>
+                                dbo.car_option (1), estimated manual conversion time: 0.5 hr(s)</a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div>
+                            <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                              <a href="#" role="button" onclick="selectMessage(&#39;5d273519-8dfb-40ff-b044-a683de154b69&#39;, &#39;M2SS0183&#39;, this)">
+                                <img src="img/table_warning.gif"></img>
+                                dbo.car_specification_value (1), estimated manual conversion time: 0.5 hr(s)</a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="infoDiv" style="DISPLAY: block">
+          <table dataSrc="#infoData" id="infoTable" class="unSelectedTable">
+            <tbody>
+              <tr>
+                <td>&nbsp;
+                  <a onclick="toggle(this)" href="#" class="expander-link" role="button" aria-label="M2SS0003 : SQL clause was ignored during conversion (34), collapsed, press Enter to expand">
+                    <img class="tableMinusIcons" src="img/nolines_plus.gif"></img>
+                  </a>
+                  <img class="tableIcons" src="img/info.gif"></img>
+                  &nbsp;
+                  <span dataFld="description">
+                    <span>M2SS0003</span>
+                    : SQL clause was ignored during conversion (34)</span>
+                  <span dataFld="name" style="DISPLAY: none">1</span>
+                  <table style="DISPLAY: none">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div>
+                            <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                              <a href="#" role="button" onclick="selectMessage(&#39;14c8817c-14f0-4ed6-a0b0-a56a41abf6c9&#39;, &#39;M2SS0003&#39;, this)">
+                                <img src="img/table_info.gif"></img>
+                                dbo.car_type (1)</a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div>
+                            <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                              <a href="#" role="button" onclick="selectMessage(&#39;28de4feb-4495-4ee3-9ed8-081f7e36504f&#39;, &#39;M2SS0003&#39;, this)">
+                                <img src="img/table_info.gif"></img>
+                                dbo.car_specification (4)</a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div>
+                            <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                              <a href="#" role="button" onclick="selectMessage(&#39;29032521-2ebd-4673-982e-e3603cb4c75b&#39;, &#39;M2SS0003&#39;, this)">
+                                <img src="img/table_info.gif"></img>
+                                dbo.car_generation (3)</a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div>
+                            <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                              <a href="#" role="button" onclick="selectMessage(&#39;2de40981-3a7a-4f2c-882a-295e4ae83c65&#39;, &#39;M2SS0003&#39;, this)">
+                                <img src="img/table_info.gif"></img>
+                                dbo.car_option (2)</a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div>
+                            <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                              <a href="#" role="button" onclick="selectMessage(&#39;48e285e6-fa71-4037-b301-0a7f3630bc67&#39;, &#39;M2SS0003&#39;, this)">
+                                <img src="img/table_info.gif"></img>
+                                dbo.car_option_value (3)</a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div>
+                            <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                              <a href="#" role="button" onclick="selectMessage(&#39;4fdbe434-b7c8-48cf-bf7a-6ff0324de2b3&#39;, &#39;M2SS0003&#39;, this)">
+                                <img src="img/table_info.gif"></img>
+                                dbo.car_equipment (3)</a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div>
+                            <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                              <a href="#" role="button" onclick="selectMessage(&#39;5d273519-8dfb-40ff-b044-a683de154b69&#39;, &#39;M2SS0003&#39;, this)">
+                                <img src="img/table_info.gif"></img>
+                                dbo.car_specification_value (5)</a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div>
+                            <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                              <a href="#" role="button" onclick="selectMessage(&#39;7179a3b0-0cd1-4d8e-b545-f859bc1f006a&#39;, &#39;M2SS0003&#39;, this)">
+                                <img src="img/table_info.gif"></img>
+                                dbo.car_make (2)</a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div>
+                            <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                              <a href="#" role="button" onclick="selectMessage(&#39;824d6b44-e596-4c78-a845-deff5a97bb84&#39;, &#39;M2SS0003&#39;, this)">
+                                <img src="img/table_info.gif"></img>
+                                dbo.car_serie (3)</a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div>
+                            <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                              <a href="#" role="button" onclick="selectMessage(&#39;e1dfedbb-5ad9-402d-a67d-9f5ecac77bdb&#39;, &#39;M2SS0003&#39;, this)">
+                                <img src="img/table_info.gif"></img>
+                                dbo.car_model (4)</a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div>
+                            <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                              <a href="#" role="button" onclick="selectMessage(&#39;e8128527-784c-4958-aac9-2f89460a99c5&#39;, &#39;M2SS0003&#39;, this)">
+                                <img src="img/table_info.gif"></img>
+                                dbo.car_trim (4)</a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>&nbsp;
+                  <a onclick="toggle(this)" href="#" class="expander-link" role="button" aria-label="M2SS0052 : string literal was converted to NUMERIC literal (1), collapsed, press Enter to expand">
+                    <img class="tableMinusIcons" src="img/nolines_plus.gif"></img>
+                  </a>
+                  <img class="tableIcons" src="img/info.gif"></img>
+                  &nbsp;
+                  <span dataFld="description">
+                    <span>M2SS0052</span>
+                    : string literal was converted to NUMERIC literal (1)</span>
+                  <span dataFld="name" style="DISPLAY: none">2</span>
+                  <table style="DISPLAY: none">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div>
+                            <div style="CURSOR: pointer; POSITION: relative; LEFT: 43px">
+                              <a href="#" role="button" onclick="selectMessage(&#39;48e285e6-fa71-4037-b301-0a7f3630bc67&#39;, &#39;M2SS0052&#39;, this)">
+                                <img src="img/table_info.gif"></img>
+                                dbo.car_option_value (1)</a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

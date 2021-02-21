@@ -1,0 +1,14 @@
+CREATE TABLE `car_option` (
+  `id_car_option` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT 'Name',
+  `id_parent` int DEFAULT NULL,
+  `date_create` int unsigned NOT NULL,
+  `date_update` int unsigned NOT NULL,
+  `id_car_type` int NOT NULL,
+  PRIMARY KEY (`id_car_option`),
+  KEY `id_car_type` (`id_car_type`),
+  KEY `name` (`name`),
+  KEY `fk_car_option_car_option` (`id_parent`),
+  CONSTRAINT `fk_car_option_car_option` FOREIGN KEY (`id_parent`) REFERENCES `car_option` (`id_car_option`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_car_option_car_type` FOREIGN KEY (`id_car_type`) REFERENCES `car_type` (`id_car_type`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=38270 DEFAULT CHARSET=utf8 COMMENT='Option'

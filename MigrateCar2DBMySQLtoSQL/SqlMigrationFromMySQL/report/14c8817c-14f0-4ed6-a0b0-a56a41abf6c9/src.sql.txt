@@ -1,0 +1,6 @@
+CREATE TABLE `car_type` (
+  `id_car_type` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_car_type`),
+  KEY `car_type__name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Car type'

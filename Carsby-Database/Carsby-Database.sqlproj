@@ -60,13 +60,25 @@
     <Folder Include="Properties" />
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
+    <Folder Include="Security\" />
   </ItemGroup>
   <ItemGroup>
+    <Build Include="dbo\Tables\car_equipment.sql" />
+    <Build Include="dbo\Tables\car_generation.sql" />
+    <Build Include="dbo\Tables\car_make.sql" />
+    <Build Include="dbo\Tables\car_model.sql" />
+    <Build Include="dbo\Tables\car_option.sql" />
+    <Build Include="dbo\Tables\car_option_value.sql" />
     <Build Include="dbo\Tables\AspNetRoleClaims.sql" />
+    <Build Include="dbo\Tables\car_serie.sql" />
     <Build Include="dbo\Tables\AspNetRoles.sql" />
+    <Build Include="dbo\Tables\car_specification.sql" />
     <Build Include="dbo\Tables\AspNetUserClaims.sql" />
+    <Build Include="dbo\Tables\car_specification_value.sql" />
     <Build Include="dbo\Tables\AspNetUserLogins.sql" />
+    <Build Include="dbo\Tables\car_trim.sql" />
     <Build Include="dbo\Tables\AspNetUserRoles.sql" />
+    <Build Include="dbo\Tables\car_type.sql" />
     <Build Include="dbo\Tables\AspNetUsers.sql" />
     <Build Include="dbo\Tables\AspNetUserTokens.sql" />
     <Build Include="dbo\Tables\BodyType.sql" />
@@ -96,5 +108,6 @@
     <Build Include="dbo\Tables\VehicleType.sql" />
     <Build Include="dbo\Tables\WhistList.sql" />
     <Build Include="dbo\Tables\Year.sql" />
+    <Build Include="Security\m2ss.sql" />
   </ItemGroup>
 </Project>

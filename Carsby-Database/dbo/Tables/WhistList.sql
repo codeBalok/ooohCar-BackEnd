@@ -4,7 +4,6 @@
     [UserID]      NVARCHAR (450) NULL,
     [IsFavourite] BIT            NULL,
     CONSTRAINT [PK_WhistList] PRIMARY KEY CLUSTERED ([id] ASC),
-    CONSTRAINT [FK_WhistList_AspNetUsers] FOREIGN KEY ([UserID]) REFERENCES [dbo].[AspNetUsers] ([Id]),
-    CONSTRAINT [FK_WhistList_Vehicle] FOREIGN KEY ([VehicleId]) REFERENCES [dbo].[Vehicle] ([Id])
+    CONSTRAINT [FK_WhistList_AspNetUsers] FOREIGN KEY ([UserID]) REFERENCES [dbo].[AspNetUsers] ([Id])
 );
 

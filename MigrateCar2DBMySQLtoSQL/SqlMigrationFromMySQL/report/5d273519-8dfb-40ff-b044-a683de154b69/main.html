@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link media="all" rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="../js/functions.js"></script>
+    <script>$(window).on('load', function(e){
+    var conversionMessageId = getUrlParameterValue(document.location.search, 'conversionMessageId');
+    document.getElementById('left-side').src = 'src.html?conversionMessageId=' + conversionMessageId;
+    document.getElementById('right-side').src = 'trg.html?conversionMessageId=' + conversionMessageId;
+});
+
+window.addEventListener('message', 
+   function(e) {
+       var message = e.data;
+       if (message.command === "toggleView" && message.section === "statistics") {
+            if(message.state === true){
+                document.getElementById("left-right-frameset").cols = "*";
+                document.getElementById("left-side").src = "./stat.html";
+            } else {
+                var conversionMessageId = getUrlParameterValue(document.location.search, 'conversionMessageId');
+                document.getElementById("left-right-frameset").cols = "*,*";
+                document.getElementById("left-side").src = "./src.html?conversionMessageId=" + conversionMessageId;
+                document.getElementById("right-side").src = "./trg.html?conversionMessageId=" + conversionMessageId;
+            }
+        }
+   });
+</script>
+  </head>
+  <frameset rows="36,*">
+    <frame id="statButtons" class="buttons" src="../statButtons.html?path=5d273519-8dfb-40ff-b044-a683de154b69" name="statButt" border="0" frameBorder="0" frameSpacing="0" marginHeight="0" marginWidth="0" scrolling="no" leftMargin="0" topMargin="0" noresize="noresize"></frame>
+    <frameset cols="*,*" id="left-right-frameset">
+      <frame frameSpacing="0" frameBorder="0" rows="0,*" leftMargin="0" topMargin="0" marginHeight="0" marginWidth="0" name="leftSide" id="left-side" class="left-side"></frame>
+      <frame frameSpacing="0" frameBorder="0" rows="0,*" leftMargin="0" topMargin="0" marginHeight="0" marginWidth="0" name="rightSide" id="right-side" class="right-side"></frame>
+    </frameset>
+  </frameset>
+</html>
