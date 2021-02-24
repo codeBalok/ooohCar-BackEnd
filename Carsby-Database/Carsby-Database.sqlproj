@@ -61,6 +61,7 @@
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
     <Folder Include="Security\" />
+    <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\car_equipment.sql" />
@@ -109,5 +110,6 @@
     <Build Include="dbo\Tables\WhistList.sql" />
     <Build Include="dbo\Tables\Year.sql" />
     <Build Include="Security\m2ss.sql" />
+    <Build Include="dbo\Tables\Make_Image.sql" />
   </ItemGroup>
 </Project>
