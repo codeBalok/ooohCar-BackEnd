@@ -119,7 +119,7 @@ namespace Infrastructure.Services
             }
             return vehicleList;
         }
-        public int GetVehcileCountByMakeID(int makeId)
+        public int GetVehicleCountByMakeID(int makeId)
         {
             List<int> lstmakeId = new List<int>();
             lstmakeId.Add(makeId);
@@ -127,7 +127,8 @@ namespace Infrastructure.Services
             int countVehicle = lstVehicle.Count();
             return countVehicle;
         }
-        public int GetVehcileCountByModelID(int modelId)
+        
+        public int GetVehicleCountByModelID(int modelId)
         {
             List<int> lstmodelId = new List<int>();
             lstmodelId.Add(modelId);
@@ -135,7 +136,7 @@ namespace Infrastructure.Services
             int countVehicle = lstVehicle.Count();
             return countVehicle;
         }
-        public int GetVehcileCountByVariantID(int variantId)
+        public int GetVehicleCountByVariantID(int variantId)
         {
             List<int> lstvariantId = new List<int>();
             lstvariantId.Add(variantId);
@@ -235,5 +236,178 @@ namespace Infrastructure.Services
              }
              return vehicleList;
         }*/
+
+        public List<FuelType> GetFuelTypesList()
+        {
+            return _dBContext.FuelType.ToList();
+        }
+        public int GetVehicleCountByFuelTypesID(int fuelTypesId)
+        {
+            List<int> lstFuelTypesId = new List<int>();
+            lstFuelTypesId.Add(fuelTypesId);
+            List<Vehicle> lstVehicle = GetVehicleListByVehicleTypes(lstFuelTypesId);
+            int countVehicle = lstVehicle.Count();
+            return countVehicle;
+        }
+
+        public List<Vehicle> GetVehicleListByVehicleTypes(List<int> lstFuelTypesId)
+        {
+            List<Vehicle> vehicleList = new List<Vehicle>();
+            if (lstFuelTypesId.Count() > 0)
+            {
+                vehicleList = _dBContext.Vehicle.ToList();
+                List<int> _lstFuelTypesIds = _dBContext.FuelType.Where(x => lstFuelTypesId.Contains(x.Id)).Select(x => x.Id).ToList();
+                vehicleList = vehicleList.Where(x => _lstFuelTypesIds.Contains(x.FuelTypeId ?? 0)).ToList();
+            }
+            return vehicleList;
+        }
+
+        public List<Cylinders> GetCylindersList()
+        {
+            return _dBContext.Cylinders.ToList();
+        }
+        public int GetVehicleCountByCylindersID(int CylindersId)
+        {
+            List<int> lstCylindersId = new List<int>();
+            lstCylindersId.Add(CylindersId);
+            List<Vehicle> lstVehicle = GetVehicleListByCylinders(lstCylindersId);
+            int countVehicle = lstVehicle.Count();
+            return countVehicle;
+        }
+
+        public List<Vehicle> GetVehicleListByCylinders(List<int> lstCylindersId)
+        {
+            List<Vehicle> vehicleList = new List<Vehicle>();
+            if (lstCylindersId.Count() > 0)
+            {
+                vehicleList = _dBContext.Vehicle.ToList();
+                List<int> _lstCylindersIds = _dBContext.Cylinders.Where(x => lstCylindersId.Contains(x.Id)).Select(x => x.Id).ToList();
+                vehicleList = vehicleList.Where(x => _lstCylindersIds.Contains(x.CylindersId ?? 0)).ToList();
+            }
+            return vehicleList;
+        }
+
+        public List<EngineSize> GetEngineSizeList()
+        {
+            return _dBContext.EngineSize.ToList();
+        }
+        public int GetVehicleCountByEngineSizeID(int EngineSizeId)
+        {
+            List<int> lstEngineSizeId = new List<int>();
+            lstEngineSizeId.Add(EngineSizeId);
+            List<Vehicle> lstVehicle = GetVehicleListByEngineSize(lstEngineSizeId);
+            int countVehicle = lstVehicle.Count();
+            return countVehicle;
+        }
+
+        public List<Vehicle> GetVehicleListByEngineSize(List<int> lstEngineSizeId)
+        {
+            List<Vehicle> vehicleList = new List<Vehicle>();
+            if (lstEngineSizeId.Count() > 0)
+            {
+                vehicleList = _dBContext.Vehicle.ToList();
+                List<int> _lstEngineSizeIds = _dBContext.EngineSize.Where(x => lstEngineSizeId.Contains(x.Id)).Select(x => x.Id).ToList();
+                vehicleList = vehicleList.Where(x => _lstEngineSizeIds.Contains(x.EngineSizeId ?? 0)).ToList();
+            }
+            return vehicleList;
+        }
+        public List<FuelEconomy> GetFuelEconomyList()
+        {
+            return _dBContext.FuelEconomy.ToList();
+        }
+        public int GetVehicleCountByFuelEconomyID(int FuelEconomyId)
+        {
+            List<int> lstFuelEconomyId = new List<int>();
+            lstFuelEconomyId.Add(FuelEconomyId);
+            List<Vehicle> lstVehicle = GetVehicleListByFuelEconomy(lstFuelEconomyId);
+            int countVehicle = lstVehicle.Count();
+            return countVehicle;
+        }
+
+        public List<Vehicle> GetVehicleListByFuelEconomy(List<int> lstFuelEconomyId)
+        {
+            List<Vehicle> vehicleList = new List<Vehicle>();
+            if (lstFuelEconomyId.Count() > 0)
+            {
+                vehicleList = _dBContext.Vehicle.ToList();
+                List<int> _lstFuelEconomyIds = _dBContext.FuelEconomy.Where(x => lstFuelEconomyId.Contains(x.Id)).Select(x => x.Id).ToList();
+                vehicleList = vehicleList.Where(x => _lstFuelEconomyIds.Contains(x.FuelEconomyId ?? 0)).ToList();
+            }
+            return vehicleList;
+        }
+
+        public List<EngineDescription> GetEngineDescriptionList()
+        {
+            return _dBContext.EngineDescription.ToList();
+        }
+        public int GetVehicleCountByEngineDescriptionsID(int EngineDescriptionId)
+        {
+            List<int> lstEngineDescriptionId = new List<int>();
+            lstEngineDescriptionId.Add(EngineDescriptionId);
+            List<Vehicle> lstVehicle = GetVehicleListByEngineDescription(lstEngineDescriptionId);
+            int countVehicle = lstVehicle.Count();
+            return countVehicle;
+        }
+
+        public List<Vehicle> GetVehicleListByEngineDescription(List<int> lstEngineDescriptionId)
+        {
+            List<Vehicle> vehicleList = new List<Vehicle>();
+            if (lstEngineDescriptionId.Count() > 0)
+            {
+                vehicleList = _dBContext.Vehicle.ToList();
+                List<int> _lstEngineDescriptionIds = _dBContext.EngineDescription.Where(x => lstEngineDescriptionId.Contains(x.Id)).Select(x => x.Id).ToList();
+                vehicleList = vehicleList.Where(x => _lstEngineDescriptionIds.Contains(x.EngineDescriptionId ?? 0)).ToList();
+            }
+            return vehicleList;
+        }
+        public List<Colour> GetColourList()
+        {
+            return _dBContext.Colour.ToList();
+        }
+        public int GetVehicleCountByColoursID(int ColourId)
+        {
+            List<int> lstColourId = new List<int>();
+            lstColourId.Add(ColourId);
+            List<Vehicle> lstVehicle = GetVehicleListByColour(lstColourId);
+            int countVehicle = lstVehicle.Count();
+            return countVehicle;
+        }
+
+        public List<Vehicle> GetVehicleListByColour(List<int> lstColourId)
+        {
+            List<Vehicle> vehicleList = new List<Vehicle>();
+            if (lstColourId.Count() > 0)
+            {
+                vehicleList = _dBContext.Vehicle.ToList();
+                List<int> _lstColourIds = _dBContext.Colour.Where(x => lstColourId.Contains(x.Id)).Select(x => x.Id).ToList();
+                vehicleList = vehicleList.Where(x => _lstColourIds.Contains(x.ColourId ?? 0)).ToList();
+            }
+            return vehicleList;
+        }
+
+        public List<BodyType> GetBodyTypeList()
+        {
+            return _dBContext.BodyType.ToList();
+        }
+        public int GetVehicleCountByBodyTypesID(int BodyTypeId)
+        {
+            List<int> lstBodyTypeId = new List<int>();
+            lstBodyTypeId.Add(BodyTypeId);
+            List<Vehicle> lstVehicle = GetVehicleListByCylinders(lstBodyTypeId);
+            int countVehicle = lstVehicle.Count();
+            return countVehicle;
+        }
+
+        public List<Vehicle> GetVehicleListByBodyType(List<int> lstBodyTypeId)
+        {
+            List<Vehicle> vehicleList = new List<Vehicle>();
+            if (lstBodyTypeId.Count() > 0)
+            {
+                vehicleList = _dBContext.Vehicle.ToList();
+                List<int> _lstBodyTypeIds = _dBContext.BodyType.Where(x => lstBodyTypeId.Contains(x.Id)).Select(x => x.Id).ToList();
+                vehicleList = vehicleList.Where(x => _lstBodyTypeIds.Contains(x.BodyTypeId)).ToList();
+            }
+            return vehicleList;
+        }
     }
 }

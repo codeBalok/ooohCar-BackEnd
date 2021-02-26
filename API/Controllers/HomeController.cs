@@ -78,15 +78,15 @@ namespace API.Controllers
             {
                 Id = x.Id,
                 Name = x.Name,
-                ChildCount = GetVehcileCountByMakeID(x.Id)
+                ChildCount = GetVehicleCountByMakeID(x.Id)
 
             }).Where(x => x.ChildCount > 0).ToList();
         }
 
         [ApiExplorerSettings(IgnoreApi = true)]
-        public int GetVehcileCountByMakeID(int id)
+        public int GetVehicleCountByMakeID(int id)
         {
-            return _searchRepository.GetVehcileCountByMakeID(id);
+            return _searchRepository.GetVehicleCountByMakeID(id);
         }
 
         [ApiExplorerSettings(IgnoreApi = true)]
@@ -117,14 +117,14 @@ namespace API.Controllers
             {
                 Id = x.Id,
                 Name = x.Name,
-                ChildCount = GetVehcileCountByModelID(x.Id)
+                ChildCount = GetVehicleCountByModelID(x.Id)
             }).ToList();
         }
 
         [ApiExplorerSettings(IgnoreApi = true)]
-        public int GetVehcileCountByModelID(int id)
+        public int GetVehicleCountByModelID(int id)
         {
-            return _searchRepository.GetVehcileCountByModelID(id);
+            return _searchRepository.GetVehicleCountByModelID(id);
         }
 
 
@@ -136,14 +136,14 @@ namespace API.Controllers
             {
                 Id = x.Id,
                 Name = x.Varient,
-                ChildCount = GetVehcileCountByVariantID(x.Id)
+                ChildCount = GetVehicleCountByVariantID(x.Id)
             }).ToList();
         }
 
         [ApiExplorerSettings(IgnoreApi = true)]
-        public int GetVehcileCountByVariantID(int id)
+        public int GetVehicleCountByVariantID(int id)
         {
-            return _searchRepository.GetVehcileCountByVariantID(id);
+            return _searchRepository.GetVehicleCountByVariantID(id);
         }
         [ApiExplorerSettings(IgnoreApi = true)]
         public int GetVarientCountById(int id)
@@ -391,6 +391,131 @@ namespace API.Controllers
                 Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
                 price = x.Price
             }).ToList();
+        }
+
+        [HttpGet]
+        [Route("GetFuelTypesList")]
+        public List<SideSearchCommonViewModel> GetFuelTypesList()
+        {
+            return _searchRepository.GetFuelTypesList().Select(x => new SideSearchCommonViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                ChildCount = GetVehicleCountByFuelTypesID(x.Id)
+            }).ToList();
+        }
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public int GetVehicleCountByFuelTypesID(int id)
+        {
+            return _searchRepository.GetVehicleCountByFuelTypesID(id);
+        }
+
+        [HttpGet]
+        [Route("GetCylindersList")]
+        public List<SideSearchCommonViewModel> GetCylindersList()
+        {
+            return _searchRepository.GetCylindersList().Select(x => new SideSearchCommonViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                ChildCount = GetVehicleCountByCylindersID(x.Id)
+            }).ToList();
+        }
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public int GetVehicleCountByCylindersID(int id)
+        {
+            return _searchRepository.GetVehicleCountByCylindersID(id);
+        }
+        [HttpGet]
+        [Route("GetEngineSizeList")]
+        public List<SideSearchCommonViewModel> GetEngineSizeList()
+        {
+            return _searchRepository.GetEngineSizeList().Select(x => new SideSearchCommonViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                ChildCount = GetVehicleCountByEngineSizeID(x.Id)
+            }).ToList();
+        }
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public int GetVehicleCountByEngineSizeID(int id)
+        {
+            return _searchRepository.GetVehicleCountByEngineSizeID(id);
+        }
+
+        [HttpGet]
+        [Route("GetFuelEconomyList")]
+        public List<SideSearchCommonViewModel> GetFuelEconomyList()
+        {
+            return _searchRepository.GetFuelEconomyList().Select(x => new SideSearchCommonViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                ChildCount = GetVehicleCountByFuelEconomyID(x.Id)
+            }).ToList();
+        }
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public int GetVehicleCountByFuelEconomyID(int id)
+        {
+            return _searchRepository.GetVehicleCountByFuelEconomyID(id);
+        }
+
+        [HttpGet]
+        [Route("GetEngineDescriptionList")]
+        public List<SideSearchCommonViewModel> GetEngineDescriptionList()
+        {
+            return _searchRepository.GetEngineDescriptionList().Select(x => new SideSearchCommonViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                ChildCount = GetVehicleCountByEngineDescriptionID(x.Id)
+            }).ToList();
+        }
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public int GetVehicleCountByEngineDescriptionID(int id)
+        {
+            return _searchRepository.GetVehicleCountByEngineDescriptionsID(id);
+        }
+
+        [HttpGet]
+        [Route("GetColourList")]
+        public List<SideSearchCommonViewModel> GetColourList()
+        {
+            return _searchRepository.GetColourList().Select(x => new SideSearchCommonViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                ChildCount = GetVehicleCountByColourID(x.Id)
+            }).ToList();
+        }
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public int GetVehicleCountByColourID(int id)
+        {
+            return _searchRepository.GetVehicleCountByColoursID(id);
+        }
+
+        [HttpGet]
+        [Route("GetBodyTypeList")]
+        public List<SideSearchCommonViewModel> GetBodyTypeList()
+        {
+            return _searchRepository.GetBodyTypeList().Select(x => new SideSearchCommonViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                ChildCount = GetVehicleCountByBodyTypeID(x.Id)
+            }).ToList();
+        }
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public int GetVehicleCountByBodyTypeID(int id)
+        {
+            return _searchRepository.GetVehicleCountByBodyTypesID(id);
         }
     }
 }
