@@ -36,7 +36,7 @@ namespace API
         {
             CarsbyAPI.Resolver.ScoppedResolver.ConfigureServices(services);
 
-            services.AddControllers();
+
 
             services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(_config.GetConnectionString("DefaultConnection")));
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDBContext>().AddDefaultTokenProviders();
@@ -92,7 +92,7 @@ namespace API
             {
                 opt.AddPolicy("CorsPolicy", policy =>
                 {
-                    policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200");
+                    policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200","*");
                 });
             });
             services.AddSwaggerGen(c =>
@@ -100,7 +100,6 @@ namespace API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Carsby API", Version = "v1" });
             });
             services.AddControllers();
-            //services.AddSingleton<IFooService, FooService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -141,23 +140,7 @@ namespace API
             app.UseMiddleware<CustomExceptionMiddleware>();
             app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
-
             app.UseSwaggerDocumention();
-
-            app.Use(async (context, next) =>
-            {
-                context.Response.GetTypedHeaders().CacheControl =
-                    new Microsoft.Net.Http.Headers.CacheControlHeaderValue()
-                    {
-                        Public = true,
-                        MaxAge = TimeSpan.FromSeconds(10)
-                    };
-                context.Response.Headers[Microsoft.Net.Http.Headers.HeaderNames.Vary] =
-                    new string[] { "Accept-Encoding" };
-
-                await next();
-            });
-
 
             app.UseMvc(routes =>
             {
