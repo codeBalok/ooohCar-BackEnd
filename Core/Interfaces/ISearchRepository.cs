@@ -53,5 +53,8 @@ namespace Core.Interfaces
         List<BodyType> GetBodyTypeList();
         int GetVehicleCountByBodyTypesID(int BodyTypeId);
         List<Vehicle> GetVehicleListByBodyType(List<int> lstBodyTypeId);
+        List<Vehicle> GetVehicleListAccordingToSelectedVehicleType(List<int> lstVehicleTypeId);
+        List<Vehicle> GetVehicleListAccordingToSelectedFuelType(List<int> lstFuelTypeId);
+        List<Vehicle> GetVehicleListAccordingToSelectedCylinder(List<int> lstCylinderId);
     }
 }

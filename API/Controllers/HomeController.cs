@@ -292,10 +292,10 @@ namespace API.Controllers
 
         [HttpPost]
         [Route("GetVehicleListAccordingToSelectedPriceRange")]
-        public List<VehicleViewModel> GetVehicleListAccordingToSelectedPriceRange([FromBody] SearchVehicelListPriceModel searchVehicelListPriceModel)
+        public List<VehicleViewModel> GetVehicleListAccordingToSelectedPriceRange([FromBody] SearchVehicleListPriceModel searchVehicleListPriceModel)
         {
 
-            return _searchRepository.GetVehicleListAccordingToSelectedPriceRange(searchVehicelListPriceModel.Price).
+            return _searchRepository.GetVehicleListAccordingToSelectedPriceRange(searchVehicleListPriceModel.Price).
             Select(x => new VehicleViewModel
             {
                 Id = x.Id,
@@ -316,10 +316,10 @@ namespace API.Controllers
 
         [HttpPost]
         [Route("GetVehicleListAccordingToSelectedOdometerRange")]
-        public List<VehicleViewModel> GetVehicleListAccordingToSelectedOdometerRange([FromBody] SearchVehicelListOdometerModel searchVehicelListOdometerModel)
+        public List<VehicleViewModel> GetVehicleListAccordingToSelectedOdometerRange([FromBody] SearchVehicleListOdometerModel searchVehicleListOdometerModel)
         {
 
-            return _searchRepository.GetVehicleListAccordingToSelectedOdometerRange(searchVehicelListOdometerModel.Odometer).
+            return _searchRepository.GetVehicleListAccordingToSelectedOdometerRange(searchVehicleListOdometerModel.Odometer).
             Select(x => new VehicleViewModel
             {
                 Id = x.Id,
@@ -339,9 +339,9 @@ namespace API.Controllers
 
         [HttpPost]
         [Route("GetVehicleListAccordingToSelectedTransmission")]
-        public List<VehicleViewModel> GetVehicleListAccordingToSelectedTransmission([FromBody] SearchVehicelListTransmissionModel searchVehicelListTransmissionModel)
+        public List<VehicleViewModel> GetVehicleListAccordingToSelectedTransmission([FromBody] SearchVehicleListTransmissionModel searchVehicleListTransmissionModel)
         {
-            List<int> transmissionIds = searchVehicelListTransmissionModel.Transmission.Select(tms => tms.Id).ToList();
+            List<int> transmissionIds = searchVehicleListTransmissionModel.Transmission.Select(tms => tms.Id).ToList();
             return _searchRepository.GetVehicleListAccordingToSelectedTransmission(transmissionIds).
             Select(x => new VehicleViewModel
             {
@@ -362,9 +362,9 @@ namespace API.Controllers
 
         [HttpPost]
         [Route("GetVehicleListAccordingToSelectedYear")]
-        public List<VehicleViewModel> GetVehicleListAccordingToSelectedYear([FromBody] SearchVehicelListYearModel searchVehicelListYearModel)
+        public List<VehicleViewModel> GetVehicleListAccordingToSelectedYear([FromBody] SearchVehicleListYearModel searchVehicleListYearModel)
         {
-            List<int> lstYears = searchVehicelListYearModel.Year.Select(y => y.Id).ToList();
+            List<int> lstYears = searchVehicleListYearModel.Year.Select(y => y.Id).ToList();
             return _searchRepository.GetVehicleListAccordingToSelectedYear(lstYears).
             Select(x => new VehicleViewModel
             {
@@ -506,6 +506,75 @@ namespace API.Controllers
         public int GetVehicleCountByBodyTypeID(int id)
         {
             return _searchRepository.GetVehicleCountByBodyTypesID(id);
+        }
+
+        [HttpPost]
+        [Route("GetVehicleListAccordingToVehicleType")]
+        public List<VehicleViewModel> GetVehicleListAccordingToVehicleType([FromBody] SearchVehicleListVehicelTypeModel searchVehicelListVehicleTypeModel)
+        {
+            List<int> lstVehicleTypeId= searchVehicelListVehicleTypeModel.VehicleType.Select(y => y.Id).ToList();
+            return _searchRepository.GetVehicleListAccordingToSelectedVehicleType(lstVehicleTypeId).
+            Select(x => new VehicleViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Vin = x.Vin,
+                Odometers = x.Odometers,
+                Image = _imageServiceRepository.GetImagesByModel(x.ModelId ?? 0),
+                Year = _searchRepository.GetYear(x.ModelId ?? 0),
+                Body = _searchRepository.GetBody(x.BodyTypeId),
+                FuelType = _searchRepository.GetFuelType(x.FuelTypeId ?? 0),
+                Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
+                Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
+                Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
+                price = (decimal)x.Price
+            }).ToList();
+        }
+    
+
+    [HttpPost]
+    [Route("GetVehicleListAccordingToFuelType")]
+    public List<VehicleViewModel> GetVehicleListAccordingToFuelType([FromBody] SearchVehicleListFuelTypeModel searchVehicleListFuelTypeModel)
+    {
+        List<int> lstFuelTypeId = searchVehicleListFuelTypeModel.FuelType.Select(y => y.Id).ToList();
+        return _searchRepository.GetVehicleListAccordingToSelectedFuelType(lstFuelTypeId).
+        Select(x => new VehicleViewModel
+        {
+            Id = x.Id,
+            Name = x.Name,
+            Vin = x.Vin,
+            Odometers = x.Odometers,
+            Image = _imageServiceRepository.GetImagesByModel(x.ModelId ?? 0),
+            Year = _searchRepository.GetYear(x.ModelId ?? 0),
+            Body = _searchRepository.GetBody(x.BodyTypeId),
+            FuelType = _searchRepository.GetFuelType(x.FuelTypeId ?? 0),
+            Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
+            Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
+            Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
+            price = (decimal)x.Price
+        }).ToList();
+    }
+        [HttpPost]
+        [Route("GetVehicleListAccordingToCylinder")]
+        public List<VehicleViewModel> GetVehicleListAccordingToCylinder([FromBody] SearchVehicleListCylinderModel searchVehicleListCylinderModel)
+        {
+            List<int> lstCylinderId = searchVehicleListCylinderModel.Cylinder.Select(y => y.Id).ToList();
+            return _searchRepository.GetVehicleListAccordingToSelectedFuelType(lstCylinderId).
+            Select(x => new VehicleViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Vin = x.Vin,
+                Odometers = x.Odometers,
+                Image = _imageServiceRepository.GetImagesByModel(x.ModelId ?? 0),
+                Year = _searchRepository.GetYear(x.ModelId ?? 0),
+                Body = _searchRepository.GetBody(x.BodyTypeId),
+                FuelType = _searchRepository.GetFuelType(x.FuelTypeId ?? 0),
+                Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
+                Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
+                Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
+                price = (decimal)x.Price
+            }).ToList();
         }
     }
 }
