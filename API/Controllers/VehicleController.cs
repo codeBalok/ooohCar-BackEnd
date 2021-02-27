@@ -2,7 +2,7 @@
 using AutoMapper;
 using Core.Interfaces;
 using CarsbyEF.DataContracts;
-using Infrastructure.ViewModels;
+using CarsbyServices.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,8 +1,8 @@
 using AutoMapper;
+using CarsbyServices.ViewModels;
 using Core.Common;
 using Core.Entities.Identity;
 using Core.Interfaces;
-using Infrastructure.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -205,7 +205,7 @@ namespace API.Controllers
                 Name = x.Name,
                 Vin = x.Vin,
                 Odometers = x.Odometers,
-                Image = _imageServiceRepository.GetImagesByModel(x.ModelId ?? 0),
+                Image = _imageServiceRepository.GetImagesByModelAsync(x.ModelId ?? 0).Result,
                 Year = _searchRepository.GetYear(x.ModelId ?? 0),
                 Body = _searchRepository.GetBody(x.BodyTypeId),
                 FuelType = _searchRepository.GetFuelType(x.FuelTypeId ?? 0),
@@ -231,7 +231,7 @@ namespace API.Controllers
                 Name = x.Name,
                 Vin = x.Vin,
                 Odometers = x.Odometers,
-                Image = _imageServiceRepository.GetImagesByModel(x.ModelId ?? 0),
+                Image = _imageServiceRepository.GetImagesByModelAsync(x.ModelId ?? 0).Result,
                 Year = _searchRepository.GetYear(x.ModelId ?? 0),
                 Body = _searchRepository.GetBody(x.BodyTypeId),
                 FuelType = _searchRepository.GetFuelType(x.FuelTypeId ?? 0),
@@ -255,7 +255,7 @@ namespace API.Controllers
                 Name = x.Name,
                 Vin = x.Vin,
                 Odometers = x.Odometers,
-                Image = _imageServiceRepository.GetImagesByModel(x.ModelId ?? 0),
+                Image = _imageServiceRepository.GetImagesByModelAsync(x.ModelId ?? 0).Result,
                 Year = _searchRepository.GetYear(x.ModelId ?? 0),
                 Body = _searchRepository.GetBody(x.BodyTypeId),
                 FuelType = _searchRepository.GetFuelType(x.FuelTypeId ?? 0),
@@ -279,7 +279,7 @@ namespace API.Controllers
                 Name = x.Name,
                 Vin = x.Vin,
                 Odometers = x.Odometers,
-                Image = _imageServiceRepository.GetImagesByModel(x.ModelId ?? 0),
+                Image = _imageServiceRepository.GetImagesByModelAsync(x.ModelId ?? 0).Result,
                 Year = _searchRepository.GetYear(x.ModelId ?? 0),
                 Body = _searchRepository.GetBody(x.BodyTypeId),
                 FuelType = _searchRepository.GetFuelType(x.FuelTypeId ?? 0),
@@ -302,7 +302,7 @@ namespace API.Controllers
                 Name = x.Name,
                 Vin = x.Vin,
                 Odometers = x.Odometers,
-                Image = _imageServiceRepository.GetImagesByModel(x.ModelId ?? 0),
+                Image = _imageServiceRepository.GetImagesByModelAsync(x.ModelId ?? 0).Result,
                 Year = _searchRepository.GetYear(x.ModelId ?? 0),
                 Body = _searchRepository.GetBody(x.BodyTypeId),
                 FuelType = _searchRepository.GetFuelType(x.FuelTypeId ?? 0),
@@ -326,7 +326,7 @@ namespace API.Controllers
                 Name = x.Name,
                 Vin = x.Vin,
                 Odometers = x.Odometers,
-                Image = _imageServiceRepository.GetImagesByModel(x.ModelId ?? 0),
+                Image = _imageServiceRepository.GetImagesByModelAsync(x.ModelId ?? 0).Result,
                 Year = _searchRepository.GetYear(x.ModelId ?? 0),
                 Body = _searchRepository.GetBody(x.BodyTypeId),
                 FuelType = _searchRepository.GetFuelType(x.FuelTypeId ?? 0),
@@ -349,7 +349,7 @@ namespace API.Controllers
                 Name = x.Name,
                 Vin = x.Vin,
                 Odometers = x.Odometers,
-                Image = _imageServiceRepository.GetImagesByModel(x.ModelId ?? 0),
+                Image = _imageServiceRepository.GetImagesByModelAsync(x.ModelId ?? 0).Result,
                 Year = _searchRepository.GetYear(x.ModelId ?? 0),
                 Body = _searchRepository.GetBody(x.BodyTypeId),
                 FuelType = _searchRepository.GetFuelType(x.FuelTypeId ?? 0),
@@ -372,7 +372,7 @@ namespace API.Controllers
                 Name = x.Name,
                 Vin = x.Vin,
                 Odometers = x.Odometers,
-                Image = _imageServiceRepository.GetImagesByModel(x.ModelId ?? 0),
+                Image = _imageServiceRepository.GetImagesByModelAsync(x.ModelId ?? 0).Result,
                 Year = _searchRepository.GetYear(x.ModelId ?? 0),
                 Body = _searchRepository.GetBody(x.BodyTypeId),
                 FuelType = _searchRepository.GetFuelType(x.FuelTypeId ?? 0),

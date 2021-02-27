@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Infrastructure.ViewModels
+namespace CarsbyServices.ViewModels
 {
     public partial class SearchListsViewModel
     {

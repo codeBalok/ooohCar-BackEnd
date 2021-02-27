@@ -1,6 +1,6 @@
 ﻿using Core.Infrastructure.ErrorHandler;
 using Core.Interfaces;
-using Infrastructure.Services;
+using CarsbyServices.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CarsbyAPI.Resolver

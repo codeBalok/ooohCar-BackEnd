@@ -2,7 +2,7 @@
 using CarsbyEF.DataContracts;
 using System.Linq;
 
-namespace Infrastructure.Services
+namespace CarsbyServices.Services
 {
     public class WhistListService : IWhistListRepository
     {

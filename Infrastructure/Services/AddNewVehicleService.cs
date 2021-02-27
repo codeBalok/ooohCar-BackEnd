@@ -3,7 +3,7 @@ using CarsbyEF.DataContracts;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Infrastructure.Services
+namespace CarsbyServices.Services
 {
     public class AddNewVehicleService : IAddNewVehicleRepository
     {

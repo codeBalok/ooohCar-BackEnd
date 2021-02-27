@@ -1,8 +1,9 @@
 using Core.Interfaces;
 using CarsbyEF.DataContracts;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Services
+namespace CarsbyServices.Services
 {
     public class ImageServiceService : IImageServiceRepository
     {
@@ -13,9 +14,9 @@ namespace Infrastructure.Services
             _dBContext = dBContext;
         }
 
-        public string GetImagesByModel(int id)
+        public async System.Threading.Tasks.Task<string> GetImagesByModelAsync(int id)
         {
-            return _dBContext.Images.Where(x => x.ModelId == id).Select(x => x.Image1).FirstOrDefault();
+            return await _dBContext.Images.Where(x => x.ModelId == id).Select(x => x.Image1).FirstOrDefaultAsync();
         }
     }
 }

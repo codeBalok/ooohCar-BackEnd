@@ -1,4 +1,7 @@
-﻿namespace Infrastructure.ViewModels
+﻿using System;
+using System.Collections.Generic;
+
+namespace CarsbyServices.ViewModels
 {
     public partial class VehicleViewModel
     {
@@ -18,5 +21,10 @@
         public bool IsFavourite { get; set; }
 
         public decimal price { get; set; }
+
+        public static implicit operator List<object>(VehicleViewModel v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

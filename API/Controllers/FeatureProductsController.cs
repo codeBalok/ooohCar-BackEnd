@@ -1,11 +1,10 @@
 using AutoMapper;
 using Core.Entities.Identity;
 using Core.Interfaces;
-using Infrastructure.ViewModels;
+using CarsbyServices.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace API.Controllers
 {
@@ -30,23 +29,9 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("GetListData")]
-        public List<VehicleViewModel> GetListData()
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetListDataAsync()
         {
-            return _featureProductsRepository.GetProductsList().Select(x => new VehicleViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Odometers = x.Odometers,
-                RegistrationPlate = x.RegistrationPlate,
-                Vin = x.Vin,
-                Image = _imageServiceRepository.GetImagesByModel(x.ModelId ?? 0),
-                Year = _searchRepository.GetYear(x.ModelId ?? 0),
-                Body = _searchRepository.GetBody(x.BodyTypeId),
-                FuelType = _searchRepository.GetFuelType(x.FuelTypeId ?? 0),
-                Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
-                Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
-                Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
-            }).ToList();
+            return await _featureProductsRepository.GetProductsListAsync();
         }
     }
 }

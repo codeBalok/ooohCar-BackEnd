@@ -1,6 +1,6 @@
 using System.IO;
 using API.Extensions;
-using Infrastructure.Identity;
+using CarsbyServices.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -38,15 +38,15 @@ namespace API
 
 
 
-            services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(_config.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(_config.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDBContext>().AddDefaultTokenProviders();
 
             services.AddDbContext<AppIdentityDbContext>(x =>
             {
                 x.UseSqlite(_config.GetConnectionString("DefaultConnection"));
-            });
+            }, ServiceLifetime.Transient);
 
-            services.AddDbContext<CarBuyContext>(o => o.UseSqlServer(_config.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<CarBuyContext>(o => o.UseSqlServer(_config.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
 
             services.AddMemoryCache();
             services.AddResponseCaching();
