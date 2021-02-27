@@ -17,6 +17,11 @@ using CarsbyAPI.Filters;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using Microsoft.AspNetCore.Http;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using API.Models;
 
 namespace API
 {
@@ -27,7 +32,6 @@ namespace API
         {
             _config = config;
         }
-
         public void ConfigureServices(IServiceCollection services)
         {
             CarsbyAPI.Resolver.ScoppedResolver.ConfigureServices(services);
@@ -49,8 +53,41 @@ namespace API
             services.AddMvc(options => { options.EnableEndpointRouting = false; options.Filters.Add(typeof(ValidateModelAttribute)); }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2); ;
 
 
-            services.AddIdentityServices(_config);
             services.AddSwaggerDocumentation();
+
+            //added jwt .
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear(); // => remove default claims
+            services
+                .AddAuthentication(options =>
+                {
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(cfg =>
+                {
+                    cfg.RequireHttpsMetadata = false;
+                    cfg.SaveToken = true;
+                    cfg.TokenValidationParameters = new TokenValidationParameters
+                    {
+
+                        ValidateActor = false,
+                        ValidateAudience = false,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = _config["TokenOption:Issuer"],
+                        ValidAudience = _config["TokenOption:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["TokenOption:Key"])),
+                        ClockSkew = TimeSpan.Zero // remove delay of token when expire
+                    };
+                });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Authenticated", policy => policy.RequireAuthenticatedUser());
+            });
+            services.Configure<TokenOption>(_config.GetSection("TokenOption"));
+
             services.AddCors(opt =>
             {
                 opt.AddPolicy("CorsPolicy", policy =>
