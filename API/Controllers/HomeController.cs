@@ -1,18 +1,12 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using API.Dtos;
-using API.Errors;
-using API.Extensions;
 using AutoMapper;
 using Core.Common;
 using Core.Entities.Identity;
 using Core.Interfaces;
 using Infrastructure.ViewModels;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace API.Controllers
 {
@@ -20,10 +14,6 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class HomeController : BaseApiController
     {
-        private readonly UserManager<AppUser> _userManager;
-        private readonly SignInManager<AppUser> _signInManager;
-        private readonly ITokenService _tokenService;
-        private readonly IMapper _mapper;
         private readonly ISearchRepository _searchRepository;
         private readonly IImageServiceRepository _imageServiceRepository;
         private readonly IWhistListRepository _whistlistrepo;
@@ -67,8 +57,8 @@ namespace API.Controllers
             {
                 Id = x.Id,
                 Name = x.Name,
-                LogoImages= Utility.ByteToBase64(currentpath+x.LogoImage)
-        }).ToList();
+                LogoImages = Utility.ByteToBase64(currentpath + x.LogoImage)
+            }).ToList();
         }
         [HttpGet]
         [Route("SideSearchGetMakeList")]
@@ -100,11 +90,11 @@ namespace API.Controllers
         [Route("GetModelList/{makeId}")]
         public List<getmodelList> GetModelList(int makeId)
         {
-            var model= _searchRepository.GetModelList().Where(x => x.MakeId == makeId).Select(x => new getmodelList
+            var model = _searchRepository.GetModelList().Where(x => x.MakeId == makeId).Select(x => new getmodelList
             {
                 Id = x.Id,
                 Name = x.Name,
-                Popular=x.Popular
+                Popular = x.Popular
             }).ToList();
             return model;
         }
@@ -201,9 +191,9 @@ namespace API.Controllers
             }).ToList();*/
         }
 
-        
 
-            [HttpPost]
+
+        [HttpPost]
         [Route("GetSearchVehicleList")]
         public List<VehicleViewModel> GetSearchVehicleList([FromBody] SearchViewModel searchViewModel)
         {
@@ -222,8 +212,8 @@ namespace API.Controllers
                 Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
                 Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
                 Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
-                price = x.Price,
-                IsFavourite=_whistlistrepo.IsWhistlistAdded(searchViewModel.UserId, x.Id),
+                price = (decimal)x.Price,
+                IsFavourite = _whistlistrepo.IsWhistlistAdded(searchViewModel.UserId, x.Id),
             }).ToList();
         }
 
@@ -248,7 +238,7 @@ namespace API.Controllers
                 Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
                 Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
                 Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
-                price = x.Price
+                price = (decimal)x.Price
             }).ToList();
         }
 
@@ -272,7 +262,7 @@ namespace API.Controllers
                 Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
                 Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
                 Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
-                price = x.Price
+                price = (decimal)x.Price
             }).ToList();
         }
 
@@ -296,7 +286,7 @@ namespace API.Controllers
                 Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
                 Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
                 Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
-                price = x.Price
+                price = (decimal)x.Price
             }).ToList();
         }
 
@@ -304,7 +294,7 @@ namespace API.Controllers
         [Route("GetVehicleListAccordingToSelectedPriceRange")]
         public List<VehicleViewModel> GetVehicleListAccordingToSelectedPriceRange([FromBody] SearchVehicelListPriceModel searchVehicelListPriceModel)
         {
-            
+
             return _searchRepository.GetVehicleListAccordingToSelectedPriceRange(searchVehicelListPriceModel.Price).
             Select(x => new VehicleViewModel
             {
@@ -319,7 +309,7 @@ namespace API.Controllers
                 Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
                 Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
                 Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
-                price =x.Price
+                price = (decimal)x.Price
             }).ToList();
         }
 
@@ -343,7 +333,7 @@ namespace API.Controllers
                 Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
                 Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
                 Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
-                price = x.Price
+                price = (decimal)x.Price
             }).ToList();
         }
 
@@ -366,7 +356,7 @@ namespace API.Controllers
                 Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
                 Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
                 Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
-                price = x.Price
+                price = (decimal)x.Price
             }).ToList();
         }
 
@@ -374,7 +364,7 @@ namespace API.Controllers
         [Route("GetVehicleListAccordingToSelectedYear")]
         public List<VehicleViewModel> GetVehicleListAccordingToSelectedYear([FromBody] SearchVehicelListYearModel searchVehicelListYearModel)
         {
-            List<int> lstYears = searchVehicelListYearModel.Year.Select(y=>y.Id).ToList();
+            List<int> lstYears = searchVehicelListYearModel.Year.Select(y => y.Id).ToList();
             return _searchRepository.GetVehicleListAccordingToSelectedYear(lstYears).
             Select(x => new VehicleViewModel
             {
@@ -389,7 +379,7 @@ namespace API.Controllers
                 Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
                 Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
                 Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
-                price = x.Price
+                price = (decimal)x.Price
             }).ToList();
         }
 

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Infrastructure.ViewModels
+﻿namespace Infrastructure.ViewModels
 {
     public partial class VehicleViewModel
     {
@@ -19,7 +16,7 @@ namespace Infrastructure.ViewModels
         public string Cylinders { get; set; }
         public string Type { get; set; }
         public bool IsFavourite { get; set; }
-        
+
         public decimal price { get; set; }
     }
 }

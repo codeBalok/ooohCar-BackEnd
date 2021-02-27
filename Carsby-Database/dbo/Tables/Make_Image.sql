@@ -1,9 +1,7 @@
-﻿CREATE TABLE [dbo].[Make_Image](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[MakeId] [int] NULL,
-	[ImageName] [nvarchar](200) NULL,
- CONSTRAINT [PK_Make_Image] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
+﻿CREATE TABLE [dbo].[Make_Image] (
+    [Id]        INT            IDENTITY (1, 1) NOT NULL,
+    [MakeId]    INT            NULL,
+    [ImageName] NVARCHAR (200) NULL,
+    CONSTRAINT [PK_Make_Image] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+

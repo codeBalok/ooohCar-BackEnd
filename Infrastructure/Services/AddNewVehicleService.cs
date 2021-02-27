@@ -1,78 +1,75 @@
 ﻿using Core.Interfaces;
-using Core.Models;
-using System;
+using CarsbyEF.DataContracts;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Infrastructure.Services
 {
     public class AddNewVehicleService : IAddNewVehicleRepository
     {
         private readonly CarBuyContext _dBContext;
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IAddNewVehicleRepository _addNewVehicle;
+
         public AddNewVehicleService(CarBuyContext dBContext)
         {
             _dBContext = dBContext;
         }
         public List<EngineDescription> GetEngineDescription()
         {
-            return _dBContext.EngineDescription.ToList();
+            return _dBContext.EngineDescriptions.ToList();
         }
 
         public List<EngineSize> GetEngineSize()
         {
-            return _dBContext.EngineSize.ToList();
+            return _dBContext.EngineSizes.ToList();
         }
 
         public List<FuelEconomy> GetFualEconomy()
         {
-            return _dBContext.FuelEconomy.ToList();
+            return _dBContext.FuelEconomies.ToList();
         }
 
         public List<FuelType> GetFualType()
         {
-            return _dBContext.FuelType.ToList();
+            return _dBContext.FuelTypes.ToList();
         }
 
         public List<BodyType> GetBodyType()
         {
-            return _dBContext.BodyType.ToList();
+            return _dBContext.BodyTypes.ToList();
         }
 
         public List<Category> GetCategory()
         {
-            return _dBContext.Category.ToList();
+            return _dBContext.Categories.ToList();
         }
 
-        public List<Cylinders> GetCylinders()
+        public List<Cylinder> GetCylinders()
         {
             return _dBContext.Cylinders.ToList();
         }
 
         public List<Transmission> GetTransmission()
         {
-            return _dBContext.Transmission.ToList();
+            return _dBContext.Transmissions.ToList();
         }
 
 
         public List<Condition> GetCondition()
         {
-            return _dBContext.Condition.ToList();
+            return _dBContext.Conditions.ToList();
         }
         public List<Price> GetPrice()
         {
-            return _dBContext.Price.ToList();
+            return _dBContext.Prices.ToList();
         }
 
         public List<Variant> GetVariant(int id)
         {
-            return _dBContext.Variant.Where(x => x.ModelId == id).ToList();
+            return _dBContext.Variants.Where(x => x.ModelId == id).ToList();
         }
         public List<Colour> GetColor()
         {
-            return _dBContext.Colour.ToList();
+            return _dBContext.Colours.ToList();
         }
 
         public string AddUpdateNewVehicle(Vehicle objvehicleToSave)
@@ -81,14 +78,14 @@ namespace Infrastructure.Services
             {
                 if (objvehicleToSave.Id == 0)
                 {
-                    _dBContext.Vehicle.Add(objvehicleToSave);
+                    _dBContext.Vehicles.Add(objvehicleToSave);
                     _dBContext.SaveChanges();
                     return "added";
                 }
                 else
                 {
-                    _dBContext.Vehicle.Where(a => a.Id == objvehicleToSave.Id).FirstOrDefault();
-                    _dBContext.Vehicle.Update(objvehicleToSave);
+                    _dBContext.Vehicles.Where(a => a.Id == objvehicleToSave.Id).FirstOrDefault();
+                    _dBContext.Vehicles.Update(objvehicleToSave);
                     _dBContext.SaveChanges();
                     return "updated";
                 }

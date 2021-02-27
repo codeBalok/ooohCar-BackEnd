@@ -19,8 +19,8 @@ namespace Core.Infrastructure.ErrorHandler
         AuthCannotUpdate = 7,
         AuthNotValidInformations = 8,
         AuthCannotRetrieveToken = 9,
-        InActiveUser=10,
-        EmailNotVerified=11
+        InActiveUser = 10,
+        EmailNotVerified = 11
     }
 
 }

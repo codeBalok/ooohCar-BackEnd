@@ -29,6 +29,6 @@ namespace API.Extensions
             return principal.FindFirstValue(ClaimTypes.Role);
         }
 
-       
+
     }
 }

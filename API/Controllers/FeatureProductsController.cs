@@ -1,17 +1,11 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using API.Dtos;
-using API.Errors;
-using API.Extensions;
 using AutoMapper;
 using Core.Entities.Identity;
 using Core.Interfaces;
 using Infrastructure.ViewModels;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace API.Controllers
 {
@@ -38,8 +32,9 @@ namespace API.Controllers
         [Route("GetListData")]
         public List<VehicleViewModel> GetListData()
         {
-            return _featureProductsRepository.GetProductsList().Select(x=> new VehicleViewModel{
-                Id= x.Id,
+            return _featureProductsRepository.GetProductsList().Select(x => new VehicleViewModel
+            {
+                Id = x.Id,
                 Name = x.Name,
                 Odometers = x.Odometers,
                 RegistrationPlate = x.RegistrationPlate,

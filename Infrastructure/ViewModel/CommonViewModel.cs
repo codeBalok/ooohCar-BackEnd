@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Infrastructure.ViewModels
 {
@@ -12,7 +11,7 @@ namespace Infrastructure.ViewModels
 
     public partial class getmodelList
     {
-        
+
 
         public int Id { get; set; }
         public string Name { get; set; }
@@ -36,7 +35,7 @@ namespace Infrastructure.ViewModels
         public int Count { get; set; }
     }
 
-    public partial class SearchVehicelListPriceModel 
+    public partial class SearchVehicelListPriceModel
     {
         public List<decimal> Price { get; set; }
     }
@@ -52,5 +51,5 @@ namespace Infrastructure.ViewModels
     {
         public List<CommonViewModel> Year { get; set; }
     }
-    
+
 }

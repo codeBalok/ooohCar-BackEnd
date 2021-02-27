@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using API.Dtos;
+﻿using API.Dtos;
 using AutoMapper;
-using Core.Models;
 using Core.Interfaces;
+using CarsbyEF.DataContracts;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Identity;
-using API.Extensions;
-using System.Net.Http;
+using System;
+using System.Threading.Tasks;
 
 namespace API.Controllers
 {
@@ -43,6 +37,6 @@ namespace API.Controllers
                 throw;
             }
         }
-       
+
     }
 }

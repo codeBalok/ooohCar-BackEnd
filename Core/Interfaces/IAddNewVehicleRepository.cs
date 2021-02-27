@@ -1,20 +1,18 @@
-﻿using Core.Models;
-using System;
+﻿using CarsbyEF.DataContracts;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Core.Interfaces
 {
-    public interface  IAddNewVehicleRepository
+    public interface IAddNewVehicleRepository
     {
         List<BodyType> GetBodyType();
         List<Category> GetCategory();
         List<FuelType> GetFualType();
         List<Transmission> GetTransmission();
-        List<Cylinders> GetCylinders();
+        List<Cylinder> GetCylinders();
         List<FuelEconomy> GetFualEconomy();
         List<EngineDescription> GetEngineDescription();
-        List<EngineSize> GetEngineSize();      
+        List<EngineSize> GetEngineSize();
         List<Price> GetPrice();
         List<Colour> GetColor();
         List<Condition> GetCondition();

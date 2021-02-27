@@ -1,9 +1,5 @@
 using System.IO;
 using API.Extensions;
-using API.Helpers;
-using API.Middleware;
-using AutoMapper;
-using Infrastructure.Data;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,14 +8,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
-using Core.Models;
-using Core.Interfaces;
-using Infrastructure.Services;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Identity;
-using Core.Infrastructure.ErrorHandler;
 using API.Identity;
-
+using CarsbyEF.DataContracts;
+using CarsbyAPI.Middleware;
+using CarsbyAPI.Filters;    
+using Microsoft.AspNetCore.Mvc;
+using System;
+using Microsoft.AspNetCore.Http;
 
 namespace API
 {
@@ -31,13 +28,13 @@ namespace API
             _config = config;
         }
 
-        public void ConfigureDevelopmentServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContextPool<StoreContext>(x =>
-                x.UseSqlite(_config.GetConnectionString("DefaultConnection")));
-            //services.AddIdentity<IdentityUser, IdentityRole>()
-            //    .AddEntityFrameworkStores<DBContext>();
-            services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(_config.GetConnectionString("DefaultConnection1")));
+            CarsbyAPI.Resolver.ScoppedResolver.ConfigureServices(services);
+
+            services.AddControllers();
+
+            services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(_config.GetConnectionString("DefaultConnection")));
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDBContext>().AddDefaultTokenProviders();
 
             services.AddDbContext<AppIdentityDbContext>(x =>
@@ -45,37 +42,13 @@ namespace API
                 x.UseSqlite(_config.GetConnectionString("DefaultConnection"));
             });
 
-            ConfigureServices(services);
-        }
+            services.AddDbContext<CarBuyContext>(o => o.UseSqlServer(_config.GetConnectionString("DefaultConnection")));
 
-        public void ConfigureProductionServices(IServiceCollection services)
-        {
-            services.AddDbContext<StoreContext>(x =>
-                x.UseMySql(_config.GetConnectionString("DefaultConnection")));
+            services.AddMemoryCache();
+            services.AddResponseCaching();
+            services.AddMvc(options => { options.EnableEndpointRouting = false; options.Filters.Add(typeof(ValidateModelAttribute)); }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2); ;
 
-            services.AddDbContext<AppIdentityDbContext>(x =>
-            {
-                x.UseMySql(_config.GetConnectionString("DefaultConnection"));
-            });
 
-            ConfigureServices(services);
-        }
-
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddScoped<ISearchRepository, SearchService>();
-            services.AddScoped<IAddNewVehicleRepository, AddNewVehicleService>();
-            services.AddScoped<IFeatureProductsRepository, FeatureProductsService>();
-            services.AddScoped<IImageServiceRepository, ImageServiceService>();
-            services.AddScoped<IWhistListRepository, WhistListService>();
-            services.AddScoped<IErrorHandler, ErrorHandler>();
-            services.AddScoped<ITokenService, TokenService>();
-            services.AddAutoMapper(typeof(MappingProfiles));
-            services.AddControllers();
-            services.AddDbContext<CarBuyContext>
-            (o => o.UseSqlServer(_config.
-            GetConnectionString("DefaultConnection1")));
-            services.AddApplicationServices();
             services.AddIdentityServices(_config);
             services.AddSwaggerDocumentation();
             services.AddCors(opt =>
@@ -87,7 +60,7 @@ namespace API
             });
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Carsby API", Version = "v1" });
             });
             services.AddControllers();
             //services.AddSingleton<IFooService, FooService>();
@@ -100,20 +73,17 @@ namespace API
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-             
+
                 app.UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Carsby V1");
 
                 });
             }
 
-          
 
-            db.Database.EnsureCreated();
-            app.UseMiddleware<ExceptionMiddleware>();
-            app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
+            app.UseResponseCaching();
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -125,19 +95,38 @@ namespace API
                 ),
                 RequestPath = "/content"
             });
-            app.UseAuthentication();
 
             app.UseCors("CorsPolicy");
 
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseMiddleware<CustomExceptionMiddleware>();
+            app.UseStatusCodePagesWithReExecute("/errors/{0}");
+
+
             app.UseSwaggerDocumention();
 
-            app.UseEndpoints(endpoints =>
+            app.Use(async (context, next) =>
             {
-                endpoints.MapControllers();
-                endpoints.MapFallbackToController("Index", "Fallback");
+                context.Response.GetTypedHeaders().CacheControl =
+                    new Microsoft.Net.Http.Headers.CacheControlHeaderValue()
+                    {
+                        Public = true,
+                        MaxAge = TimeSpan.FromSeconds(10)
+                    };
+                context.Response.Headers[Microsoft.Net.Http.Headers.HeaderNames.Vary] =
+                    new string[] { "Accept-Encoding" };
+
+                await next();
+            });
+
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "api/{controller}/{action=Index}/{id?}");
             });
         }
     }

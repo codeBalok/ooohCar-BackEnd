@@ -1,14 +1,11 @@
 ﻿
 using API.Models;
-using Core.Entities.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace API.Identity
 {
@@ -46,8 +43,8 @@ namespace API.Identity
                 Token = new JwtSecurityTokenHandler().WriteToken(token),
                 Expires = TokenExpiry,
                 Role = role,
-                NAME = user.UserName ,
-                UserId = user.Id, 
+                NAME = user.UserName,
+                UserId = user.Id,
                 Phone = user.PhoneNumber,
             };
             return response;

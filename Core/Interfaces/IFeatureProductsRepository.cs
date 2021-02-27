@@ -1,11 +1,10 @@
-using System.Threading.Tasks;
-using Core.Models;
+using CarsbyEF.DataContracts;
 using System.Collections.Generic;
 
 namespace Core.Interfaces
 {
     public interface IFeatureProductsRepository
     {
-         List<Vehicle> GetProductsList();
+        List<Vehicle> GetProductsList();
     }
 }

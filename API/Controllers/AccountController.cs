@@ -1,24 +1,19 @@
-using System;
-using System.Linq;
-using System.Net;
-using System.Security.Claims;
-using System.Threading.Tasks;
 using API.Dtos;
-using API.Errors;
-using API.Extensions;
 using API.Identity;
 using API.Models;
 using AutoMapper;
+using CarsbyAPI.Middleware;
 using Core.Common;
-using Core.Entities.Identity;
 using Core.Infrastructure.ErrorHandler;
-
 using Core.Interfaces;
-using Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using System;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace API.Controllers
 {
@@ -118,10 +113,10 @@ namespace API.Controllers
                 }
                 else
                 {
-                    return Unauthorized(new ErrorResponseModel { Code = (int)HttpStatusCode.Unauthorized, Message = _errorHandler.GetMessage(ErrorMessagesEnum.AuthWrongCredentials) });
+                    return Unauthorized(new { Code = (int)HttpStatusCode.Unauthorized, Message = _errorHandler.GetMessage(ErrorMessagesEnum.AuthWrongCredentials) });     
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw;
             }
@@ -137,7 +132,7 @@ namespace API.Controllers
             {
                 if (CheckEmailExistsAsync(registerDto.Email).Result.Value)
                 {
-                    return new BadRequestObjectResult(new ApiValidationErrorResponse { Errors = new[] { "Email address is in use" } });
+                    return Unauthorized(new ErrorResponseModel { Code = (int)HttpStatusCode.Unauthorized, Message = "Email address is in use" });
                 }
                 ApplicationUser _applicationUser = new ApplicationUser
                 {
@@ -161,7 +156,7 @@ namespace API.Controllers
 
                 return Ok(result.Succeeded);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw;
             }

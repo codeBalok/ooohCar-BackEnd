@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace Core.Common
 {
@@ -123,7 +122,7 @@ namespace Core.Common
             };
         }
 
-        public static string GenerateHexColor() 
+        public static string GenerateHexColor()
         {
             return string.Format("#{0:X6}", new Random().Next(0x1000000));
 
