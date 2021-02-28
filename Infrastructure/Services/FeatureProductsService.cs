@@ -34,12 +34,12 @@ namespace CarsbyServices.Services
                     RegistrationPlate = x.RegistrationPlate,
                     Vin = x.Vin,
                     Image = await _imageServiceRepository.GetImagesByModelAsync(x.ModelId ?? 0),
-                    Year = _searchRepository.GetYear(x.ModelId ?? 0),
-                    Body = _searchRepository.GetBody(x.BodyTypeId),
-                    FuelType = _searchRepository.GetFuelType(x.FuelTypeId ?? 0),
-                    Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
-                    Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
-                    Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
+                    Year = await _searchRepository.GetYearAsync(x.ModelId ?? 0),
+                    Body = await _searchRepository.GetBodyAsync(x.BodyTypeId),
+                    FuelType = await _searchRepository.GetFuelTypeAsync(x.FuelTypeId ?? 0),
+                    Transmission = await _searchRepository.GetTransmissionAsync(x.TransmissionId ?? 0),
+                    Cylinders = await _searchRepository.GetCylindersAsync(x.CylindersId ?? 0),
+                    Type = await _searchRepository.GetTypeAsync(x.VehicalTypeId ?? 0),
 
                 });
             }

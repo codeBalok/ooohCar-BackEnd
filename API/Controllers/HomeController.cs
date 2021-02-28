@@ -26,555 +26,225 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("GetVehicleTypeList")]
-        public List<CommonViewModel> GetVehicleTypeList()
+        public async System.Threading.Tasks.Task<List<CommonViewModel>> GetVehicleTypeListAsync()
         {
-            return _searchRepository.GetVehicleTypeList().Select(x => new CommonViewModel
-            {
-                Id = x.Id,
-                Name = x.Name
-            }).ToList();
+            return await _searchRepository.GetVehicleTypeListAsync();
         }
 
         [HttpGet]
         [Route("GetLocationList")]
-        public List<CommonViewModel> GetLocationList()
+        public async System.Threading.Tasks.Task<List<CommonViewModel>> GetLocationListAsync()
         {
-            return _searchRepository.GetLocationList().Select(x => new CommonViewModel
-            {
-                Id = x.Id,
-                Name = x.Name
-            }).ToList();
+            return await _searchRepository.GetLocationListAsync();
         }
 
 
 
         [HttpGet]
         [Route("GetMakeList")]
-        public List<getmakeList> GetMakeList()
+        public async System.Threading.Tasks.Task<List<getmakeList>> GetMakeListAsync()
         {
-            string currentpath = System.IO.Directory.GetCurrentDirectory();
-            return _searchRepository.GetMakeList().Select(x => new getmakeList
-            {
-                Id = x.Id,
-                Name = x.Name,
-                LogoImages = Utility.ByteToBase64(currentpath + x.LogoImage)
-            }).ToList();
+
+            return await _searchRepository.GetMakeListAsync();
         }
         [HttpGet]
         [Route("SideSearchGetMakeList")]
-        public List<SideSearchCommonViewModel> SideSearchGetMakeList()
+        public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> SideSearchGetMakeListAsync()
         {
-            return _searchRepository.GetMakeList().Select(x => new SideSearchCommonViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                ChildCount = GetVehicleCountByMakeID(x.Id)
-
-            }).Where(x => x.ChildCount > 0).ToList();
-        }
-
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public int GetVehicleCountByMakeID(int id)
-        {
-            return _searchRepository.GetVehicleCountByMakeID(id);
-        }
-
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public int GetModelCountById(int id)
-        {
-            return _searchRepository.GetModalListCountByID(id).Count;
+            return await _searchRepository.GetSideSearchMakeListAsync();
         }
 
 
         [HttpGet]
         [Route("GetModelList/{makeId}")]
-        public List<getmodelList> GetModelList(int makeId)
+        public async System.Threading.Tasks.Task<List<getmodelList>> GetModelListAsync(int makeId)
         {
-            var model = _searchRepository.GetModelList().Where(x => x.MakeId == makeId).Select(x => new getmodelList
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Popular = x.Popular
-            }).ToList();
-            return model;
+            return await _searchRepository.GetModelListAsync(makeId);
         }
 
         [HttpGet]
         [Route("GetModelListForSideSearch/{makeId}")]
-        public List<SideSearchCommonViewModel> GetModelListForSideSearch(int makeId)
+        public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetModelListForSideSearchAsync(int makeId)
         {
-            return _searchRepository.GetModelList().Where(x => x.MakeId == makeId).Select(x => new SideSearchCommonViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                ChildCount = GetVehicleCountByModelID(x.Id)
-            }).ToList();
-        }
-
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public int GetVehicleCountByModelID(int id)
-        {
-            return _searchRepository.GetVehicleCountByModelID(id);
+            return await _searchRepository.GetModelListForSideSearchAsync(makeId);
         }
 
 
         [HttpGet]
         [Route("GetVariantListForSideSearch/{modelId}")]
-        public List<SideSearchCommonViewModel> GetVariantListForSideSearch(int modelId)
+        public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetVariantListForSideSearchAsync(int modelId)
         {
-            return _searchRepository.GetVariantList().Where(x => x.ModelId == modelId).Select(x => new SideSearchCommonViewModel
-            {
-                Id = x.Id,
-                Name = x.Varient,
-                ChildCount = GetVehicleCountByVariantID(x.Id)
-            }).ToList();
+            return await _searchRepository.GetVariantListAsync(modelId);
         }
 
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public int GetVehicleCountByVariantID(int id)
-        {
-            return _searchRepository.GetVehicleCountByVariantID(id);
-        }
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public int GetVarientCountById(int id)
-        {
-            return _searchRepository.GetVarientListCountByID(id).Count;
-        }
 
         [HttpGet]
         [Route("GetYearList")]
-        public List<CommonViewModel> GetYearList()
+        public async System.Threading.Tasks.Task<List<CommonViewModel>> GetYearListAsync()
         {
-            return _searchRepository.GetYearList().Select(x => new CommonViewModel
-            {
-                Id = x.Id,
-                Name = x.Name
-            }).ToList();
+            return await _searchRepository.GetYearListAsync();
         }
 
         [HttpGet]
         [Route("GetTransmissionList")]
-        public List<CommonViewModel> GetTransmissionList()
+        public async System.Threading.Tasks.Task<List<CommonViewModel>> GetTransmissionListAsync()
         {
-            return _searchRepository.GetTransmissionList().Select(x => new CommonViewModel
-            {
-                Id = x.Id,
-                Name = x.Name
-            }).ToList();
+            return await _searchRepository.GetTransmissionListAsync();
         }
 
         [HttpGet]
         [Route("GetCertifiedInspectedList")]
         public List<CommonViewModel> GetCertifiedInspectedList()
         {
-            List<CommonViewModel> cmlst = new List<CommonViewModel>();
-            CommonViewModel CertfiedcommonViewModel = new CommonViewModel
-            {
-                Id = 1,
-                Name = "Certified"
-            };
-            CommonViewModel InspectedcommonViewModel = new CommonViewModel
-            {
-                Id = 2,
-                Name = "Inspected"
-            };
-
-            cmlst.Add(CertfiedcommonViewModel);
-            cmlst.Add(InspectedcommonViewModel);
-
-            return cmlst;
-
-            /*return _searchRepository.GetCertifiedInspectedList().Select(x => new CommonViewModel
-            {
-                Id = x.Id,
-                Name = x.Name
-            }).ToList();*/
+            return new List<CommonViewModel>() { new CommonViewModel { Id = 1, Name = "Certified" }, new CommonViewModel { Id = 2, Name = "Inspected" } }; ;
         }
 
 
 
         [HttpPost]
         [Route("GetSearchVehicleList")]
-        public List<VehicleViewModel> GetSearchVehicleList([FromBody] SearchViewModel searchViewModel)
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetSearchVehicleListAsync([FromBody] SearchViewModel searchViewModel)
         {
 
-            return _searchRepository.GetSearchVehicleList(searchViewModel.CarTypeId, searchViewModel.MakeId, searchViewModel.CarModelId, searchViewModel.LocationId, searchViewModel.YearId).
-            Select(x => new VehicleViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Vin = x.Vin,
-                Odometers = x.Odometers,
-                Image = _imageServiceRepository.GetImagesByModelAsync(x.ModelId ?? 0).Result,
-                Year = _searchRepository.GetYear(x.ModelId ?? 0),
-                Body = _searchRepository.GetBody(x.BodyTypeId),
-                FuelType = _searchRepository.GetFuelType(x.FuelTypeId ?? 0),
-                Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
-                Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
-                Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
-                price = (decimal)x.Price,
-                IsFavourite = _whistlistrepo.IsWhistlistAdded(searchViewModel.UserId, x.Id),
-            }).ToList();
+            return await _searchRepository.GetSearchVehicleListAsync(searchViewModel);
         }
 
 
         [HttpPost]
         [Route("GetVehicleListAccordingToSelectedMakes")]
-        public List<VehicleViewModel> GetVehicleListAccordingToSelectedMakes([FromBody] SelectedMakesListsViewModel selectedMakesListsViewModel)
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedMakesAsync([FromBody] SelectedMakesListsViewModel selectedMakesListsViewModel)
         {
 
             List<int> makeIds = selectedMakesListsViewModel.Make.Select(makeId => makeId.Id).ToList();
-            return _searchRepository.GetVehicleListAccordingToSelectedMakes(makeIds).
-            Select(x => new VehicleViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Vin = x.Vin,
-                Odometers = x.Odometers,
-                Image = _imageServiceRepository.GetImagesByModelAsync(x.ModelId ?? 0).Result,
-                Year = _searchRepository.GetYear(x.ModelId ?? 0),
-                Body = _searchRepository.GetBody(x.BodyTypeId),
-                FuelType = _searchRepository.GetFuelType(x.FuelTypeId ?? 0),
-                Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
-                Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
-                Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
-                price = (decimal)x.Price
-            }).ToList();
+            return await _searchRepository.GetVehicleListAccordingToSelectedMakesAsync(makeIds);
         }
 
         [HttpPost]
         [Route("GetVehicleListAccordingToSelectedModels")]
-        public List<VehicleViewModel> GetVehicleListAccordingToSelectedModels([FromBody] SelectedModelsListsViewModel selectedModelsListsViewModel)
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedModelsAsync([FromBody] SelectedModelsListsViewModel selectedModelsListsViewModel)
         {
 
             List<int> modelIds = selectedModelsListsViewModel.Model.Select(models => models.Id).ToList();
-            return _searchRepository.GetVehicleListAccordingToSelectedModels(modelIds).
-            Select(x => new VehicleViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Vin = x.Vin,
-                Odometers = x.Odometers,
-                Image = _imageServiceRepository.GetImagesByModelAsync(x.ModelId ?? 0).Result,
-                Year = _searchRepository.GetYear(x.ModelId ?? 0),
-                Body = _searchRepository.GetBody(x.BodyTypeId),
-                FuelType = _searchRepository.GetFuelType(x.FuelTypeId ?? 0),
-                Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
-                Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
-                Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
-                price = (decimal)x.Price
-            }).ToList();
+            return await _searchRepository.GetVehicleListAccordingToSelectedModelsAsync(modelIds);
         }
 
         [HttpPost]
         [Route("GetVehicleListAccordingToSelectedVariants")]
-        public List<VehicleViewModel> GetVehicleListAccordingToSelectedVariants([FromBody] SelectedVariantsListsViewModel selectedVariantsListsViewModel)
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedVariantsAsync([FromBody] SelectedVariantsListsViewModel selectedVariantsListsViewModel)
         {
 
             List<int> variantIds = selectedVariantsListsViewModel.Variant.Select(variant => variant.Id).ToList();
-            return _searchRepository.GetVehicleListAccordingToSelectedVariants(variantIds).
-            Select(x => new VehicleViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Vin = x.Vin,
-                Odometers = x.Odometers,
-                Image = _imageServiceRepository.GetImagesByModelAsync(x.ModelId ?? 0).Result,
-                Year = _searchRepository.GetYear(x.ModelId ?? 0),
-                Body = _searchRepository.GetBody(x.BodyTypeId),
-                FuelType = _searchRepository.GetFuelType(x.FuelTypeId ?? 0),
-                Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
-                Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
-                Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
-                price = (decimal)x.Price
-            }).ToList();
+            return await _searchRepository.GetVehicleListAccordingToSelectedVariantsAsync(variantIds);
         }
 
         [HttpPost]
         [Route("GetVehicleListAccordingToSelectedPriceRange")]
-        public List<VehicleViewModel> GetVehicleListAccordingToSelectedPriceRange([FromBody] SearchVehicleListPriceModel searchVehicleListPriceModel)
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedPriceRangeAsync([FromBody] SearchVehicleListPriceModel searchVehicleListPriceModel)
         {
 
-            return _searchRepository.GetVehicleListAccordingToSelectedPriceRange(searchVehicleListPriceModel.Price).
-            Select(x => new VehicleViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Vin = x.Vin,
-                Odometers = x.Odometers,
-                Image = _imageServiceRepository.GetImagesByModelAsync(x.ModelId ?? 0).Result,
-                Year = _searchRepository.GetYear(x.ModelId ?? 0),
-                Body = _searchRepository.GetBody(x.BodyTypeId),
-                FuelType = _searchRepository.GetFuelType(x.FuelTypeId ?? 0),
-                Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
-                Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
-                Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
-                price = (decimal)x.Price
-            }).ToList();
+            return await _searchRepository.GetVehicleListAccordingToSelectedPriceRangeAsync(searchVehicleListPriceModel.Price);
         }
 
 
         [HttpPost]
         [Route("GetVehicleListAccordingToSelectedOdometerRange")]
-        public List<VehicleViewModel> GetVehicleListAccordingToSelectedOdometerRange([FromBody] SearchVehicleListOdometerModel searchVehicleListOdometerModel)
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedOdometerRangeAsync([FromBody] SearchVehicleListOdometerModel searchVehicleListOdometerModel)
         {
 
-            return _searchRepository.GetVehicleListAccordingToSelectedOdometerRange(searchVehicleListOdometerModel.Odometer).
-            Select(x => new VehicleViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Vin = x.Vin,
-                Odometers = x.Odometers,
-                Image = _imageServiceRepository.GetImagesByModelAsync(x.ModelId ?? 0).Result,
-                Year = _searchRepository.GetYear(x.ModelId ?? 0),
-                Body = _searchRepository.GetBody(x.BodyTypeId),
-                FuelType = _searchRepository.GetFuelType(x.FuelTypeId ?? 0),
-                Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
-                Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
-                Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
-                price = (decimal)x.Price
-            }).ToList();
+            return await _searchRepository.GetVehicleListAccordingToSelectedOdometerRangeAsync(searchVehicleListOdometerModel.Odometer);
         }
 
         [HttpPost]
         [Route("GetVehicleListAccordingToSelectedTransmission")]
-        public List<VehicleViewModel> GetVehicleListAccordingToSelectedTransmission([FromBody] SearchVehicleListTransmissionModel searchVehicleListTransmissionModel)
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedTransmissionAsync([FromBody] SearchVehicleListTransmissionModel searchVehicleListTransmissionModel)
         {
             List<int> transmissionIds = searchVehicleListTransmissionModel.Transmission.Select(tms => tms.Id).ToList();
-            return _searchRepository.GetVehicleListAccordingToSelectedTransmission(transmissionIds).
-            Select(x => new VehicleViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Vin = x.Vin,
-                Odometers = x.Odometers,
-                Image = _imageServiceRepository.GetImagesByModelAsync(x.ModelId ?? 0).Result,
-                Year = _searchRepository.GetYear(x.ModelId ?? 0),
-                Body = _searchRepository.GetBody(x.BodyTypeId),
-                FuelType = _searchRepository.GetFuelType(x.FuelTypeId ?? 0),
-                Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
-                Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
-                Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
-                price = (decimal)x.Price
-            }).ToList();
+            return await _searchRepository.GetVehicleListAccordingToSelectedTransmissionAsync(transmissionIds);
         }
 
         [HttpPost]
         [Route("GetVehicleListAccordingToSelectedYear")]
-        public List<VehicleViewModel> GetVehicleListAccordingToSelectedYear([FromBody] SearchVehicleListYearModel searchVehicleListYearModel)
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedYearAsync([FromBody] SearchVehicleListYearModel searchVehicleListYearModel)
         {
             List<int> lstYears = searchVehicleListYearModel.Year.Select(y => y.Id).ToList();
-            return _searchRepository.GetVehicleListAccordingToSelectedYear(lstYears).
-            Select(x => new VehicleViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Vin = x.Vin,
-                Odometers = x.Odometers,
-                Image = _imageServiceRepository.GetImagesByModelAsync(x.ModelId ?? 0).Result,
-                Year = _searchRepository.GetYear(x.ModelId ?? 0),
-                Body = _searchRepository.GetBody(x.BodyTypeId),
-                FuelType = _searchRepository.GetFuelType(x.FuelTypeId ?? 0),
-                Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
-                Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
-                Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
-                price = (decimal)x.Price
-            }).ToList();
+            return await _searchRepository.GetVehicleListAccordingToSelectedYearAsync(lstYears);
         }
 
         [HttpGet]
         [Route("GetFuelTypesList")]
-        public List<SideSearchCommonViewModel> GetFuelTypesList()
+        public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetFuelTypesListAsync()
         {
-            return _searchRepository.GetFuelTypesList().Select(x => new SideSearchCommonViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                ChildCount = GetVehicleCountByFuelTypesID(x.Id)
-            }).ToList();
-        }
-
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public int GetVehicleCountByFuelTypesID(int id)
-        {
-            return _searchRepository.GetVehicleCountByFuelTypesID(id);
+                return  await _searchRepository.GetFuelTypesListAsync();
         }
 
         [HttpGet]
         [Route("GetCylindersList")]
-        public List<SideSearchCommonViewModel> GetCylindersList()
+        public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetCylindersListAsync()
         {
-            return _searchRepository.GetCylindersList().Select(x => new SideSearchCommonViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                ChildCount = GetVehicleCountByCylindersID(x.Id)
-            }).ToList();
+            return await _searchRepository.GetCylindersListAsync();
         }
 
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public int GetVehicleCountByCylindersID(int id)
-        {
-            return _searchRepository.GetVehicleCountByCylindersID(id);
-        }
+
         [HttpGet]
         [Route("GetEngineSizeList")]
-        public List<SideSearchCommonViewModel> GetEngineSizeList()
+        public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetEngineSizeListAsync()
         {
-            return _searchRepository.GetEngineSizeList().Select(x => new SideSearchCommonViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                ChildCount = GetVehicleCountByEngineSizeID(x.Id)
-            }).ToList();
-        }
-
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public int GetVehicleCountByEngineSizeID(int id)
-        {
-            return _searchRepository.GetVehicleCountByEngineSizeID(id);
+            return await _searchRepository.GetEngineSizeListAsync();
         }
 
         [HttpGet]
         [Route("GetFuelEconomyList")]
-        public List<SideSearchCommonViewModel> GetFuelEconomyList()
+        public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetFuelEconomyListAsync()
         {
-            return _searchRepository.GetFuelEconomyList().Select(x => new SideSearchCommonViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                ChildCount = GetVehicleCountByFuelEconomyID(x.Id)
-            }).ToList();
-        }
-
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public int GetVehicleCountByFuelEconomyID(int id)
-        {
-            return _searchRepository.GetVehicleCountByFuelEconomyID(id);
+            return await _searchRepository.GetFuelEconomyListAsync();
         }
 
         [HttpGet]
         [Route("GetEngineDescriptionList")]
-        public List<SideSearchCommonViewModel> GetEngineDescriptionList()
+        public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetEngineDescriptionListAsync()
         {
-            return _searchRepository.GetEngineDescriptionList().Select(x => new SideSearchCommonViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                ChildCount = GetVehicleCountByEngineDescriptionID(x.Id)
-            }).ToList();
+            return await _searchRepository.GetEngineDescriptionListAsync();
         }
 
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public int GetVehicleCountByEngineDescriptionID(int id)
-        {
-            return _searchRepository.GetVehicleCountByEngineDescriptionsID(id);
-        }
 
         [HttpGet]
         [Route("GetColourList")]
-        public List<SideSearchCommonViewModel> GetColourList()
+        public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetColourListAsync()
         {
-            return _searchRepository.GetColourList().Select(x => new SideSearchCommonViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                ChildCount = GetVehicleCountByColourID(x.Id)
-            }).ToList();
+            return await _searchRepository.GetColourListAsync();
         }
 
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public int GetVehicleCountByColourID(int id)
-        {
-            return _searchRepository.GetVehicleCountByColoursID(id);
-        }
 
         [HttpGet]
         [Route("GetBodyTypeList")]
-        public List<SideSearchCommonViewModel> GetBodyTypeList()
+        public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetBodyTypeListAsync()
         {
-            return _searchRepository.GetBodyTypeList().Select(x => new SideSearchCommonViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                ChildCount = GetVehicleCountByBodyTypeID(x.Id)
-            }).ToList();
-        }
-
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public int GetVehicleCountByBodyTypeID(int id)
-        {
-            return _searchRepository.GetVehicleCountByBodyTypesID(id);
+            return await _searchRepository.GetBodyTypeListAsync();
         }
 
         [HttpPost]
         [Route("GetVehicleListAccordingToVehicleType")]
-        public List<VehicleViewModel> GetVehicleListAccordingToVehicleType([FromBody] SearchVehicleListVehicelTypeModel searchVehicelListVehicleTypeModel)
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToVehicleTypeAsync([FromBody] SearchVehicleListVehicelTypeModel searchVehicelListVehicleTypeModel)
         {
             List<int> lstVehicleTypeId= searchVehicelListVehicleTypeModel.VehicleType.Select(y => y.Id).ToList();
-            return _searchRepository.GetVehicleListAccordingToSelectedVehicleType(lstVehicleTypeId).
-            Select(x => new VehicleViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Vin = x.Vin,
-                Odometers = x.Odometers,
-                Image = _imageServiceRepository.GetImagesByModel(x.ModelId ?? 0),
-                Year = _searchRepository.GetYear(x.ModelId ?? 0),
-                Body = _searchRepository.GetBody(x.BodyTypeId),
-                FuelType = _searchRepository.GetFuelType(x.FuelTypeId ?? 0),
-                Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
-                Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
-                Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
-                price = (decimal)x.Price
-            }).ToList();
+            return await _searchRepository.GetVehicleListAccordingToSelectedVehicleTypeAsync(lstVehicleTypeId);
         }
-    
 
-    [HttpPost]
-    [Route("GetVehicleListAccordingToFuelType")]
-    public List<VehicleViewModel> GetVehicleListAccordingToFuelType([FromBody] SearchVehicleListFuelTypeModel searchVehicleListFuelTypeModel)
-    {
-        List<int> lstFuelTypeId = searchVehicleListFuelTypeModel.FuelType.Select(y => y.Id).ToList();
-        return _searchRepository.GetVehicleListAccordingToSelectedFuelType(lstFuelTypeId).
-        Select(x => new VehicleViewModel
+
+        [HttpPost]
+        [Route("GetVehicleListAccordingToFuelType")]
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToFuelTypeAsync([FromBody] SearchVehicleListFuelTypeModel searchVehicleListFuelTypeModel)
         {
-            Id = x.Id,
-            Name = x.Name,
-            Vin = x.Vin,
-            Odometers = x.Odometers,
-            Image = _imageServiceRepository.GetImagesByModel(x.ModelId ?? 0),
-            Year = _searchRepository.GetYear(x.ModelId ?? 0),
-            Body = _searchRepository.GetBody(x.BodyTypeId),
-            FuelType = _searchRepository.GetFuelType(x.FuelTypeId ?? 0),
-            Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
-            Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
-            Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
-            price = (decimal)x.Price
-        }).ToList();
-    }
+            List<int> lstFuelTypeId = searchVehicleListFuelTypeModel.FuelType.Select(y => y.Id).ToList();
+            return await _searchRepository.GetVehicleListAccordingToSelectedFuelTypeAsync(lstFuelTypeId);
+        }
+
         [HttpPost]
         [Route("GetVehicleListAccordingToCylinder")]
-        public List<VehicleViewModel> GetVehicleListAccordingToCylinder([FromBody] SearchVehicleListCylinderModel searchVehicleListCylinderModel)
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToCylinderAsync([FromBody] SearchVehicleListCylinderModel searchVehicleListCylinderModel)
         {
             List<int> lstCylinderId = searchVehicleListCylinderModel.Cylinder.Select(y => y.Id).ToList();
-            return _searchRepository.GetVehicleListAccordingToSelectedFuelType(lstCylinderId).
-            Select(x => new VehicleViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Vin = x.Vin,
-                Odometers = x.Odometers,
-                Image = _imageServiceRepository.GetImagesByModel(x.ModelId ?? 0),
-                Year = _searchRepository.GetYear(x.ModelId ?? 0),
-                Body = _searchRepository.GetBody(x.BodyTypeId),
-                FuelType = _searchRepository.GetFuelType(x.FuelTypeId ?? 0),
-                Transmission = _searchRepository.GetTransmission(x.TransmissionId ?? 0),
-                Cylinders = _searchRepository.GetCylinders(x.CylindersId ?? 0),
-                Type = _searchRepository.GetType(x.VehicalTypeId ?? 0),
-                price = (decimal)x.Price
-            }).ToList();
+            return await _searchRepository.GetVehicleListAccordingToSelectedCylinderAsync(lstCylinderId);
         }
     }
 }

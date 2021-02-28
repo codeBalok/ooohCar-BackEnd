@@ -30,7 +30,7 @@ namespace API.Controllers
                 objWhistList.IsFavourite = whiatlistVM.IsFavourite;
                 objWhistList.UserId = whiatlistVM.UserId;
                 objWhistList.VehicleId = whiatlistVM.VehicleId;
-                return Ok(_whistlistrepo.addWhistlist(objWhistList));
+                return Ok(await _whistlistrepo.addWhistlistAsync(objWhistList));
             }
             catch (Exception ex)
             {

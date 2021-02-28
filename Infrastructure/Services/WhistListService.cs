@@ -1,6 +1,7 @@
 ﻿using Core.Interfaces;
 using CarsbyEF.DataContracts;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace CarsbyServices.Services
 {
@@ -12,9 +13,9 @@ namespace CarsbyServices.Services
             _dBContext = dBContext;
         }
 
-        public bool IsWhistlistAdded(string UserId, int vehicleId)
+        public async System.Threading.Tasks.Task<bool> IsWhistlistAddedAsync(string UserId, int vehicleId)
         {
-            var whistlistalreadyadded = _dBContext.WhistLists.Where(a => a.UserId == UserId && a.VehicleId == vehicleId).FirstOrDefault();
+            var whistlistalreadyadded = await _dBContext.WhistLists.Where(a => a.UserId == UserId && a.VehicleId == vehicleId).FirstOrDefaultAsync();
             if (whistlistalreadyadded != null)
             {
                 if (whistlistalreadyadded.IsFavourite != null)
@@ -32,22 +33,22 @@ namespace CarsbyServices.Services
             }
         }
 
-        public string addWhistlist(WhistList WhistList)
+        public async System.Threading.Tasks.Task<string> addWhistlistAsync(WhistList WhistList)
         {
             if (WhistList != null)
             {
-                var whistlistalreadyadded = _dBContext.WhistLists.Where(a => a.UserId == WhistList.UserId && a.VehicleId == WhistList.VehicleId).FirstOrDefault();
+                var whistlistalreadyadded = await _dBContext.WhistLists.Where(a => a.UserId == WhistList.UserId && a.VehicleId == WhistList.VehicleId).FirstOrDefaultAsync();
                 if (WhistList.Id == 0 && whistlistalreadyadded == null)
                 {
                     _dBContext.WhistLists.Add(WhistList);
-                    _dBContext.SaveChanges();
+                    await _dBContext.SaveChangesAsync();
                     return "added";
                 }
                 else
                 {
                     whistlistalreadyadded.IsFavourite = WhistList.IsFavourite;
                     _dBContext.WhistLists.Update(whistlistalreadyadded);
-                    _dBContext.SaveChanges();
+                    await _dBContext.SaveChangesAsync();
                     return "updated";
                 }
             }

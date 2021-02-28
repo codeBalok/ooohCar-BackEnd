@@ -4,7 +4,7 @@ namespace Core.Interfaces
 {
     public interface IWhistListRepository
     {
-        string addWhistlist(WhistList WhistList);
-        bool IsWhistlistAdded(string UserId, int vehicleId);
+        System.Threading.Tasks.Task<string> addWhistlistAsync(WhistList WhistList);
+        System.Threading.Tasks.Task<bool> IsWhistlistAddedAsync(string UserId, int vehicleId);
     }
 }
