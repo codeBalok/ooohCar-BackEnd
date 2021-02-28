@@ -34,6 +34,6 @@ namespace CarsbyServices.ViewModels
     }
     public partial class SelectedPriceListsViewModel
     {
-        public SearchVehicelListPriceModel Prices { get; set; }
+        public SearchVehicleListPriceModel Prices { get; set; }
     }
 }

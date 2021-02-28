@@ -35,21 +35,35 @@ namespace CarsbyServices.ViewModels
         public int Count { get; set; }
     }
 
-    public partial class SearchVehicelListPriceModel
+    public partial class SearchVehicleListPriceModel
     {
         public List<decimal> Price { get; set; }
     }
-    public partial class SearchVehicelListOdometerModel
+    public partial class SearchVehicleListOdometerModel
     {
         public List<int> Odometer { get; set; }
     }
-    public partial class SearchVehicelListTransmissionModel
+    public partial class SearchVehicleListTransmissionModel
     {
         public List<CommonViewModel> Transmission { get; set; }
     }
-    public partial class SearchVehicelListYearModel
+    public partial class SearchVehicleListYearModel
     {
         public List<CommonViewModel> Year { get; set; }
     }
 
+    public partial class SearchVehicleListVehicelTypeModel
+    {
+        public List<CommonViewModel> VehicleType { get; set; }
+    }
+
+    public partial class SearchVehicleListFuelTypeModel
+    {
+        public List<CommonViewModel>  FuelType { get; set; }
+    }
+
+    public partial class SearchVehicleListCylinderModel
+    {
+        public List<CommonViewModel> Cylinder { get; set; }
+    }
 }

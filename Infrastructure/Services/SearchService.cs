@@ -216,7 +216,7 @@ namespace CarsbyServices.Services
             }
             return vehicleList;
         }
-
+        
         public List<Vehicle> GetVehicleListAccordingToSelectedYear(List<int> lstYear)
         {
             List<Vehicle> vehicleList = new List<Vehicle>();
@@ -411,6 +411,39 @@ namespace CarsbyServices.Services
                 vehicleList = _dBContext.Vehicles.ToList();
                 List<int> _lstBodyTypeIds = _dBContext.BodyTypes.Where(x => lstBodyTypeId.Contains(x.Id)).Select(x => x.Id).ToList();
                 vehicleList = vehicleList.Where(x => _lstBodyTypeIds.Contains(x.BodyTypeId)).ToList();
+            }
+            return vehicleList;
+        }
+
+        public List<Vehicle> GetVehicleListAccordingToSelectedVehicleType(List<int> lstVehicleTypeId)
+        {
+            List<Vehicle> vehicleList = new List<Vehicle>();
+            if (lstVehicleTypeId.Count() > 0)
+            {
+                vehicleList = _dBContext.Vehicles.ToList();
+                vehicleList = vehicleList.Where(t => lstVehicleTypeId.Contains(t.VehicalTypeId ?? 00)).ToList();
+            }
+            return vehicleList;
+        }
+
+        public List<Vehicle> GetVehicleListAccordingToSelectedFuelType(List<int> lstFuelTypeId)
+        {
+            List<Vehicle> vehicleList = new List<Vehicle>();
+            if (lstFuelTypeId.Count() > 0)
+            {
+                vehicleList = _dBContext.Vehicles.ToList();
+                vehicleList = vehicleList.Where(t => lstFuelTypeId.Contains(t.FuelTypeId ?? 00)).ToList();
+            }
+            return vehicleList;
+        }
+
+        public List<Vehicle> GetVehicleListAccordingToSelectedCylinder(List<int> lstCylinderId)
+        {
+            List<Vehicle> vehicleList = new List<Vehicle>();
+            if (lstCylinderId.Count() > 0)
+            {
+                vehicleList = _dBContext.Vehicles.ToList();
+                vehicleList = vehicleList.Where(t => lstCylinderId.Contains(t.CylindersId ?? 00)).ToList();
             }
             return vehicleList;
         }
