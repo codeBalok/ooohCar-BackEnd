@@ -66,4 +66,17 @@ namespace CarsbyServices.ViewModels
     {
         public List<CommonViewModel> Cylinder { get; set; }
     }
+    public partial class SearchVehicleListEngineSizeModel
+    {
+        public List<CommonViewModel> EngineSize { get; set; }
+    }
+    public partial class SearchVehicleListEngineDescriptionModel
+    {
+        public CommonViewModel EngineDescription { get; set; }
+    }
+    public partial class SearchVehicleListFuelEconomyModel
+    {
+        public CommonViewModel FuelEconomy { get; set; }
+    }
+
 }

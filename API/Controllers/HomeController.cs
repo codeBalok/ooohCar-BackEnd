@@ -174,7 +174,7 @@ namespace API.Controllers
         [Route("GetFuelTypesList")]
         public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetFuelTypesListAsync()
         {
-                return  await _searchRepository.GetFuelTypesListAsync();
+            return await _searchRepository.GetFuelTypesListAsync();
         }
 
         [HttpGet]
@@ -226,7 +226,7 @@ namespace API.Controllers
         [Route("GetVehicleListAccordingToVehicleType")]
         public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToVehicleTypeAsync([FromBody] SearchVehicleListVehicelTypeModel searchVehicelListVehicleTypeModel)
         {
-            List<int> lstVehicleTypeId= searchVehicelListVehicleTypeModel.VehicleType.Select(y => y.Id).ToList();
+            List<int> lstVehicleTypeId = searchVehicelListVehicleTypeModel.VehicleType.Select(y => y.Id).ToList();
             return await _searchRepository.GetVehicleListAccordingToSelectedVehicleTypeAsync(lstVehicleTypeId);
         }
 
@@ -245,6 +245,29 @@ namespace API.Controllers
         {
             List<int> lstCylinderId = searchVehicleListCylinderModel.Cylinder.Select(y => y.Id).ToList();
             return await _searchRepository.GetVehicleListAccordingToSelectedCylinderAsync(lstCylinderId);
+        }
+
+        [HttpPost]
+        [Route("GetVehicleListAccordingToSelectedEngineSize")]
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedEngineSize([FromBody] SearchVehicleListEngineSizeModel searchVehicleListEngineSizeModel)
+        {
+            List<int> lstEngineSizeId = searchVehicleListEngineSizeModel.EngineSize.Select(e => e.Id).ToList();
+            return await _searchRepository.GetVehicleListAccordingToSelectedEngineSizeAsync(lstEngineSizeId);
+        }
+        [HttpPost]
+        [Route("GetVehicleListAccordingToSelectedEngineDescription")]
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedEngineDescription([FromBody] SearchVehicleListEngineDescriptionModel searchVehicleListEngineDescriptionModel)
+        {
+            int engineDescriptionId = searchVehicleListEngineDescriptionModel.EngineDescription.Id;
+            return await _searchRepository.GetVehicleListAccordingToSelectedEngineDescriptionAsync(engineDescriptionId);
+        }
+
+        [HttpPost]
+        [Route("GetVehicleListAccordingToSelectedFuelEconomy")]
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedFuelEconomy([FromBody] SearchVehicleListFuelEconomyModel searchVehicleListFuelEconomyModel)
+        {
+            int fuelEconomyId = searchVehicleListFuelEconomyModel.FuelEconomy.Id;
+            return await _searchRepository.GetVehicleListAccordingToSelectedFuelEconomyAsync(fuelEconomyId);
         }
     }
 }

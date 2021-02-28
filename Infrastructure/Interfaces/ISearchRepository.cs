@@ -59,5 +59,8 @@ namespace Core.Interfaces
         System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedVehicleTypeAsync(List<int> lstVehicleTypeId);
         System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedFuelTypeAsync(List<int> lstFuelTypeId);
         System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedCylinderAsync(List<int> lstCylinderId);
+        System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedEngineSizeAsync(List<int> lstEngineSizeId);
+        System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedEngineDescriptionAsync(int engineDescriptionId);
+        System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedFuelEconomyAsync(int fuelEconomyId);
     }
 }

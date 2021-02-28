@@ -573,5 +573,22 @@ namespace CarsbyServices.Services
             }
             return vehicleViewModels;
         }
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedEngineSizeAsync(List<int> lstEngineSizeId)
+        {
+            var vehicleData = await _dBContext.Vehicles.Where(t => lstEngineSizeId.Contains(t.EngineSizeId ?? 00)).ToListAsync();
+            return await GetVehicleViewModel(vehicleData);
+        }
+
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedEngineDescriptionAsync(int engineDescriptionId)
+        {            
+             var vehicleData = await  _dBContext.Vehicles.Where(ed => ed.EngineDescriptionId == engineDescriptionId).ToListAsync();            
+            return await GetVehicleViewModel(vehicleData);
+        }
+
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedFuelEconomyAsync(int fuelEconomyId)
+        {
+            var vehicleData = await _dBContext.Vehicles.Where(ed => ed.FuelEconomyId == fuelEconomyId).ToListAsync();            
+            return await GetVehicleViewModel(vehicleData);
+        }
     }
 }
