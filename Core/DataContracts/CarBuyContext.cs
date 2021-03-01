@@ -70,7 +70,7 @@ namespace CarsbyEF.DataContracts
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=localhost\\SQLEXPRESS;Initial Catalog=CarBuy;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-3TL00NE\\SQLEXPRESS;Database=CarBuy;Trusted_Connection=True;");
             }
         }
 
@@ -993,6 +993,11 @@ namespace CarsbyEF.DataContracts
                 entity.ToTable("Make_Image");
 
                 entity.Property(e => e.ImageName).HasMaxLength(200);
+
+                entity.HasOne(d => d.Make)
+                    .WithMany(p => p.MakeImages)
+                    .HasForeignKey(d => d.MakeId)
+                    .HasConstraintName("FK_Make_Image_ToTable");
             });
 
             modelBuilder.Entity<Model>(entity =>

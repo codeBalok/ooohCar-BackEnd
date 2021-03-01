@@ -42,6 +42,8 @@ namespace CarsbyServices.Services
             }).ToListAsync();
         }
 
+       
+
         public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetSideSearchMakeListAsync()
         {
             var makeList = await _dBContext.Makes.ToListAsync();

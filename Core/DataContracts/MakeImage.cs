@@ -10,5 +10,7 @@ namespace CarsbyEF.DataContracts
         public int Id { get; set; }
         public int? MakeId { get; set; }
         public string ImageName { get; set; }
+
+        public virtual CarMake Make { get; set; }
     }
 }

@@ -47,6 +47,9 @@ namespace API.Controllers
 
             return await _searchRepository.GetMakeListAsync();
         }
+       
+        
+
         [HttpGet]
         [Route("SideSearchGetMakeList")]
         public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> SideSearchGetMakeListAsync()
