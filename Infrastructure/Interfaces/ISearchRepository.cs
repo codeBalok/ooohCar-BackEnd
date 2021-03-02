@@ -62,5 +62,9 @@ namespace Core.Interfaces
         System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedEngineSizeAsync(List<int> lstEngineSizeId);
         System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedEngineDescriptionAsync(int engineDescriptionId);
         System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedFuelEconomyAsync(int fuelEconomyId);
+        System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetInductionTurboListAsync();
+        System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetPowerListAsync();
+        System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetPowerToWeightListAsync();
+        System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetTowListAsync();
     }
 }

@@ -42,6 +42,10 @@ namespace CarsbyEF.DataContracts
         public int? VehicleCategoryId { get; set; }
         public int? VehicleImageId { get; set; }
         public int? YearId { get; set; }
+        public int? TowId { get; set; }
+        public int? PowerId { get; set; }
+        public int? PowerToWeightId { get; set; }
+        public int? InductionTurboId { get; set; }
 
         public virtual BodyType BodyType { get; set; }
         public virtual Category Category { get; set; }

@@ -86,7 +86,6 @@
     <Build Include="dbo\Tables\Year.sql" />
     <Build Include="dbo\Tables\car_model.sql" />
     <Build Include="dbo\Tables\car_option.sql" />
-    <Build Include="dbo\Tables\__EFMigrationsHistory.sql" />
     <Build Include="dbo\Tables\car_option_value.sql" />
     <Build Include="dbo\Tables\car_serie.sql" />
     <Build Include="dbo\Tables\car_specification.sql" />
@@ -113,5 +112,9 @@
     <Build Include="dbo\Tables\FuelEconomy.sql" />
     <Build Include="dbo\Tables\FuelType.sql" />
     <Build Include="Security\m2ss.sql" />
+    <Build Include="dbo\Tables\InductionTurbo.sql" />
+    <Build Include="dbo\Tables\Power.sql" />
+    <Build Include="dbo\Tables\Tow.sql" />
+    <Build Include="dbo\Tables\PowerToWeight.sql" />
   </ItemGroup>
 </Project>

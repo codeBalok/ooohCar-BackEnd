@@ -47,15 +47,20 @@ namespace CarsbyEF.DataContracts
         public virtual DbSet<FuelEconomy> FuelEconomies { get; set; }
         public virtual DbSet<FuelType> FuelTypes { get; set; }
         public virtual DbSet<Image> Images { get; set; }
+        public virtual DbSet<InductionTurbo> InductionTurbos { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<Make> Makes { get; set; }
         public virtual DbSet<MakeImage> MakeImages { get; set; }
         public virtual DbSet<Model> Models { get; set; }
         public virtual DbSet<ModelColour> ModelColours { get; set; }
+        public virtual DbSet<Power> Powers { get; set; }
+        public virtual DbSet<PowerToWeight> PowerToWeights { get; set; }
         public virtual DbSet<Price> Prices { get; set; }
         public virtual DbSet<Region> Regions { get; set; }
+        
         public virtual DbSet<SellerType> SellerTypes { get; set; }
         public virtual DbSet<Service> Services { get; set; }
+        public virtual DbSet<Tow> Tows { get; set; }
         public virtual DbSet<Transmission> Transmissions { get; set; }
         public virtual DbSet<Variant> Variants { get; set; }
         public virtual DbSet<Vehicle> Vehicles { get; set; }
@@ -960,6 +965,19 @@ namespace CarsbyEF.DataContracts
                     .HasConstraintName("FK_Images_ModelId");
             });
 
+            modelBuilder.Entity<InductionTurbo>(entity =>
+            {
+                entity.ToTable("InductionTurbo");
+
+                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(250);
+
+                entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
+            });
+
             modelBuilder.Entity<Location>(entity =>
             {
                 entity.ToTable("Location");
@@ -995,9 +1013,9 @@ namespace CarsbyEF.DataContracts
                 entity.Property(e => e.ImageName).HasMaxLength(200);
 
                 entity.HasOne(d => d.Make)
-                    .WithMany(p => p.MakeImages)
-                    .HasForeignKey(d => d.MakeId)
-                    .HasConstraintName("FK_Make_Image_ToTable");
+                   .WithMany(p => p.MakeImages)
+                   .HasForeignKey(d => d.MakeId)
+                   .HasConstraintName("FK_Make_Image_ToTable");
             });
 
             modelBuilder.Entity<Model>(entity =>
@@ -1052,6 +1070,32 @@ namespace CarsbyEF.DataContracts
                     .HasConstraintName("FK_ModelId");
             });
 
+            modelBuilder.Entity<Power>(entity =>
+            {
+                entity.ToTable("Power");
+
+                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(250);
+
+                entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
+            });
+
+            modelBuilder.Entity<PowerToWeight>(entity =>
+            {
+                entity.ToTable("PowerToWeight");
+
+                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(250);
+
+                entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
+            });
+
             modelBuilder.Entity<Price>(entity =>
             {
                 entity.ToTable("Price");
@@ -1096,6 +1140,19 @@ namespace CarsbyEF.DataContracts
             modelBuilder.Entity<Service>(entity =>
             {
                 entity.ToTable("Service");
+
+                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(250);
+
+                entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
+            });
+
+            modelBuilder.Entity<Tow>(entity =>
+            {
+                entity.ToTable("Tow");
 
                 entity.Property(e => e.CreatedDate).HasColumnType("datetime");
 
