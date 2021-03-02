@@ -34,6 +34,11 @@
     [VehicleCategoryId]   INT             NULL,
     [VehicleImageId]      INT             NULL,
     [YearId]              INT             NULL,
+    [TowId] INT NULL, 
+    [PowerId] INT NULL, 
+    [PowerToWeightId] INT NULL, 
+    [InductionTurboId] INT NULL, 
+    [DriveTypeId] INT NULL, 
     CONSTRAINT [PK_Vehicle] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Body_Type] FOREIGN KEY ([BodyTypeId]) REFERENCES [dbo].[BodyType] ([Id]),
     CONSTRAINT [FK_Category_Id] FOREIGN KEY ([CategoryId]) REFERENCES [dbo].[Category] ([Id]),
@@ -53,7 +58,11 @@
     CONSTRAINT [FK_Vehicle_Variant] FOREIGN KEY ([Variant]) REFERENCES [dbo].[Variant] ([Id]),
     CONSTRAINT [FK_Vehicle_VehicleCategory] FOREIGN KEY ([VehicleCategoryId]) REFERENCES [dbo].[VehicleCategory] ([VehicleCategoryId]),
     CONSTRAINT [FK_Vehicle_VehicleImage] FOREIGN KEY ([VehicleImageId]) REFERENCES [dbo].[VehicleImage] ([Id]),
-    CONSTRAINT [FK_Vehicle_Year] FOREIGN KEY ([YearId]) REFERENCES [dbo].[Year] ([Id])
+    CONSTRAINT [FK_Vehicle_Year] FOREIGN KEY ([YearId]) REFERENCES [dbo].[Year] ([Id]), 
+    CONSTRAINT [FK_Vehicle_Tow] FOREIGN KEY([TowId]) REFERENCES [dbo].[Tow] ([Id]),
+    CONSTRAINT [FK_Vehicle_Power] FOREIGN KEY([PowerId]) REFERENCES [dbo].[Power] ([Id]),
+    CONSTRAINT [FK_Vehicle_PowerToWeight] FOREIGN KEY([PowerToWeightId]) REFERENCES [dbo].[PowerToWeight] ([Id]),
+    CONSTRAINT [FK_Vehicle_InductionTurbo] FOREIGN KEY([InductionTurboId]) REFERENCES [dbo].[InductionTurbo] ([Id])
 );
 
 
@@ -151,3 +160,23 @@ GO
 CREATE NONCLUSTERED INDEX [IX_Vehicle_YearId]
     ON [dbo].[Vehicle]([YearId] ASC);
 
+GO
+CREATE NONCLUSTERED INDEX [IX_Vehicle_TowId] 
+    ON [dbo].[Vehicle]([TowId] ASC);
+
+GO 
+CREATE NONCLUSTERED INDEX [IX_Vehicle_PowerId]
+  ON [dbo].[Vehicle]([PowerId] ASC);
+
+GO
+
+CREATE NONCLUSTERED INDEX [IX_Vehicle_PowerToWeightId] 
+ ON [dbo].[Vehicle]([PowerToWeightId] ASC);
+ 
+GO
+CREATE NONCLUSTERED INDEX [IX_Vehicle_InductionTurboId] 
+  ON [dbo].[Vehicle]([InductionTurboId] ASC);
+GO
+
+CREATE NONCLUSTERED INDEX [IX_Vehicle_DriveTypeId]
+ON [dbo].[Vehicle](	[DriveTypeId] ASC);

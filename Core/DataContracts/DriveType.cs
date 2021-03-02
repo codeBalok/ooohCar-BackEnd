@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace CarsbyEF.DataContracts
 {
-    public partial class PowerToWeight
+    public partial class DriveType
     {
-        public PowerToWeight()
+        public DriveType()
         {
             Vehicles = new HashSet<Vehicle>();
         }

@@ -7,6 +7,11 @@ namespace CarsbyEF.DataContracts
 {
     public partial class Tow
     {
+        public Tow()
+        {
+            Vehicles = new HashSet<Vehicle>();
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public bool? IsActive { get; set; }
@@ -14,5 +19,7 @@ namespace CarsbyEF.DataContracts
         public DateTime CreatedDate { get; set; }
         public int? UpdatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
+
+        public virtual ICollection<Vehicle> Vehicles { get; set; }
     }
 }
