@@ -15,11 +15,11 @@ namespace CarsbyServices.Services
     {
 
         private readonly CarBuyContext _dBContext;
-        private readonly IAddVehicleRepository _addvehiclerepo;
-        public AddVehicleService(CarBuyContext dBContext, IAddVehicleRepository addvehiclerepo)
+      
+        public AddVehicleService(CarBuyContext dBContext)
         {
             _dBContext = dBContext;
-            _addvehiclerepo = addvehiclerepo;
+            
         }
 
         
