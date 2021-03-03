@@ -272,5 +272,32 @@ namespace API.Controllers
             int fuelEconomyId = searchVehicleListFuelEconomyModel.FuelEconomy.Id;
             return await _searchRepository.GetVehicleListAccordingToSelectedFuelEconomyAsync(fuelEconomyId);
         }
+        [HttpGet]
+        [Route("GetInductionTurboList")]
+        public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetInductionTurboList()
+        {
+            return await _searchRepository.GetInductionTurboListAsync();
+        }
+
+        [HttpGet]
+        [Route("GetPowerList")]
+        public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetPowerList()
+        {
+            return await _searchRepository.GetPowerListAsync();
+        }
+
+        [HttpGet]
+        [Route("GetPowerToWeightList")]
+        public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetPowerToWeightList()
+        {
+            return await _searchRepository.GetPowerToWeightListAsync();
+        }
+
+        [HttpGet]
+        [Route("GetTowList")]
+        public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetTowList()
+        {
+            return await _searchRepository.GetTowListAsync();
+        }
     }
 }
