@@ -22,6 +22,7 @@ namespace CarsbyServices.Services
             _addvehiclerepo = addvehiclerepo;
         }
 
+        
         public async Task<List<getmakeList>> GetMakeListForAddVehicleAsync()
         {
             return await _dBContext.CarMakes.Select(x => new getmakeList
@@ -32,15 +33,16 @@ namespace CarsbyServices.Services
             }).ToListAsync();
         }
 
-
         public async Task<List<getmodelList>> GetModelListAsync(int makeId)
         {
-            return await _dBContext.Models.Where(x => x.MakeId ==makeId).Select(x => new getmodelList
+            return await _dBContext.CarModels.Where(x => x.IdCarMake ==makeId).Select(x => new getmodelList
             {
-                Id = x.Id,
+                Id = x.IdCarModel,
                 Name = x.Name,
-                Popular = x.Popular
+                
             }).ToListAsync();
         }
+
+
     }
 }

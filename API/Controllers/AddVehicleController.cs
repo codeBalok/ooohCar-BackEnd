@@ -1,4 +1,5 @@
 ﻿using API.Controllers;
+using AutoMapper;
 using CarsbyServices.Interfaces;
 using CarsbyServices.ViewModels;
 using Core.Interfaces;
@@ -15,22 +16,24 @@ namespace CarsbyAPI.Controllers
     public class AddVehicleController : BaseApiController
     {
         private readonly IAddVehicleRepository _addvehiclerepo;
-        public AddVehicleController(IAddVehicleRepository addvehiclerepo)
+        private readonly IMapper _mapper;
+        public AddVehicleController(IAddVehicleRepository addvehiclerepo, IMapper mapper)
         {
             _addvehiclerepo = addvehiclerepo;
+            _mapper = mapper;
         }
 
-        [HttpGet]
-        [Route("GetMakeListAddVehicle")]
-        public async System.Threading.Tasks.Task<List<getmakeList>> GetMakeListForAddVehicleAsync()
-        {
-            return await _addvehiclerepo.GetMakeListForAddVehicleAsync();
-        }
-        [HttpGet]
-        [Route("GetModelList/{makeId}")]
-        public async System.Threading.Tasks.Task<List<getmodelList>> GetModelListAsync(int makeId)
-        {
-            return await _addvehiclerepo.GetModelListAsync(makeId);
-        }
+        //[HttpGet]
+        //[Route("GetMakeListAddVehicle")]
+        //public async System.Threading.Tasks.Task<List<getmakeList>> GetMakeListForAddVehicleAsync()
+        //{
+        //    return await _addvehiclerepo.GetMakeListForAddVehicleAsync();
+        //}
+        //[HttpGet]
+        //[Route("GetModelList/{makeId}")]
+        //public async System.Threading.Tasks.Task<List<getmodelList>> GetModelListAsync(int makeId)
+        //{
+        //    return await _addvehiclerepo.GetModelListAsync(makeId);
+        //}
     }
 }
