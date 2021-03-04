@@ -42,7 +42,7 @@ namespace CarsbyServices.Services
             }).ToListAsync();
         }
 
-       
+
 
         public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetSideSearchMakeListAsync()
         {
@@ -221,7 +221,7 @@ namespace CarsbyServices.Services
 
         public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedMakesAsync(List<int> makeId)
         {
-            var modelIds = makeId.Count == 0 ? new List<int>(){0}: await _dBContext.Models.Where(x => makeId.Contains(x.MakeId)).Select(x => x.Id).ToListAsync();
+            var modelIds = makeId.Count == 0 ? new List<int>() { 0 } : await _dBContext.Models.Where(x => makeId.Contains(x.MakeId)).Select(x => x.Id).ToListAsync();
             var vehicleData = await _dBContext.Vehicles.Where(x => modelIds.Contains(x.ModelId ?? 0)).ToListAsync();
 
             return await GetVehicleViewModel(vehicleData);
@@ -289,7 +289,7 @@ namespace CarsbyServices.Services
 
             return await GetVehicleViewModel(vehicleData);
         }
-        
+
         public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedYearAsync(List<int> lstYear)
         {
             var vehicleData = await _dBContext.Vehicles.Where(Y => Y.YearId >= lstYear[0] && Y.YearId <= lstYear[1]).ToListAsync();
@@ -299,7 +299,7 @@ namespace CarsbyServices.Services
 
         public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetFuelTypesListAsync()
         {
-            var fuelTypes= await _dBContext.FuelTypes.ToListAsync();
+            var fuelTypes = await _dBContext.FuelTypes.ToListAsync();
 
             List<SideSearchCommonViewModel> sideSearchCommonViewModels = new List<SideSearchCommonViewModel>();
             foreach (var x in fuelTypes)
@@ -327,7 +327,7 @@ namespace CarsbyServices.Services
         public async System.Threading.Tasks.Task<List<Vehicle>> GetVehicleListByVehicleTypesAsync(List<int> lstFuelTypesId)
         {
             var _lstFuelTypesIds = lstFuelTypesId.Count == 0 ? new List<int>() { 0 } : await _dBContext.FuelTypes.Where(x => lstFuelTypesId.Contains(x.Id)).Select(x => x.Id).ToListAsync();
-            return await _dBContext.Vehicles.Where(x => _lstFuelTypesIds.Contains(x.FuelTypeId ?? 0)).ToListAsync(); 
+            return await _dBContext.Vehicles.Where(x => _lstFuelTypesIds.Contains(x.FuelTypeId ?? 0)).ToListAsync();
         }
 
         public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetCylindersListAsync()
@@ -361,7 +361,7 @@ namespace CarsbyServices.Services
         {
             var _lstCylindersIds = lstCylindersId.Count == 0 ? new List<int>() { 0 } : await _dBContext.Cylinders.Where(x => lstCylindersId.Contains(x.Id)).Select(x => x.Id).ToListAsync();
 
-            return await _dBContext.Vehicles.Where(x => _lstCylindersIds.Contains(x.CylindersId ?? 0)).ToListAsync(); 
+            return await _dBContext.Vehicles.Where(x => _lstCylindersIds.Contains(x.CylindersId ?? 0)).ToListAsync();
         }
 
         public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetEngineSizeListAsync()
@@ -389,7 +389,7 @@ namespace CarsbyServices.Services
             };
             List<Vehicle> lstVehicle = await GetVehicleListByEngineSizeAsync(lstEngineSizeId);
 
-            return lstVehicle.Count(); 
+            return lstVehicle.Count();
         }
 
         public async System.Threading.Tasks.Task<List<Vehicle>> GetVehicleListByEngineSizeAsync(List<int> lstEngineSizeId)
@@ -421,7 +421,7 @@ namespace CarsbyServices.Services
                 FuelEconomyId
             };
             List<Vehicle> lstVehicle = await GetVehicleListByFuelEconomyAsync(lstFuelEconomyId);
-            return lstVehicle.Count(); 
+            return lstVehicle.Count();
         }
 
         public async System.Threading.Tasks.Task<List<Vehicle>> GetVehicleListByFuelEconomyAsync(List<int> lstFuelEconomyId)
@@ -487,7 +487,7 @@ namespace CarsbyServices.Services
                 ColourId
             };
             List<Vehicle> lstVehicle = await GetVehicleListByColourAsync(lstColourId);
-            return lstVehicle.Count(); 
+            return lstVehicle.Count();
         }
 
         public async System.Threading.Tasks.Task<List<Vehicle>> GetVehicleListByColourAsync(List<int> lstColourId)
@@ -499,7 +499,7 @@ namespace CarsbyServices.Services
 
         public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetBodyTypeListAsync()
         {
- 
+
             var bodyTypes = await _dBContext.BodyTypes.ToListAsync();
 
             List<SideSearchCommonViewModel> sideSearchCommonViewModels = new List<SideSearchCommonViewModel>();
@@ -522,7 +522,7 @@ namespace CarsbyServices.Services
                 BodyTypeId
             };
             List<Vehicle> lstVehicle = await GetVehicleListByCylindersAsync(lstBodyTypeId);
-            return lstVehicle.Count(); 
+            return lstVehicle.Count();
         }
 
         public async System.Threading.Tasks.Task<List<Vehicle>> GetVehicleListByBodyTypeAsync(List<int> lstBodyTypeId)
@@ -582,14 +582,14 @@ namespace CarsbyServices.Services
         }
 
         public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedEngineDescriptionAsync(int engineDescriptionId)
-        {            
-             var vehicleData = await  _dBContext.Vehicles.Where(ed => ed.EngineDescriptionId == engineDescriptionId).ToListAsync();            
+        {
+            var vehicleData = await _dBContext.Vehicles.Where(ed => ed.EngineDescriptionId == engineDescriptionId).ToListAsync();
             return await GetVehicleViewModel(vehicleData);
         }
 
         public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedFuelEconomyAsync(int fuelEconomyId)
         {
-            var vehicleData = await _dBContext.Vehicles.Where(ed => ed.FuelEconomyId == fuelEconomyId).ToListAsync();            
+            var vehicleData = await _dBContext.Vehicles.Where(ed => ed.FuelEconomyId == fuelEconomyId).ToListAsync();
             return await GetVehicleViewModel(vehicleData);
         }
         public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetInductionTurboListAsync()
@@ -710,6 +710,61 @@ namespace CarsbyServices.Services
             var _lstPowerToWeightId = lstPowerToWeightId.Count == 0 ? new List<int>() { 0 } : await _dBContext.PowerToWeights.Where(x => lstPowerToWeightId.Contains(x.Id)).Select(x => x.Id).ToListAsync();
             return await _dBContext.Vehicles.Where(x => _lstPowerToWeightId.Contains(x.PowerToWeightId ?? 0)).ToListAsync();
         }
+        public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetDriveTypeListAsync()
+        {
+            var DriveTypeList = await _dBContext.DriveTypes.ToListAsync();
+            List<SideSearchCommonViewModel> sideSearchCommonViewModels = new List<SideSearchCommonViewModel>();
+            foreach (var x in DriveTypeList)
+            {
+                sideSearchCommonViewModels.Add(new SideSearchCommonViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    ChildCount = await GetVehicleCountByDriveTypeIdAsync(x.Id)
+                });
+            }
+            return sideSearchCommonViewModels;
+        }
+        public async System.Threading.Tasks.Task<int> GetVehicleCountByDriveTypeIdAsync(int DriveTypeId)
+        {
+            List<int> lstDriveTypeId = new List<int>
+            {
+                DriveTypeId
+            };
+            var lstVehicle = await GetVehicleListAccordingToSelectedDriveTypeAsync(lstDriveTypeId);
+            return lstVehicle.Count();
+        }
+        public async System.Threading.Tasks.Task<List<Vehicle>> GetVehicleListAccordingToSelectedDriveTypeAsync(List<int> lstDriveTypeId)
+        {
+            var _lstDriveTypeId = lstDriveTypeId.Count == 0 ? new List<int>() { 0 } : await _dBContext.DriveTypes.Where(x => lstDriveTypeId.Contains(x.Id)).Select(x => x.Id).ToListAsync();
+            return await _dBContext.Vehicles.Where(x => _lstDriveTypeId.Contains(x.DriveTypeId ?? 0)).ToListAsync();
+        }
 
+
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedInductionTurboAsync(int InductionTurboId)
+        {
+            var vehicleData = await _dBContext.Vehicles.Where(ed => ed.InductionTurboId == InductionTurboId).ToListAsync();
+            return await GetVehicleViewModel(vehicleData);
+        }
+
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedPowersAsync(List<int> lstPower)
+        {
+            var vehicleData = await _dBContext.Vehicles.Where(Y => Y.PowerId >= lstPower[0] && Y.PowerId <= lstPower[1]).ToListAsync();
+
+            return await GetVehicleViewModel(vehicleData);
+        }
+
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedPowerToWeightsAsync(List<int> lstPowerToWeight)
+        {
+            var vehicleData = await _dBContext.Vehicles.Where(Y => Y.PowerToWeightId >= lstPowerToWeight[0] && Y.PowerToWeightId <= lstPowerToWeight[1]).ToListAsync();
+
+            return await GetVehicleViewModel(vehicleData);
+        }
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedTowsAsync(List<int> lstTow)
+        {
+            var vehicleData = await _dBContext.Vehicles.Where(Y => Y.TowId >= lstTow[0] && Y.TowId <= lstTow[1]).ToListAsync();
+
+            return await GetVehicleViewModel(vehicleData);
+        }
     }
 }

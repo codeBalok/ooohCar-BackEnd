@@ -78,5 +78,20 @@ namespace CarsbyServices.ViewModels
     {
         public CommonViewModel FuelEconomy { get; set; }
     }
-
+    public partial class SearchVehicleListInductionTurboModel
+    {
+        public CommonViewModel InductionTurbo { get; set; }
+    }
+    public partial class SearchVehicleListPowerModel
+    {
+        public List<CommonViewModel> Power { get; set; }
+    }
+    public partial class SearchVehicleListPowerToWeightModel
+    {
+        public List<CommonViewModel> PowerToWeight { get; set; }
+    }
+    public partial class SearchVehicleListTowModel
+    {
+        public List<CommonViewModel> Tow { get; set; }
+    }
 }

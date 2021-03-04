@@ -66,5 +66,12 @@ namespace Core.Interfaces
         System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetPowerListAsync();
         System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetPowerToWeightListAsync();
         System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetTowListAsync();
+        System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetDriveTypeListAsync();
+        System.Threading.Tasks.Task<int> GetVehicleCountByDriveTypeIdAsync(int DriveTypeId);
+        System.Threading.Tasks.Task<List<Vehicle>> GetVehicleListAccordingToSelectedDriveTypeAsync(List<int> lstDriveTypeId);
+        System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedInductionTurboAsync(int InductionTurboId);
+        System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedPowersAsync(List<int> lstPower);
+        System.Threading.Tasks.Task<List<VehicleViewModel>>  GetVehicleListAccordingToSelectedPowerToWeightsAsync(List<int> lstPowerToWeight);
+        System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedTowsAsync(List<int> lstTow);
     }
 }

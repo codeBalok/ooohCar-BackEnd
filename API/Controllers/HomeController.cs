@@ -299,5 +299,39 @@ namespace API.Controllers
         {
             return await _searchRepository.GetTowListAsync();
         }
+        [HttpGet]
+        [Route("GetDriveTypeList")]
+        public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetDriveTypeList()
+        {
+            return await _searchRepository.GetDriveTypeListAsync();
+        }
+        [HttpPost]
+        [Route("GetVehicleListAccordingToSelectedInductionTurbo")]
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedInductionTurbo([FromBody] SearchVehicleListInductionTurboModel searchVehicleListInductionTurboModel)
+        {
+            int InductionTurboId = searchVehicleListInductionTurboModel.InductionTurbo.Id;
+            return await _searchRepository.GetVehicleListAccordingToSelectedInductionTurboAsync(InductionTurboId);
+        }
+        [HttpPost]
+        [Route("GetVehicleListAccordingToSelectedPower")]
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedPowerAsync([FromBody] SearchVehicleListPowerModel searchVehicleListPowerModel)
+        {
+            List<int> lstPowers = searchVehicleListPowerModel.Power.Select(y => y.Id).ToList();
+            return await _searchRepository.GetVehicleListAccordingToSelectedPowersAsync(lstPowers);
+        }
+        [HttpPost]
+        [Route("GetVehicleListAccordingToSelectedPowerToWeight")]
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedPowerToWeightAsync([FromBody] SearchVehicleListPowerToWeightModel searchVehicleListPowerToWeightModel)
+        {
+            List<int> lstPowerToWeights = searchVehicleListPowerToWeightModel.PowerToWeight.Select(y => y.Id).ToList();
+            return await _searchRepository.GetVehicleListAccordingToSelectedPowerToWeightsAsync(lstPowerToWeights);
+        }
+        [HttpPost]
+        [Route("GetVehicleListAccordingToSelectedTow")]
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedTowAsync([FromBody] SearchVehicleListTowModel searchVehicleListTowModel)
+        {
+            List<int> lstTows = searchVehicleListTowModel.Tow.Select(y => y.Id).ToList();
+            return await _searchRepository.GetVehicleListAccordingToSelectedTowsAsync(lstTows);
+        }
     }
 }
