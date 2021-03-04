@@ -766,5 +766,10 @@ namespace CarsbyServices.Services
 
             return await GetVehicleViewModel(vehicleData);
         }
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedDriveTypeAsync(int driveTypeId)
+        {
+            var vehicleData = await _dBContext.Vehicles.Where(ed => ed.DriveTypeId == driveTypeId).ToListAsync();
+            return await GetVehicleViewModel(vehicleData);
+        }
     }
 }

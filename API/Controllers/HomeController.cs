@@ -333,5 +333,13 @@ namespace API.Controllers
             List<int> lstTows = searchVehicleListTowModel.Tow.Select(y => y.Id).ToList();
             return await _searchRepository.GetVehicleListAccordingToSelectedTowsAsync(lstTows);
         }
+
+        [HttpPost]
+        [Route("GetVehicleListAccordingToSelectedDriveType")]
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedDriveTypeAsync([FromBody] SearchVehicleListDriveTypeModel searchVehicleListDriveTypeModel)
+        {
+            int driveTypeId = searchVehicleListDriveTypeModel.DriveType.Id;
+            return await _searchRepository.GetVehicleListAccordingToSelectedDriveTypeAsync(driveTypeId);
+        }
     }
 }

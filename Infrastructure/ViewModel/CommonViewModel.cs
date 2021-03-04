@@ -59,7 +59,7 @@ namespace CarsbyServices.ViewModels
 
     public partial class SearchVehicleListFuelTypeModel
     {
-        public List<CommonViewModel>  FuelType { get; set; }
+        public List<CommonViewModel> FuelType { get; set; }
     }
 
     public partial class SearchVehicleListCylinderModel
@@ -93,5 +93,9 @@ namespace CarsbyServices.ViewModels
     public partial class SearchVehicleListTowModel
     {
         public List<CommonViewModel> Tow { get; set; }
+    }
+    public partial class SearchVehicleListDriveTypeModel
+    { 
+      public CommonViewModel DriveType { get; set; } 
     }
 }
