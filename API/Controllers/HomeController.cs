@@ -341,5 +341,27 @@ namespace API.Controllers
             int driveTypeId = searchVehicleListDriveTypeModel.DriveType.Id;
             return await _searchRepository.GetVehicleListAccordingToSelectedDriveTypeAsync(driveTypeId);
         }
+
+        [HttpPost]
+        [Route("GetVehicleListAccordingToSelectedBodyType")]
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedBodyTypeAsync([FromBody] SearchVehicleListBodyTypeModel searchVehicleListBodyTypeModel)
+        {
+            List<int> BodyTypeIds = searchVehicleListBodyTypeModel.BodyType.Select(bdtype => bdtype.Id).ToList();
+            return await _searchRepository.GetVehicleListAccordingToSelectedBodyTypeAsync(BodyTypeIds);
+        }
+        [HttpPost]
+        [Route("GetVehicleListAccordingToSelectedColour")]
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedColourAsync([FromBody] SearchVehicleListColourModel searchVehicleListColourModel)
+        {
+            List<int> ColourIds = searchVehicleListColourModel.Colour.Select(clr => clr.Id).ToList();
+            return await _searchRepository.GetVehicleListAccordingToSelectedColourAsync(ColourIds);
+        }
+
+        [HttpGet]
+        [Route("GetPriceList")]
+        public async System.Threading.Tasks.Task<List<CommonViewModel>> GetPriceListAsync()
+        {
+            return await _searchRepository.GetPriceListAsync();
+        }
     }
 }

@@ -98,4 +98,13 @@ namespace CarsbyServices.ViewModels
     { 
       public CommonViewModel DriveType { get; set; } 
     }
+    public partial class SearchVehicleListBodyTypeModel
+    {
+        public List<CommonViewModel> BodyType { get; set; }
+    }
+    public partial class SearchVehicleListColourModel
+    {
+        public List<CommonViewModel> Colour { get; set; }
+    }
+
 }

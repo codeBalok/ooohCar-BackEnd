@@ -74,5 +74,8 @@ namespace Core.Interfaces
         System.Threading.Tasks.Task<List<VehicleViewModel>>  GetVehicleListAccordingToSelectedPowerToWeightsAsync(List<int> lstPowerToWeight);
         System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedTowsAsync(List<int> lstTow);
         System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedDriveTypeAsync(int driveTypeId);
+        System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedBodyTypeAsync(List<int> lstBodyTypeId);
+        System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedColourAsync(List<int> lstColourId);
+        System.Threading.Tasks.Task<List<CommonViewModel>> GetPriceListAsync();
     }
 }

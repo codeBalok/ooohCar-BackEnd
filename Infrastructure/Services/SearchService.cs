@@ -771,5 +771,25 @@ namespace CarsbyServices.Services
             var vehicleData = await _dBContext.Vehicles.Where(ed => ed.DriveTypeId == driveTypeId).ToListAsync();
             return await GetVehicleViewModel(vehicleData);
         }
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedBodyTypeAsync(List<int> lstBodyTypeId)
+        {
+            var vehicleData = await _dBContext.Vehicles.Where(t => lstBodyTypeId.Contains(t.BodyTypeId)).ToListAsync();
+
+            return await GetVehicleViewModel(vehicleData);
+        }
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedColourAsync(List<int> lstColourId)
+        {
+            var vehicleData = await _dBContext.Vehicles.Where(t => lstColourId.Contains(t.ColourId??00)).ToListAsync();
+
+            return await GetVehicleViewModel(vehicleData);
+        }
+        public async System.Threading.Tasks.Task<List<CommonViewModel>> GetPriceListAsync()
+        {
+            return await _dBContext.Prices.Select(x => new CommonViewModel
+            {
+                Id = x.Id,
+                Name = Convert.ToString(x.Amount??00)
+            }).ToListAsync();
+        }
     }
 }
