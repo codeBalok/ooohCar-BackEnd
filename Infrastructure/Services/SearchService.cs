@@ -115,14 +115,14 @@ namespace CarsbyServices.Services
             return sideSearchCommonViewModels;
         }
 
-        public async System.Threading.Tasks.Task<List<CommonViewModel>> GetVehicleTypeListAsync()
-        {
-            return await _dBContext.VehicleTypes.Select(x => new CommonViewModel
-            {
-                Id = x.Id,
-                Name = x.Name
-            }).ToListAsync();
-        }
+        //public async System.Threading.Tasks.Task<List<CommonViewModel>> GetVehicleTypeListAsync()
+        //{
+        //    return await _dBContext.VehicleTypes.Select(x => new CommonViewModel
+        //    {
+        //        Id = x.Id,
+        //        Name = x.Name
+        //    }).ToListAsync();
+        //}
 
         public async System.Threading.Tasks.Task<List<CommonViewModel>> GetYearListAsync()
         {
@@ -521,7 +521,7 @@ namespace CarsbyServices.Services
             {
                 BodyTypeId
             };
-            List<Vehicle> lstVehicle = await GetVehicleListByCylindersAsync(lstBodyTypeId);
+            List<Vehicle> lstVehicle = await GetVehicleListByBodyTypeAsync(lstBodyTypeId);
             return lstVehicle.Count();
         }
 
@@ -779,7 +779,7 @@ namespace CarsbyServices.Services
         }
         public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedColourAsync(List<int> lstColourId)
         {
-            var vehicleData = await _dBContext.Vehicles.Where(t => lstColourId.Contains(t.ColourId??00)).ToListAsync();
+            var vehicleData = await _dBContext.Vehicles.Where(t => lstColourId.Contains(t.ColourId ?? 00)).ToListAsync();
 
             return await GetVehicleViewModel(vehicleData);
         }
@@ -788,8 +788,197 @@ namespace CarsbyServices.Services
             return await _dBContext.Prices.Select(x => new CommonViewModel
             {
                 Id = x.Id,
-                Name = Convert.ToString(x.Amount??00)
+                Name = Convert.ToString(x.Amount ?? 00)
             }).ToListAsync();
         }
+
+        public async System.Threading.Tasks.Task<List<CommonViewModel>> GetSeatsListAsync()
+        {
+            return await _dBContext.Seats.Select(x => new CommonViewModel
+            {
+                Id = x.Id,
+                Name = Convert.ToString(x.Name)
+            }).ToListAsync();
+        }
+        public async System.Threading.Tasks.Task<int> GetVehicleCountBySeatsIDAsync(int SeatsId)
+        {
+            List<int> lstSeatsId = new List<int>
+            {
+                SeatsId
+            };
+            List<Vehicle> lstVehicle = await GetVehicleListByVehicleSeatsAsync(lstSeatsId);
+            return lstVehicle.Count();
+        }
+        public async System.Threading.Tasks.Task<List<Vehicle>> GetVehicleListByVehicleSeatsAsync(List<int> lstSeatsId)
+        {
+            var _lstSeatsIds = lstSeatsId.Count == 0 ? new List<int>() { 0 } : await _dBContext.Seats.Where(x => lstSeatsId.Contains(x.Id)).Select(x => x.Id).ToListAsync();
+            return await _dBContext.Vehicles.Where(x => _lstSeatsIds.Contains(x.SeatsId ?? 0)).ToListAsync();
+        }
+
+        public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetLifeStylesListAsync()
+        {
+            var LifeStyles = await _dBContext.LifeStyles.ToListAsync();
+
+            List<SideSearchCommonViewModel> sideSearchCommonViewModels = new List<SideSearchCommonViewModel>();
+            foreach (var x in LifeStyles)
+            {
+                sideSearchCommonViewModels.Add(new SideSearchCommonViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    ChildCount = await GetVehicleCountByLifeStylesIDAsync(x.Id)
+
+                });
+            }
+            return sideSearchCommonViewModels;
+        }
+        public async System.Threading.Tasks.Task<int> GetVehicleCountByLifeStylesIDAsync(int LifeStylesId)
+        {
+            List<int> lstLifeStylesId = new List<int>
+            {
+                LifeStylesId
+            };
+            List<Vehicle> lstVehicle = await GetVehicleListByVehicleLifeStylesAsync(lstLifeStylesId);
+            return lstVehicle.Count();
+        }
+        public async System.Threading.Tasks.Task<List<Vehicle>> GetVehicleListByVehicleLifeStylesAsync(List<int> lstLifeStylesId)
+        {
+            var _lstLifeStylesIds = lstLifeStylesId.Count == 0 ? new List<int>() { 0 } : await _dBContext.LifeStyles.Where(x => lstLifeStylesId.Contains(x.Id)).Select(x => x.Id).ToListAsync();
+            return await _dBContext.Vehicles.Where(x => _lstLifeStylesIds.Contains(x.LifeStylesId ?? 0)).ToListAsync();
+        }
+
+        public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetDoorsListAsync()
+        {
+            var Doors = await _dBContext.Doors.ToListAsync();
+
+            List<SideSearchCommonViewModel> sideSearchCommonViewModels = new List<SideSearchCommonViewModel>();
+            foreach (var x in Doors)
+            {
+                sideSearchCommonViewModels.Add(new SideSearchCommonViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    ChildCount = await GetVehicleCountByDoorsIDAsync(x.Id)
+
+                });
+            }
+            return sideSearchCommonViewModels;
+        }
+        public async System.Threading.Tasks.Task<int> GetVehicleCountByDoorsIDAsync(int DoorsId)
+        {
+            List<int> lstDoorsId = new List<int>
+            {
+                DoorsId
+            };
+            List<Vehicle> lstVehicle = await GetVehicleListByVehicleDoorsAsync(lstDoorsId);
+            return lstVehicle.Count();
+        }
+
+        public async System.Threading.Tasks.Task<List<Vehicle>> GetVehicleListByVehicleDoorsAsync(List<int> lstDoorsId)
+        {
+            var _lstDoorsIds = lstDoorsId.Count == 0 ? new List<int>() { 0 } : await _dBContext.Doors.Where(x => lstDoorsId.Contains(x.Id)).Select(x => x.Id).ToListAsync();
+            return await _dBContext.Vehicles.Where(x => _lstDoorsIds.Contains(x.DoorsId ?? 0)).ToListAsync();
+        }
+
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedDoorsAsync(int doorsId)
+        {
+            var vehicleData = await _dBContext.Vehicles.Where(ed => ed.DoorsId == doorsId).ToListAsync();
+            return await GetVehicleViewModel(vehicleData);
+        }
+
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedLifeStylesAsync(int lifeStylesId)
+        {
+            var vehicleData = await _dBContext.Vehicles.Where(ed => ed.LifeStylesId == lifeStylesId).ToListAsync();
+            return await GetVehicleViewModel(vehicleData);
+        }
+
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedSeatsAsync(List<int> lstSeats)
+        {
+            var vehicleData = await _dBContext.Vehicles.Where(Y => Y.SeatsId >= lstSeats[0] && Y.SeatsId <= lstSeats[1]).ToListAsync();
+            return await GetVehicleViewModel(vehicleData);
+        }
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedVehicelTypeAsync(List<int> lstVehicelTypeId)
+        {
+            var vehicleData = await _dBContext.Vehicles.Where(t => lstVehicelTypeId.Contains(t.VehicalTypeId ?? 00)).ToListAsync();
+
+            return await GetVehicleViewModel(vehicleData);
+        }
+
+        public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetCertifiedInspectedListAsync()
+        {
+            var CertifiedInspected = await _dBContext.CertifiedInspecteds.ToListAsync();
+
+            List<SideSearchCommonViewModel> sideSearchCommonViewModels = new List<SideSearchCommonViewModel>();
+            foreach (var x in CertifiedInspected)
+            {
+                sideSearchCommonViewModels.Add(new SideSearchCommonViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    ChildCount = await GetVehicleCountByCertifiedInspectedIDAsync(x.Id)
+
+                });
+            }
+            return sideSearchCommonViewModels;
+        }
+        public async System.Threading.Tasks.Task<int> GetVehicleCountByCertifiedInspectedIDAsync(int CertifiedInspectedId)
+        {
+            List<int> lstCertifiedInspectedId = new List<int>
+            {
+                CertifiedInspectedId
+            };
+            List<Vehicle> lstVehicle = await GetVehicleListByCertifiedInspectedsAsync(lstCertifiedInspectedId);
+            return lstVehicle.Count();
+        }
+
+        public async System.Threading.Tasks.Task<List<Vehicle>> GetVehicleListByCertifiedInspectedsAsync(List<int> lstCertifiedInspectedId)
+        {
+            var _lstCertifiedInspectedIds = lstCertifiedInspectedId.Count == 0 ? new List<int>() { 0 } : await _dBContext.CertifiedInspecteds.Where(x => lstCertifiedInspectedId.Contains(x.Id)).Select(x => x.Id).ToListAsync();
+            return await _dBContext.Vehicles.Where(x => _lstCertifiedInspectedIds.Contains(x.CertifiedInspectedId ?? 0)).ToListAsync();
+        }
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedCertifiedInspectedAsync(List<int> lstCertifiedInspectedId)
+        {
+            var vehicleData = await _dBContext.Vehicles.Where(t => lstCertifiedInspectedId.Contains(t.CertifiedInspectedId ?? 00)).ToListAsync();
+
+            return await GetVehicleViewModel(vehicleData);
+        }
+
+
+        public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetVehicleTypeListAsync()
+        {
+            var VehicelTypes = await _dBContext.VehicleTypes.ToListAsync();
+
+            List<SideSearchCommonViewModel> sideSearchCommonViewModels = new List<SideSearchCommonViewModel>();
+            foreach (var x in VehicelTypes)
+            {
+                sideSearchCommonViewModels.Add(new SideSearchCommonViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    ChildCount = await GetVehicleCountByVehicleTypesIDAsync(x.Id)
+
+                });
+            }
+            return sideSearchCommonViewModels;
+        }
+        public async System.Threading.Tasks.Task<int> GetVehicleCountByVehicleTypesIDAsync(int VehicelTypeId)
+        {
+            List<int> lstVehicelTypeId = new List<int>
+            {
+                VehicelTypeId
+            };
+            List<Vehicle> lstVehicle = await GetVehicleListByVehicleTypeAsync(lstVehicelTypeId);
+            return lstVehicle.Count();
+        }
+
+        public async System.Threading.Tasks.Task<List<Vehicle>> GetVehicleListByVehicleTypeAsync(List<int> lstVehicelTypeId)
+        {
+            var _lstVehicleTypeIds = lstVehicelTypeId.Count == 0 ? new List<int>() { 0 } : await _dBContext.VehicleTypes.Where(x => lstVehicelTypeId.Contains(x.Id)).Select(x => x.Id).ToListAsync();
+            return await _dBContext.Vehicles.Where(x => _lstVehicleTypeIds.Contains(x.VehicalTypeId ?? 0)).ToListAsync();
+
+        }
+
     }
+
+    
 }

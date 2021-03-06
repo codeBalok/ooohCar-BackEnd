@@ -26,7 +26,7 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("GetVehicleTypeList")]
-        public async System.Threading.Tasks.Task<List<CommonViewModel>> GetVehicleTypeListAsync()
+        public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetVehicleTypeListAsync()
         {
             return await _searchRepository.GetVehicleTypeListAsync();
         }
@@ -97,9 +97,10 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("GetCertifiedInspectedList")]
-        public List<CommonViewModel> GetCertifiedInspectedList()
+        public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetCertifiedInspectedList()
         {
-            return new List<CommonViewModel>() { new CommonViewModel { Id = 1, Name = "Certified" }, new CommonViewModel { Id = 2, Name = "Inspected" } }; ;
+            //return new List<SideSearchCommonViewModel>() { new SideSearchCommonViewModel { Id = 1, Name = "Certified" }, new SideSearchCommonViewModel { Id = 2, Name = "Inspected" } }; ;
+            return await _searchRepository.GetCertifiedInspectedListAsync();
         }
 
 
@@ -227,9 +228,9 @@ namespace API.Controllers
 
         [HttpPost]
         [Route("GetVehicleListAccordingToVehicleType")]
-        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToVehicleTypeAsync([FromBody] SearchVehicleListVehicelTypeModel searchVehicelListVehicleTypeModel)
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToVehicleTypeAsync([FromBody] SearchVehicleListVehicleTypeModel searchVehicleListVehicleTypeModel)
         {
-            List<int> lstVehicleTypeId = searchVehicelListVehicleTypeModel.VehicleType.Select(y => y.Id).ToList();
+            List<int> lstVehicleTypeId = searchVehicleListVehicleTypeModel.VehicleType.Select(y => y.Id).ToList();
             return await _searchRepository.GetVehicleListAccordingToSelectedVehicleTypeAsync(lstVehicleTypeId);
         }
 
@@ -363,5 +364,64 @@ namespace API.Controllers
         {
             return await _searchRepository.GetPriceListAsync();
         }
+
+        [HttpGet]
+        [Route("GetLifeStylesList")]
+        public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetLifeStylesAsyn()
+        {
+            return await _searchRepository.GetLifeStylesListAsync();
+        }
+        [HttpGet]
+        [Route("GetDoorsList")]
+        public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetDoorsAsyn()
+        {
+            return await _searchRepository.GetDoorsListAsync();
+        }
+        [HttpGet]
+        [Route("GetSeatsList")]
+        public async System.Threading.Tasks.Task<List<CommonViewModel>> GetSeatsAsync()
+        {
+            return await _searchRepository.GetSeatsListAsync();
+        }
+
+
+        [HttpPost]
+        [Route("GetVehicleListAccordingToSelectedSeat")]
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedSeatAsync([FromBody] SearchVehicleListSeatModel searchVehicleListSeatModel)
+        {
+            List<int> SeatIds = searchVehicleListSeatModel.Seat.Select(st => st.Id).ToList();
+            return await _searchRepository.GetVehicleListAccordingToSelectedSeatsAsync(SeatIds);
+        }
+
+        [HttpPost]
+        [Route("GetVehicleListAccordingToSelectedLifeStyles")]
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedLifeStylesAsync([FromBody] SearchVehicleListLifeStylesModel searchVehicleListLifeStylesModel)
+        {
+            int lifeStylesId = searchVehicleListLifeStylesModel.LifeStyles.Id;
+            return await _searchRepository.GetVehicleListAccordingToSelectedLifeStylesAsync(lifeStylesId);
+        }
+
+        [HttpPost]
+        [Route("GetVehicleListAccordingToSelectedDoors")]
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedDoorsAsync([FromBody] SearchVehicleListDoorsModel searchVehicleListDoorsModel)
+        {
+            int doorId = searchVehicleListDoorsModel.Doors.Id;
+            return await _searchRepository.GetVehicleListAccordingToSelectedDoorsAsync(doorId);
+        }
+        [HttpPost]
+        [Route("GetVehicleListAccordingToSelectedVehicleType")]
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedVehicelTypeAsync([FromBody] SearchVehicleListVehicleTypeModel searchVehicleListVehicleTypeModel)
+        {
+            List<int> lstVehicelTypes = searchVehicleListVehicleTypeModel.VehicleType.Select(y => y.Id).ToList();
+            return await _searchRepository.GetVehicleListAccordingToSelectedVehicelTypeAsync(lstVehicelTypes);
+        }
+        [HttpPost]
+        [Route("GetVehicleListAccordingToSelectedCertifiedInspected")]
+        public async System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedCertifiedInspectedAsync([FromBody] SearchVehicleListCertifiedInspectedModel searchVehicleListCertifiedInspectedModel)
+        {
+            List<int> CertifiedInspectedIds = searchVehicleListCertifiedInspectedModel.CertifiedInspected.Select(clr => clr.Id).ToList();
+            return await _searchRepository.GetVehicleListAccordingToSelectedCertifiedInspectedAsync(CertifiedInspectedIds);
+        }
+
     }
 }

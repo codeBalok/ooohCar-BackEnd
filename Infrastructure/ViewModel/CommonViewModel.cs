@@ -52,7 +52,7 @@ namespace CarsbyServices.ViewModels
         public List<CommonViewModel> Year { get; set; }
     }
 
-    public partial class SearchVehicleListVehicelTypeModel
+    public partial class SearchVehicleListVehicleTypeModel
     {
         public List<CommonViewModel> VehicleType { get; set; }
     }
@@ -105,6 +105,24 @@ namespace CarsbyServices.ViewModels
     public partial class SearchVehicleListColourModel
     {
         public List<CommonViewModel> Colour { get; set; }
+    }
+    public partial class SearchVehicleListSeatModel
+    {
+        public List<CommonViewModel> Seat { get; set; }
+    }
+
+    public partial class SearchVehicleListLifeStylesModel
+    {
+        public CommonViewModel LifeStyles { get; set; }
+    }
+
+    public partial class SearchVehicleListDoorsModel
+    {
+        public CommonViewModel Doors { get; set; }
+    }
+    public partial class SearchVehicleListCertifiedInspectedModel
+    {
+        public List<CommonViewModel> CertifiedInspected { get; set; }
     }
 
 }

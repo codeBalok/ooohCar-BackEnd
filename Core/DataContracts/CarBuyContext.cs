@@ -37,11 +37,13 @@ namespace CarsbyEF.DataContracts
         public virtual DbSet<CarTrim> CarTrims { get; set; }
         public virtual DbSet<CarType> CarTypes { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<CertifiedInspected> CertifiedInspecteds { get; set; }
         public virtual DbSet<Colour> Colours { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Condition> Conditions { get; set; }
         public virtual DbSet<Cylinder> Cylinders { get; set; }
         public virtual DbSet<Detail> Details { get; set; }
+        public virtual DbSet<Door> Doors { get; set; }
         public virtual DbSet<DriveType> DriveTypes { get; set; }
         public virtual DbSet<EngineDescription> EngineDescriptions { get; set; }
         public virtual DbSet<EngineSize> EngineSizes { get; set; }
@@ -49,6 +51,7 @@ namespace CarsbyEF.DataContracts
         public virtual DbSet<FuelType> FuelTypes { get; set; }
         public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<InductionTurbo> InductionTurbos { get; set; }
+        public virtual DbSet<LifeStyle> LifeStyles { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<Make> Makes { get; set; }
         public virtual DbSet<MakeImage> MakeImages { get; set; }
@@ -58,6 +61,7 @@ namespace CarsbyEF.DataContracts
         public virtual DbSet<PowerToWeight> PowerToWeights { get; set; }
         public virtual DbSet<Price> Prices { get; set; }
         public virtual DbSet<Region> Regions { get; set; }
+        public virtual DbSet<Seat> Seats { get; set; }
         public virtual DbSet<SellerType> SellerTypes { get; set; }
         public virtual DbSet<Service> Services { get; set; }
         public virtual DbSet<Tow> Tows { get; set; }
@@ -75,7 +79,7 @@ namespace CarsbyEF.DataContracts
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-PIKGPVL\\SQLEXPRESS;Database=CarBuy;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=CarBuy;Trusted_Connection=True;");
             }
         }
 
@@ -832,6 +836,19 @@ namespace CarsbyEF.DataContracts
                 entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
             });
 
+            modelBuilder.Entity<CertifiedInspected>(entity =>
+            {
+                entity.ToTable("CertifiedInspected");
+
+                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(250);
+
+                entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
+            });
+
             modelBuilder.Entity<Colour>(entity =>
             {
                 entity.ToTable("Colour");
@@ -895,6 +912,17 @@ namespace CarsbyEF.DataContracts
                 entity.Property(e => e.VehicaleId)
                     .HasMaxLength(10)
                     .IsFixedLength(true);
+            });
+
+            modelBuilder.Entity<Door>(entity =>
+            {
+                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(250);
+
+                entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<DriveType>(entity =>
@@ -982,6 +1010,17 @@ namespace CarsbyEF.DataContracts
             {
                 entity.ToTable("InductionTurbo");
 
+                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(250);
+
+                entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
+            });
+
+            modelBuilder.Entity<LifeStyle>(entity =>
+            {
                 entity.Property(e => e.CreatedDate).HasColumnType("datetime");
 
                 entity.Property(e => e.Name)
@@ -1136,6 +1175,17 @@ namespace CarsbyEF.DataContracts
                     .HasConstraintName("FK_Region_Location");
             });
 
+            modelBuilder.Entity<Seat>(entity =>
+            {
+                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(250);
+
+                entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
+            });
+
             modelBuilder.Entity<SellerType>(entity =>
             {
                 entity.ToTable("SellerType");
@@ -1215,11 +1265,15 @@ namespace CarsbyEF.DataContracts
 
                 entity.HasIndex(e => e.CategoryId, "IX_Vehicle_CategoryId");
 
+                entity.HasIndex(e => e.CertifiedInspectedId, "IX_Vehicle_CertifiedInspectedId");
+
                 entity.HasIndex(e => e.ColourId, "IX_Vehicle_ColourId");
 
                 entity.HasIndex(e => e.ConditionId, "IX_Vehicle_ConditionId");
 
                 entity.HasIndex(e => e.CylindersId, "IX_Vehicle_CylindersId");
+
+                entity.HasIndex(e => e.DoorsId, "IX_Vehicle_DoorsId");
 
                 entity.HasIndex(e => e.DriveTypeId, "IX_Vehicle_DriveTypeId");
 
@@ -1233,6 +1287,8 @@ namespace CarsbyEF.DataContracts
 
                 entity.HasIndex(e => e.InductionTurboId, "IX_Vehicle_InductionTurboId");
 
+                entity.HasIndex(e => e.LifeStylesId, "IX_Vehicle_LifeStylesId");
+
                 entity.HasIndex(e => e.LocationId, "IX_Vehicle_LocationId");
 
                 entity.HasIndex(e => e.MakeId, "IX_Vehicle_MakeId");
@@ -1242,6 +1298,8 @@ namespace CarsbyEF.DataContracts
                 entity.HasIndex(e => e.PowerId, "IX_Vehicle_PowerId");
 
                 entity.HasIndex(e => e.PowerToWeightId, "IX_Vehicle_PowerToWeightId");
+
+                entity.HasIndex(e => e.SeatsId, "IX_Vehicle_SeatsId");
 
                 entity.HasIndex(e => e.SellerTypeId, "IX_Vehicle_SellerTypeId");
 
@@ -1306,6 +1364,11 @@ namespace CarsbyEF.DataContracts
                     .HasForeignKey(d => d.CategoryId)
                     .HasConstraintName("FK_Category_Id");
 
+                entity.HasOne(d => d.CertifiedInspected)
+                    .WithMany(p => p.Vehicles)
+                    .HasForeignKey(d => d.CertifiedInspectedId)
+                    .HasConstraintName("FK_Vehicle_CertifiedInspected");
+
                 entity.HasOne(d => d.Colour)
                     .WithMany(p => p.Vehicles)
                     .HasForeignKey(d => d.ColourId)
@@ -1321,10 +1384,10 @@ namespace CarsbyEF.DataContracts
                     .HasForeignKey(d => d.CylindersId)
                     .HasConstraintName("FK_Cylinders");
 
-                entity.HasOne(d => d.DriveType)
+                entity.HasOne(d => d.Doors)
                     .WithMany(p => p.Vehicles)
-                    .HasForeignKey(d => d.DriveTypeId)
-                    .HasConstraintName("FK_Vehicle_DriveType");
+                    .HasForeignKey(d => d.DoorsId)
+                    .HasConstraintName("FK_Vehicle_Doors");
 
                 entity.HasOne(d => d.EngineDescription)
                     .WithMany(p => p.Vehicles)
@@ -1351,6 +1414,11 @@ namespace CarsbyEF.DataContracts
                     .HasForeignKey(d => d.InductionTurboId)
                     .HasConstraintName("FK_Vehicle_InductionTurbo");
 
+                entity.HasOne(d => d.LifeStyles)
+                    .WithMany(p => p.Vehicles)
+                    .HasForeignKey(d => d.LifeStylesId)
+                    .HasConstraintName("FK_Vehicle_LifeStyles");
+
                 entity.HasOne(d => d.Location)
                     .WithMany(p => p.Vehicles)
                     .HasForeignKey(d => d.LocationId)
@@ -1375,6 +1443,11 @@ namespace CarsbyEF.DataContracts
                     .WithMany(p => p.Vehicles)
                     .HasForeignKey(d => d.PowerToWeightId)
                     .HasConstraintName("FK_Vehicle_PowerToWeight");
+
+                entity.HasOne(d => d.Seats)
+                    .WithMany(p => p.Vehicles)
+                    .HasForeignKey(d => d.SeatsId)
+                    .HasConstraintName("FK_Vehicle_Seats");
 
                 entity.HasOne(d => d.SellerType)
                     .WithMany(p => p.Vehicles)

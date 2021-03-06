@@ -13,7 +13,7 @@ namespace Core.Interfaces
         System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetVariantListAsync(int modelId);
         System.Threading.Tasks.Task<List<CommonViewModel>> GetLocationListAsync();
         System.Threading.Tasks.Task<List<CommonViewModel>> GetYearListAsync();
-        System.Threading.Tasks.Task<List<CommonViewModel>> GetVehicleTypeListAsync();
+        
         System.Threading.Tasks.Task<List<VehicleViewModel>> GetSearchVehicleListAsync(SearchViewModel searchViewModel);
         System.Threading.Tasks.Task<string> GetYearAsync(int modelId);
         System.Threading.Tasks.Task<string> GetBodyAsync(int bodyId);
@@ -76,6 +76,29 @@ namespace Core.Interfaces
         System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedDriveTypeAsync(int driveTypeId);
         System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedBodyTypeAsync(List<int> lstBodyTypeId);
         System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedColourAsync(List<int> lstColourId);
+
         System.Threading.Tasks.Task<List<CommonViewModel>> GetPriceListAsync();
+         
+         System.Threading.Tasks.Task<List<CommonViewModel>> GetSeatsListAsync();
+        System.Threading.Tasks.Task<int> GetVehicleCountBySeatsIDAsync(int SeatsId);
+        System.Threading.Tasks.Task<List<Vehicle>> GetVehicleListByVehicleSeatsAsync(List<int> lstSeatsId);
+        System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetLifeStylesListAsync();
+        System.Threading.Tasks.Task<int> GetVehicleCountByLifeStylesIDAsync(int LifeStylesId);
+        System.Threading.Tasks.Task<List<Vehicle>> GetVehicleListByVehicleLifeStylesAsync(List<int> lstLifeStylesId);
+        System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetDoorsListAsync();
+        System.Threading.Tasks.Task<int> GetVehicleCountByDoorsIDAsync(int DoorsId);
+        System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedDoorsAsync(int doorsId);
+        System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedLifeStylesAsync(int lifeStylesId);
+        System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedSeatsAsync(List<int> lstSeats);
+        System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedVehicelTypeAsync(List<int> lstVehicelTypeId);
+        System.Threading.Tasks.Task<List<Vehicle>> GetVehicleListByCertifiedInspectedsAsync(List<int> lstCertifiedInspectedId);
+        System.Threading.Tasks.Task<int> GetVehicleCountByCertifiedInspectedIDAsync(int CertifiedInspectedId);
+        System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetCertifiedInspectedListAsync();
+        System.Threading.Tasks.Task<List<VehicleViewModel>> GetVehicleListAccordingToSelectedCertifiedInspectedAsync(List<int> lstCertifiedInspectedId);
+        System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetVehicleTypeListAsync();
+        System.Threading.Tasks.Task<int> GetVehicleCountByVehicleTypesIDAsync(int VehicelTypeId);
+        System.Threading.Tasks.Task<List<Vehicle>> GetVehicleListByVehicleTypeAsync(List<int> lstVehicelTypeId);
+
     }
+    
 }
