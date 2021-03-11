@@ -24,11 +24,29 @@ namespace CarsbyServices.ViewModels
         public string Name { get; set; }
         public string LogoImages { get; set; }
     }
+    public partial class getvarientList
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+     
+    }
     public partial class SideSearchCommonViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public int ChildCount { get; set; }
+    }
+    public partial class ConditionViewModel
+    {
+        public int Id { get; set; }
+        public string Condition { get; set; }
+       
+    }
+    public partial class PriceViewModel
+    {
+        public int Id { get; set; }
+        public decimal? Price { get; set; }
+
     }
     public partial class SearchMakeViewModel : CommonViewModel
     {

@@ -148,7 +148,7 @@ namespace API.Controllers
         [Route("AddUpdateNewVehicle")]
         public string AddUpdateNewVehicle([FromForm] VehicleDTO VehicleVM)
         {
-            VehicleVM.VehicleImageId = "1";
+            
             var Vehicle = _mapper.Map<VehicleDTO, Vehicle>(VehicleVM);
             return _addNewVehicle.AddUpdateNewVehicle(Vehicle);
         }

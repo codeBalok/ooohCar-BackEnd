@@ -7,6 +7,11 @@ namespace CarsbyEF.DataContracts
 {
     public partial class Vehicle
     {
+        public Vehicle()
+        {
+            VehicleImages = new HashSet<VehicleImage>();
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Odometers { get; set; }
@@ -53,7 +58,6 @@ namespace CarsbyEF.DataContracts
         public virtual Colour Colour { get; set; }
         public virtual Condition Condition { get; set; }
         public virtual Cylinder Cylinders { get; set; }
-        public virtual DriveType DriveType { get; set; }
         public virtual EngineDescription EngineDescription { get; set; }
         public virtual EngineSize EngineSize { get; set; }
         public virtual FuelEconomy FuelEconomy { get; set; }
@@ -70,7 +74,7 @@ namespace CarsbyEF.DataContracts
         public virtual Variant VariantNavigation { get; set; }
         public virtual VehicleType VehicalType { get; set; }
         public virtual VehicleCategory VehicleCategory { get; set; }
-        public virtual VehicleImage VehicleImage { get; set; }
         public virtual Year Year { get; set; }
+        public virtual ICollection<VehicleImage> VehicleImages { get; set; }
     }
 }

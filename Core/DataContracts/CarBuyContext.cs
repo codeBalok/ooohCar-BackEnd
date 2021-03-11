@@ -66,6 +66,7 @@ namespace CarsbyEF.DataContracts
         public virtual DbSet<Vehicle> Vehicles { get; set; }
         public virtual DbSet<VehicleCategory> VehicleCategories { get; set; }
         public virtual DbSet<VehicleImage> VehicleImages { get; set; }
+        public virtual DbSet<VehicleImage1> VehicleImages1 { get; set; }
         public virtual DbSet<VehicleType> VehicleTypes { get; set; }
         public virtual DbSet<WhistList> WhistLists { get; set; }
         public virtual DbSet<Year> Years { get; set; }
@@ -75,7 +76,7 @@ namespace CarsbyEF.DataContracts
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-PIKGPVL\\SQLEXPRESS;Database=CarBuy;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-3TL00NE\\SQLEXPRESS;Database=CarBuy;Trusted_Connection=True;");
             }
         }
 
@@ -1321,11 +1322,6 @@ namespace CarsbyEF.DataContracts
                     .HasForeignKey(d => d.CylindersId)
                     .HasConstraintName("FK_Cylinders");
 
-                entity.HasOne(d => d.DriveType)
-                    .WithMany(p => p.Vehicles)
-                    .HasForeignKey(d => d.DriveTypeId)
-                    .HasConstraintName("FK_Vehicle_DriveType");
-
                 entity.HasOne(d => d.EngineDescription)
                     .WithMany(p => p.Vehicles)
                     .HasForeignKey(d => d.EngineDescriptionId)
@@ -1406,11 +1402,6 @@ namespace CarsbyEF.DataContracts
                     .HasForeignKey(d => d.VehicleCategoryId)
                     .HasConstraintName("FK_Vehicle_VehicleCategory");
 
-                entity.HasOne(d => d.VehicleImage)
-                    .WithMany(p => p.Vehicles)
-                    .HasForeignKey(d => d.VehicleImageId)
-                    .HasConstraintName("FK_Vehicle_VehicleImage");
-
                 entity.HasOne(d => d.Year)
                     .WithMany(p => p.Vehicles)
                     .HasForeignKey(d => d.YearId)
@@ -1439,6 +1430,18 @@ namespace CarsbyEF.DataContracts
                 entity.Property(e => e.CreatedDate).HasColumnType("datetime");
 
                 entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Vehicle)
+                    .WithMany(p => p.VehicleImages)
+                    .HasForeignKey(d => d.VehicleId)
+                    .HasConstraintName("FK_VehicleImage_Vehicle");
+            });
+
+            modelBuilder.Entity<VehicleImage1>(entity =>
+            {
+                entity.ToTable("VehicleImages");
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
             });
 
             modelBuilder.Entity<VehicleType>(entity =>
