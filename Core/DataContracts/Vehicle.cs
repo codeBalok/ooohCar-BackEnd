@@ -52,22 +52,30 @@ namespace CarsbyEF.DataContracts
         public int? PowerToWeightId { get; set; }
         public int? InductionTurboId { get; set; }
         public int? DriveTypeId { get; set; }
+        public int? DoorsId { get; set; }
+        public int? SeatsId { get; set; }
+        public int? LifeStylesId { get; set; }
+        public int? CertifiedInspectedId { get; set; }
 
         public virtual BodyType BodyType { get; set; }
         public virtual Category Category { get; set; }
+        public virtual CertifiedInspected CertifiedInspected { get; set; }
         public virtual Colour Colour { get; set; }
         public virtual Condition Condition { get; set; }
         public virtual Cylinder Cylinders { get; set; }
+        public virtual Door Doors { get; set; }
         public virtual EngineDescription EngineDescription { get; set; }
         public virtual EngineSize EngineSize { get; set; }
         public virtual FuelEconomy FuelEconomy { get; set; }
         public virtual FuelType FuelType { get; set; }
         public virtual InductionTurbo InductionTurbo { get; set; }
+        public virtual LifeStyle LifeStyles { get; set; }
         public virtual Location Location { get; set; }
         public virtual Make Make { get; set; }
         public virtual Model Model { get; set; }
         public virtual Power Power { get; set; }
         public virtual PowerToWeight PowerToWeight { get; set; }
+        public virtual Seat Seats { get; set; }
         public virtual SellerType SellerType { get; set; }
         public virtual Tow Tow { get; set; }
         public virtual Transmission Transmission { get; set; }

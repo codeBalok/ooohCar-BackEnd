@@ -39,6 +39,10 @@
     [PowerToWeightId] INT NULL, 
     [InductionTurboId] INT NULL, 
     [DriveTypeId] INT NULL, 
+    [DoorsId] INT NULL, 
+    [SeatsId] INT NULL, 
+    [LifeStylesId] INT NULL, 
+    [CertifiedInspectedId] INT NULL, 
     CONSTRAINT [PK_Vehicle] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Body_Type] FOREIGN KEY ([BodyTypeId]) REFERENCES [dbo].[BodyType] ([Id]),
     CONSTRAINT [FK_Category_Id] FOREIGN KEY ([CategoryId]) REFERENCES [dbo].[Category] ([Id]),
@@ -62,7 +66,11 @@
     CONSTRAINT [FK_Vehicle_Tow] FOREIGN KEY([TowId]) REFERENCES [dbo].[Tow] ([Id]),
     CONSTRAINT [FK_Vehicle_Power] FOREIGN KEY([PowerId]) REFERENCES [dbo].[Power] ([Id]),
     CONSTRAINT [FK_Vehicle_PowerToWeight] FOREIGN KEY([PowerToWeightId]) REFERENCES [dbo].[PowerToWeight] ([Id]),
-    CONSTRAINT [FK_Vehicle_InductionTurbo] FOREIGN KEY([InductionTurboId]) REFERENCES [dbo].[InductionTurbo] ([Id])
+    CONSTRAINT [FK_Vehicle_InductionTurbo] FOREIGN KEY([InductionTurboId]) REFERENCES [dbo].[InductionTurbo] ([Id]),
+    CONSTRAINT [FK_Vehicle_Doors] FOREIGN KEY([DoorsId]) REFERENCES [dbo].[Doors] ([Id]),
+    CONSTRAINT [FK_Vehicle_Seats] FOREIGN KEY([SeatsId]) REFERENCES [dbo].[Seats] ([Id]),
+    CONSTRAINT [FK_Vehicle_LifeStyles] FOREIGN KEY([LifeStylesId]) REFERENCES [dbo].[LifeStyles] ([Id]),
+    CONSTRAINT [FK_Vehicle_CertifiedInspected] FOREIGN KEY([CertifiedInspectedId]) REFERENCES [dbo].[CertifiedInspected] ([Id])
 );
 
 
@@ -180,3 +188,18 @@ GO
 
 CREATE NONCLUSTERED INDEX [IX_Vehicle_DriveTypeId]
 ON [dbo].[Vehicle](	[DriveTypeId] ASC);
+
+GO
+CREATE NONCLUSTERED INDEX [IX_Vehicle_DoorsId]
+ON [dbo].[Vehicle](	[DoorsId] ASC);
+
+GO
+CREATE NONCLUSTERED INDEX [IX_Vehicle_SeatsId]
+ON [dbo].[Vehicle](	[SeatsId] ASC);
+
+GO
+CREATE NONCLUSTERED INDEX [IX_Vehicle_LifeStylesId]
+ON [dbo].[Vehicle](	[LifeStylesId] ASC);
+GO
+CREATE NONCLUSTERED INDEX [IX_Vehicle_CertifiedInspectedId]
+ON [dbo].[Vehicle](	[CertifiedInspectedId] ASC);
