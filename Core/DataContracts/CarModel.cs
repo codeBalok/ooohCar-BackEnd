@@ -12,6 +12,7 @@ namespace CarsbyEF.DataContracts
             CarGenerations = new HashSet<CarGeneration>();
             CarSeries = new HashSet<CarSerie>();
             CarTrims = new HashSet<CarTrim>();
+            Vehicles = new HashSet<Vehicle>();
         }
 
         public int IdCarModel { get; set; }
@@ -27,5 +28,6 @@ namespace CarsbyEF.DataContracts
         public virtual ICollection<CarGeneration> CarGenerations { get; set; }
         public virtual ICollection<CarSerie> CarSeries { get; set; }
         public virtual ICollection<CarTrim> CarTrims { get; set; }
+        public virtual ICollection<Vehicle> Vehicles { get; set; }
     }
 }

@@ -1,10 +1,15 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
+using System.Collections.Generic;
 
 namespace API.Dtos
 {
     public class VehicleDTO
     {
+        public VehicleDTO()
+        {
+            VehicleImage = new List<IFormFile>();
+        }
         public string Id { get; set; }
         public string Name { get; set; }
         public string Odometers { get; set; }
@@ -24,11 +29,13 @@ namespace API.Dtos
         public string AirConditioning { get; set; }
         public string AuctionGrade { get; set; }
         public string LocationId { get; set; }
-        public string VehicleImageId { get; set; }
-        public IFormFile VehicleImage { get; set; }
-        public string Base64Image { get; set; }
+        public string description { get; set; }
+       
+        public List<IFormFile> VehicleImage { get; set; }
+    
+        
         public string Vin { get; set; }
-        public int? CategoryId { get; set; }
+        //public int? CategoryId { get; set; }
         public string RegistrationPlate { get; set; }
         public int? VehicalTypeId { get; set; }
         public int? EngineDescriptionId { get; set; }
@@ -41,6 +48,10 @@ namespace API.Dtos
         public DateTime? CreatedDate { get; set; }
         public int? UpdatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
+
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
+        public string City { get; set; }
     }
 
 }

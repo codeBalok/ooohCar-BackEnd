@@ -12,7 +12,6 @@ namespace CarsbyEF.DataContracts
             Images = new HashSet<Image>();
             ModelColours = new HashSet<ModelColour>();
             Variants = new HashSet<Variant>();
-            Vehicles = new HashSet<Vehicle>();
         }
 
         public int Id { get; set; }
@@ -31,6 +30,5 @@ namespace CarsbyEF.DataContracts
         public virtual ICollection<Image> Images { get; set; }
         public virtual ICollection<ModelColour> ModelColours { get; set; }
         public virtual ICollection<Variant> Variants { get; set; }
-        public virtual ICollection<Vehicle> Vehicles { get; set; }
     }
 }

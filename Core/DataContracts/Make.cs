@@ -10,7 +10,6 @@ namespace CarsbyEF.DataContracts
         public Make()
         {
             Models = new HashSet<Model>();
-            Vehicles = new HashSet<Vehicle>();
         }
 
         public int Id { get; set; }
@@ -23,6 +22,5 @@ namespace CarsbyEF.DataContracts
         public DateTime? UpdatedDate { get; set; }
 
         public virtual ICollection<Model> Models { get; set; }
-        public virtual ICollection<Vehicle> Vehicles { get; set; }
     }
 }

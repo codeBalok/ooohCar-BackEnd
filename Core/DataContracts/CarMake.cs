@@ -11,6 +11,7 @@ namespace CarsbyEF.DataContracts
         {
             CarModels = new HashSet<CarModel>();
             MakeImages = new HashSet<MakeImage>();
+            Vehicles = new HashSet<Vehicle>();
         }
 
         public int IdCarMake { get; set; }
@@ -23,5 +24,6 @@ namespace CarsbyEF.DataContracts
         public virtual CarType IdCarTypeNavigation { get; set; }
         public virtual ICollection<CarModel> CarModels { get; set; }
         public virtual ICollection<MakeImage> MakeImages { get; set; }
+        public virtual ICollection<Vehicle> Vehicles { get; set; }
     }
 }

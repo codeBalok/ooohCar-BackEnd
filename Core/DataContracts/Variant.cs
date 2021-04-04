@@ -7,11 +7,6 @@ namespace CarsbyEF.DataContracts
 {
     public partial class Variant
     {
-        public Variant()
-        {
-            Vehicles = new HashSet<Vehicle>();
-        }
-
         public int Id { get; set; }
         public string Varient { get; set; }
         public int? ModelId { get; set; }
@@ -23,6 +18,5 @@ namespace CarsbyEF.DataContracts
         public bool? Popular { get; set; }
 
         public virtual Model Model { get; set; }
-        public virtual ICollection<Vehicle> Vehicles { get; set; }
     }
 }

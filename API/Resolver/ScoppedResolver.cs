@@ -11,6 +11,8 @@ namespace CarsbyAPI.Resolver
         public static void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<ISearchRepository, SearchService>();
+            services.AddScoped<IVehicleImageRepository, VechicleImageService>();
+            services.AddScoped<IImageWriterService, ImageWriterService>();
             services.AddScoped<IAddNewVehicleRepository, AddNewVehicleService>();
             services.AddScoped<IFeatureProductsRepository, FeatureProductsService>();
             services.AddScoped<IImageServiceRepository, ImageServiceService>();
@@ -18,6 +20,7 @@ namespace CarsbyAPI.Resolver
             services.AddScoped<IErrorHandler, ErrorHandler>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IAddVehicleRepository, AddVehicleService>();
+            services.AddScoped<ICarDetailRepository, CarDetailService>();
 
         }
     }

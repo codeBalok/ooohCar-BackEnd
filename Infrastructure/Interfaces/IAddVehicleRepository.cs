@@ -21,5 +21,9 @@ namespace CarsbyServices.Interfaces
         System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetCylindersListAsync();
         System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetColourListAsync();
         System.Threading.Tasks.Task<string> AddUpdateNewVehicleAsync(Vehicle objvehicleToSave);
+        System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetEngineSizeListAsync();
+        System.Threading.Tasks.Task<string> GetMakeNameById(int MakeId);
+        System.Threading.Tasks.Task<string> GetModelNameById(int modelID);
+        System.Threading.Tasks.Task<int> checkPriceExist(int priceId);
     }
 }

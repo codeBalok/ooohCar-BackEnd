@@ -13,6 +13,7 @@ using CarsbyEF.DataContracts;
 using System.Net.Http;
 using CarsbyServices.ViewModel;
 using System.Text.Json;
+using System.IO;
 
 namespace CarsbyAPI.Controllers
 {
@@ -22,10 +23,13 @@ namespace CarsbyAPI.Controllers
     {
         private readonly IAddVehicleRepository _addvehiclerepo;
         private readonly IMapper _mapper;
-        public AddVehicleController(IAddVehicleRepository addvehiclerepo)
+        private readonly IImageWriterService _imageWriterService;
+        private readonly IVehicleImageRepository _imageRepository;
+        public AddVehicleController(IAddVehicleRepository addvehiclerepo, IImageWriterService imageWriterService, IVehicleImageRepository imageRepository)
         {
             _addvehiclerepo = addvehiclerepo;
-            
+            _imageWriterService = imageWriterService;
+            _imageRepository = imageRepository;
         }
 
         [HttpGet]
@@ -103,9 +107,80 @@ namespace CarsbyAPI.Controllers
         [Route("AddUpdateNewVehicle")]
         public async System.Threading.Tasks.Task<string> AddUpdateNewVehicle([FromForm] VehicleDTO VehicleVM)
         {
+            try
+            {
+        
+                VehicleVM.CreatedDate = DateTime.Now;
+                VehicleVM.CreatedBy = 1; //static pass need to discuss how we can make it dynamic ? client query  
+                if (VehicleVM.RegistrationPlate != null)
+                {
+                    VehicleVM.IsRegistered = "Yes";
+                }
+                else
+                {
+                    VehicleVM.IsRegistered = "No";
+                }
+                int intmakeid = Convert.ToInt32(VehicleVM.MakeId);
+                int intmodelid = Convert.ToInt32(VehicleVM.ModelId);
+                string makename = await _addvehiclerepo.GetMakeNameById(intmakeid);
+                string modelname = await _addvehiclerepo.GetModelNameById(intmodelid);
+                string getVechileName= makename + " " + modelname;
+                getVechileName = getVechileName.ToUpper();
+                VehicleVM.Name = getVechileName; //is this based on make model or should we pass this? client query
+                //var Vehicle = _mapper.Map<VehicleDTO, Vehicle>(VehicleVM);
+                Vehicle objvehicle = new Vehicle();
+                objvehicle.AirConditioning = VehicleVM.AirConditioning;
+                objvehicle.AuctionGrade = VehicleVM.AuctionGrade;
+                objvehicle.BodyTypeId =Convert.ToInt32(VehicleVM.BodyTypeId);
+                objvehicle.City = VehicleVM.City;
+                objvehicle.ColourId =Convert.ToInt32(VehicleVM.ColourId);
+                objvehicle.CreatedBy = VehicleVM.CreatedBy;
+                objvehicle.CreatedDate = VehicleVM.CreatedDate;
+                objvehicle.CylindersId =Convert.ToInt32(VehicleVM.CylindersId);
+                objvehicle.DriveTrain = VehicleVM.DriveTrain;
+                objvehicle.IsRegistered = VehicleVM.IsRegistered;
+                objvehicle.RegistrationPlate = VehicleVM.RegistrationPlate;
+                objvehicle.FuelTypeId =Convert.ToInt32(VehicleVM.FuelTypeId);
+                objvehicle.Kilometer =Convert.ToInt32( VehicleVM.Kilometer);
+                objvehicle.Latitude = VehicleVM.Latitude;
+                objvehicle.Longitude = VehicleVM.Longitude;
+                objvehicle.MakeId =Convert.ToInt32(VehicleVM.MakeId);
+                objvehicle.ModelId =Convert.ToInt32(VehicleVM.ModelId);
+                objvehicle.Vin = VehicleVM.Vin;
+                objvehicle.TransmissionId = Convert.ToInt32(VehicleVM.TransmissionId);
+                objvehicle.Odometers =VehicleVM.Odometers;
+                objvehicle.Name = VehicleVM.Name;
+                objvehicle.Price =Convert.ToDecimal(VehicleVM.PriceId);
+                objvehicle.IsActive = true;
+                objvehicle.YearId =Convert.ToInt32(VehicleVM.YearId);
+                objvehicle.ConditionId = Convert.ToInt32(VehicleVM.ConditionId);
+                objvehicle.Description = VehicleVM.description;
+                string vehicleId = await _addvehiclerepo.AddUpdateNewVehicleAsync(objvehicle);
 
-            var Vehicle = _mapper.Map<VehicleDTO, Vehicle>(VehicleVM);
-            return await _addvehiclerepo.AddUpdateNewVehicleAsync(Vehicle);
+                foreach (var formFile in VehicleVM.VehicleImage)
+                {
+
+                    if (formFile.Length > 0)
+                    {
+                        var ImagePath = await _imageWriterService.UploadImage(formFile);
+                        string imagePath = ImagePath;
+                        int imageid = await _imageRepository.SaveVehicleImage(imagePath, Convert.ToInt32(vehicleId));
+
+                    }
+                }
+                return "Success";
+            }
+            catch (NullReferenceException e)
+            {
+                return e.InnerException.ToString();
+            }
+        }
+
+        [HttpGet]
+        [Route("GetEngineSizeList")]
+        public async System.Threading.Tasks.Task<List<SideSearchCommonViewModel>> GetEngineSizeListAsync()
+        {
+            return await _addvehiclerepo.GetEngineSizeListAsync();
         }
 
         [HttpGet]
@@ -118,10 +193,10 @@ namespace CarsbyAPI.Controllers
             {
                 var response = await client.GetAsync(IpAddressServiceUrl);
                 var json = response.Content.ReadAsStringAsync().Result;
-                var desJson= JsonSerializer.Deserialize<IpAddressViewModel>(json);
+                var desJson = JsonSerializer.Deserialize<IpAddressViewModel>(json);
                 return desJson;
             }
-           
+
         }
 
         [HttpGet]
@@ -132,12 +207,12 @@ namespace CarsbyAPI.Controllers
             string IpAddressServiceUrl = "http://ip-api.com/json/" + ip;
             using (HttpClient client = new HttpClient())
             {
-                var response =await client.GetAsync(IpAddressServiceUrl);
+                var response = await client.GetAsync(IpAddressServiceUrl);
                 var json = response.Content.ReadAsStringAsync().Result;
                 var desJson = JsonSerializer.Deserialize<locationDetails>(json);
                 return desJson;
             }
-           
+
         }
     }
 

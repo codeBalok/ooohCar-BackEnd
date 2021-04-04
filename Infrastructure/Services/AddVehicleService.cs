@@ -162,6 +162,34 @@ namespace CarsbyServices.Services
             return sideSearchCommonViewModels;
         }
 
+        public async Task<int> checkPriceExist(int priceId)
+        {
+            if (priceId > 0)
+            {
+                var price= _dBContext.Prices.Where(a => a.Id == priceId).FirstOrDefault();
+                if (price == null)
+                {
+                    Price objPrice = new Price();
+                    objPrice.Amount = priceId;
+                    objPrice.IsActive = true;
+                    objPrice.CreatedBy = 1;
+                    objPrice.CreatedDate = DateTime.Now;
+
+                    await _dBContext.Prices.AddAsync(objPrice);
+                    _dBContext.SaveChanges();
+                    return objPrice.Id;
+                }
+                else
+                {
+                    return priceId;
+                }
+            }
+            else
+            {
+                return priceId;
+            }
+        }
+
         public async Task<string> AddUpdateNewVehicleAsync(Vehicle objvehicleToSave)
         {
             if (objvehicleToSave != null)
@@ -170,20 +198,47 @@ namespace CarsbyServices.Services
                 {
                     await _dBContext.Vehicles.AddAsync(objvehicleToSave);
                     _dBContext.SaveChanges();
-                    return "added";
+                    return objvehicleToSave.Id.ToString();
                 }
                 else
                 {
                     _dBContext.Vehicles.Where(a => a.Id == objvehicleToSave.Id).FirstOrDefault();
                     _dBContext.Vehicles.Update(objvehicleToSave);
                     _dBContext.SaveChanges();
-                    return "updated";
+                    return objvehicleToSave.Id.ToString();
                 }
             }
             else
             {
                 return null;
             }
+        }
+
+        public async Task<List<SideSearchCommonViewModel>> GetEngineSizeListAsync()
+        {
+            var engineSizes = await _dBContext.EngineSizes.ToListAsync();
+
+            List<SideSearchCommonViewModel> sideSearchCommonViewModels = new List<SideSearchCommonViewModel>();
+            foreach (var x in engineSizes)
+            {
+                sideSearchCommonViewModels.Add(new SideSearchCommonViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                });
+            }
+            return sideSearchCommonViewModels;
+        }
+
+        public async Task<string> GetMakeNameById(int MakeId)
+        {
+            var engineSizes = await _dBContext.CarMakes.Where(x=>x.IdCarMake== MakeId).FirstOrDefaultAsync();
+            return engineSizes.Name;
+        }
+        public async Task<string> GetModelNameById(int modelID)
+        {
+            var engineSizes = await _dBContext.CarModels.Where(x => x.IdCarModel == modelID).FirstOrDefaultAsync();
+            return engineSizes.Name;
         }
     }
 }
